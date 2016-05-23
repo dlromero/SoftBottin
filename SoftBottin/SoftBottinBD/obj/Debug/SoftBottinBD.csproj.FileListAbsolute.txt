@@ -1,0 +1,5 @@
+c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll
+c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.pdb
+c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.csprojResolveAssemblyReference.cache
+c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.dll
+c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.pdb

@@ -1,0 +1,490 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+.app-header {
+    /*background: url("../Images/zapato3.jpg") repeat-x center top fixed;*/
+    font-family: "Avenir", Futura, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /*padding-bottom: 80px;*/
+}
+
+.app-navbar {
+    background: rgba(0,0,0,0.6);
+    border-radius: 0;
+}
+
+.app-shopping-cart {
+    background: rgba(0, 128, 214, 0.52);
+    color: white;
+}
+
+.app-link {
+    color: white;
+    text-shadow: none;
+}
+
+    .app-link:hover {
+        color: white;
+    }
+
+.app-nav > li > a {
+    color: white;
+    text-shadow: none;
+}
+
+    .app-nav > li > a:hover {
+        color: white;
+        background-color: black;
+    }
+
+    .app-nav > li > a:visited {
+        color: white;
+        background-color: black;
+    }
+
+    .app-nav > li > a:active {
+        color: white;
+        background-color: black;
+    }
+
+.nav .open > a:focus {
+    color: white;
+    background-color: black;
+}
+
+.dropdown-menu > li > a {
+    color: black;
+}
+
+
+.app-icon {
+    background: white;
+}
+
+.app-seccion1 {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.app-titulo {
+    text-align: center;
+    color: black;
+    font-size: 2.8em;
+    margin-bottom: 35px;
+}
+
+.app-resaltar {
+    color: #0080d6;
+}
+
+.app-resaltar2 {
+    color: rgba(0, 221, 29, 0.83);
+}
+
+.app-resaltar3 {
+    color: rgb(255, 4, 4);
+}
+
+.app-resaltar4 {
+    background-image: url(../Images/payu@2x.png);
+}
+
+.app-descripcion {
+    text-align: center;
+    color: black;
+    font-size: 1em;
+    margin-bottom: 80px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.carousel-indicators li {
+    background-color: #000 \9;
+    background-color: rgb(0, 0, 0);
+}
+
+.carousel-indicators .active {
+    background-color: #733434;
+}
+
+.carousel-caption {
+    color: #000;
+}
+
+
+.navbar-brand {
+    height: 60px;
+}
+
+.app-formulario1 {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 26px;
+}
+
+.app-formulario2 {
+    padding: 15px 25px 25px 25px;
+    background: rgba(0,0,0,0.6);
+}
+
+.app-input {
+    height: 50px;
+    margin-top: 10px;
+}
+
+
+.app-boton {
+    margin-top: 10px;
+    height: 50px;
+    background: #0080d6;
+    color: white;
+}
+
+    .app-boton:hover {
+        color: white;
+    }
+
+.app-seccion2 {
+    margin: 61px 0;
+    background: #f7f8fa;
+}
+
+.app-titulo2 {
+    margin-top: 0;
+}
+
+.app-separador {
+    width: 100px;
+    border-bottom: 1px solid #0080d6;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.app-justificar {
+    text-align: justify;
+    color: white;
+}
+
+.app-justificar2 {
+    text-align: justify;
+    color: black;
+}
+
+.app-media {
+    margin-top: 40px;
+}
+
+.app-glyphicon1 {
+    background-color: #0080d6;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.app-glyphicon2 {
+    background-color: #0080d6;
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.app-glyphicon3 {
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.app-seccion3 {
+    background: #f7f8fa;
+    color: black;
+}
+
+.app-glyphicon4 {
+    color: black;
+    font-size: 20px;
+}
+
+
+.app-seccion4 {
+    background: #f7f8fa;
+}
+
+.app-seccion5 {
+    background: #f7f8fa;
+    padding: 50px 0;
+}
+
+.app-contenedor {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.app-separador2 {
+    width: 100px;
+    border-bottom: 1px solid #0080d6;
+    margin: 20px auto;
+}
+
+.glyphicon2 {
+    color: #0080d6;
+    font-size: 60px;
+}
+
+.app-descripcion2 {
+    color: #727272;
+}
+
+.app-lista1 {
+    background-color: #323232;
+    color: white;
+    text-align: center;
+}
+
+.app-lista2 {
+    background-color: #0080d6;
+    color: white;
+    text-align: center;
+}
+
+.app-precio {
+    text-align: center;
+}
+
+.app-pago {
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.app-btn1 {
+    background-color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid black;
+}
+
+.app-btn2 {
+    background-color: #0080d6;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.app-video {
+    margin: 0 auto;
+    height: 300px;
+}
+
+.app-footer {
+    text-align: center;
+    background: #f7f8fa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 100px 0;
+}
+
+.app-empresa {
+    margin-bottom: 50px;
+}
+
+.app-icon1 {
+    background-color: #919191;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.app-form-group-input {
+    margin-top: 15px;
+}
+
+.app-comentarios {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 25px;
+}
+
+.app-info-purchase {
+    padding: 0;
+    top: .5em;
+}
+
+.app-negrilla {
+    font-weight: bold;
+}
+
+.app-borde-pasos {
+    border: solid .1em rgba(0, 128, 214, 0.4);
+    padding: 50px;
+    background-color: rgba(0, 128, 214, 0.80);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: white;
+}
+
+.img-center {
+    margin: 0 auto;
+}
+
+.app-margen-inferior-catalogo {
+    margin-bottom: 25px;
+}
+
+.app-hover-detail:hover {
+    border: 1px solid rgba(0, 0, 255, 0.4);
+    padding: 1em;
+    /*background-color: rgb(0, 128, 214);*/
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+    .app-hover-detail:hover > .app-detalle {
+        display: block;
+    }
+
+
+.app-top-carousel {
+    top: 60px;
+}
+
+.well {
+    padding: 8px;
+    margin-bottom: 2px;
+}
+
+tfoot {
+    display: table-footer-group;
+    vertical-align: middle;
+    border-color: inherit;
+    color: black;
+    font-weight: bold;
+}
+
+.app-shopping-cart-container {
+    margin-top: 4.5%;
+    cursor: pointer;
+}
+
+.app-letra {
+    font-size: 15px;
+}
+
+td, th {
+    text-align: center;
+}
+
+.app-detalle {
+    display: none;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.app-seccion1-purchase-summary {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+
+@media (max-width: 768px) {
+    .app-seccion1 {
+        width: 90%;
+    }
+
+    .app-seccion5 {
+        padding: 20px 0;
+    }
+
+    .app-titulo {
+        font-size: 1.8em;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .app-descripcion {
+        font-size: 0.8em;
+        margin-bottom: 50px;
+    }
+
+    .app-titulo2 {
+        font-size: 1.5em;
+    }
+
+    .app-glyphicon1 {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    .app-borde-pasos {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+    }
+
+    .app-margen-inferior-catalogo {
+        margin-bottom: 25px;
+    }
+
+    .app-top-carousel {
+        top: 60px;
+    }
+
+    .navbar-toggle {
+        position: absolute;
+    }
+
+    .navbar-brand {
+        margin-left: 50px;
+    }
+
+    .app-glyphicon4 {
+        font-size: 13px;
+    }
+
+    .app-shopping-cart-container {
+        margin-top: 20%;
+    }
+
+    .app-letra {
+        font-size: 13px;
+    }
+
+    .app-glyphicon2 {
+        padding: 9px;
+    }
+}
+
+
+
+@media (min-width: 769px) and (max-width: 1360px) {
+    .app-borde-pasos {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+    }
+
+    .app-glyphicon4 {
+        font-size: 20px;
+    }
+
+    .app-shopping-cart-container {
+        margin-top: 14%;
+    }
+
+    .app-letra {
+        font-size: 10px;
+    }
+}
