@@ -16,7 +16,7 @@ namespace SoftBottin.Models
         /// <summary>
         /// 
         /// </summary>
-        wsZapaTake.ZapaTake niWsZaptake;
+        wsSoftBottin.SoftBottin niWsSoftBottin;
         #endregion
 
         #region Properties
@@ -43,8 +43,8 @@ namespace SoftBottin.Models
         {
             try
             {
-                niWsZaptake = new wsZapaTake.ZapaTake();
-                return niWsZaptake.AddEmailNewUser(sEmail, out sErrMessage);
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.AddEmailNewUser(sEmail, out sErrMessage);
             }
             catch (Exception ex)
             {

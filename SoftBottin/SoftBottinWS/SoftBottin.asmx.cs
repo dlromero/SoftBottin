@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Data.Linq;
 
 namespace SoftBottinWS
 {
@@ -21,7 +22,7 @@ namespace SoftBottinWS
         /// <summary>
         /// 
         /// </summary>
-        SoftBottin.ZapaTakeDataClassesDataContext dbConection;
+        SoftBottinBD.SoftBottinDataClassesDataContext dbConection;
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +40,7 @@ namespace SoftBottinWS
         {
             try
             {
-                dbConection = new SoftBottin.ZapaTakeDataClassesDataContext();
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
                 var products = from product in dbConection.Products
                                join productDetail in dbConection.ProductDetails
                                  on product.Id equals productDetail.IdProduct
@@ -85,7 +86,7 @@ namespace SoftBottinWS
         {
             try
             {
-                dbConection = new SoftBottin.ZapaTakeDataClassesDataContext();
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
                 var products = from product in dbConection.Products
                                join productDetail in dbConection.ProductDetails
                                  on product.Id equals productDetail.IdProduct
@@ -131,8 +132,8 @@ namespace SoftBottinWS
         {
             try
             {
-                dbConection = new SoftBottin.ZapaTakeDataClassesDataContext();
-                SoftBottin.User niUser = new SoftBottin.User
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.User niUser = new SoftBottinBD.User
                 {
                     Email = sEmail
                 };

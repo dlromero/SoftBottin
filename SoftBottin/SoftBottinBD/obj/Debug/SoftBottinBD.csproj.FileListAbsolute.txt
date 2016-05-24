@@ -3,3 +3,8 @@ c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD
 c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.csprojResolveAssemblyReference.cache
 c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.dll
 c:\users\scitech01\documents\visual studio 2013\Projects\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.pdb
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll.config
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.pdb
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.dll
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.pdb
