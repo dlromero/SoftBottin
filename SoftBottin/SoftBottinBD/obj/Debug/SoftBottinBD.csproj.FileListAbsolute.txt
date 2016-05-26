@@ -8,3 +8,8 @@ D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.pdb
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.pdb
+D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll.config
+D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.dll
+D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottinBD\bin\Debug\SoftBottinBD.pdb
+D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.dll
+D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottinBD\obj\Debug\SoftBottinBD.pdb

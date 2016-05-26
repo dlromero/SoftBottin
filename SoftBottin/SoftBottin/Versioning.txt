@@ -1,6 +1,22 @@
 ﻿******************************************
-Autor: Daniel Romero
-Fecha 25 de Mayo de 2016
-Descripcion:
-			
+    Version: 1.0.0.0
+      Autor: Daniel Romero
+      Fecha: 25 de Mayo de 2016
+Descripcion:			
 			Creacion de Versioning
+
+
+******************************************
+		     Version: 1.0.0.1
+		       Autor: Daniel Romero
+			   Fecha: 26 de Mayo de 2016
+  		 Descripcion:
+			
+Actualización Estilo :	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
+
+Actualización Script :	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Scripts\Security\Principal.js	Edit
+
+Actualización Vista  :  D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+
+
+

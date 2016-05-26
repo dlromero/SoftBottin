@@ -410,8 +410,6 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
         contentType: 'application/json',
         success: function (data) {
             $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
-
-
             $("#altSuccess").show();
             $("#altSuccess").html('<strong>Agregado al carrito con éxito!</strong>');
             $("#altSuccess").fadeTo(2000, 500).slideUp(500, function () {
@@ -420,41 +418,41 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
             });
 
 
-            var trAdd = '<tr>' +
-                       '<td class="hidden-xs remCF" scope="row">' +
-                       '<span class="glyphicon glyphicon-trash app-glyphicon4" style="margin-top:1%" id="numberShoesPick"></span>' +
-                       '</th>' +
-                       '<td class="hidden-xs">' +
-                       '<img src="' + window.rootUrl + 'Content/Images/Militar/Zapato10.jpg")" class="img-circle img-responsive" width="25" height="25" />' +
-                       '</td>' +
-                       '<td>' +
-                        shoeName +
-                       '</td>' +
-                       '<td class="hidden-xs">' +
-                       '1' +
-                       '</td>' +
-                       '<td>' +
-                       shoePrice
-            '</td>' +
-            '</tr>';
+            //var trAdd = '<tr>' +
+            //           '<td class="hidden-xs remCF" scope="row">' +
+            //           '<span class="glyphicon glyphicon-trash app-glyphicon4" style="margin-top:1%" id="numberShoesPick"></span>' +
+            //           '</th>' +
+            //           '<td class="hidden-xs">' +
+            //           '<img src="' + window.rootUrl + 'Content/Images/Militar/Zapato10.jpg")" class="img-circle img-responsive" width="25" height="25" />' +
+            //           '</td>' +
+            //           '<td>' +
+            //            shoeName +
+            //           '</td>' +
+            //           '<td class="hidden-xs">' +
+            //           '1' +
+            //           '</td>' +
+            //           '<td>' +
+            //           shoePrice
+            //'</td>' +
+            //'</tr>';
 
 
-            var tdValue = $('#tbShoppingCardDetail > tfoot:last >tr>td:nth-child(5)').html();
-            var tdValueFinal = tdValue.toString().split('$');
+            //var tdValue = $('#tbShoppingCardDetail > tfoot:last >tr>td:nth-child(5)').html();
+            //var tdValueFinal = tdValue.toString().split('$');
 
-            var tdValueFloar = parseFloat(tdValueFinal[1]) + parseFloat(shoePrice);
+            //var tdValueFloar = parseFloat(tdValueFinal[1]) + parseFloat(shoePrice);
 
-            $('#tbShoppingCardDetail > tbody:last').after(trAdd);
+            //$('#tbShoppingCardDetail > tbody:last').after(trAdd);
 
-            var trTotal = '<tr>' +
-                          '<td>Total</td>' +
-                          '<td class="hidden-xs"></td>' +
-                          '<td class="hidden-xs"></td>' +
-                          '<td class="hidden-xs"></td>' +
-                          '<td>$' + tdValueFloar + '</td>' +
-                          '</tr>';
+            //var trTotal = '<tr>' +
+            //              '<td>Total</td>' +
+            //              '<td class="hidden-xs"></td>' +
+            //              '<td class="hidden-xs"></td>' +
+            //              '<td class="hidden-xs"></td>' +
+            //              '<td>$' + tdValueFloar + '</td>' +
+            //              '</tr>';
 
-            $('#tbShoppingCardDetail > tfoot:last').html(trTotal);
+            //$('#tbShoppingCardDetail > tfoot:last').html(trTotal);
 
         },
         error: function (dataError) {

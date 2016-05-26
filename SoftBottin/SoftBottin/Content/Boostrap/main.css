@@ -15,8 +15,9 @@
 }
 
 .app-navbar {
-    background: rgba(0,0,0,0.6);
-    border-radius: 0;
+    background: white;
+    border-radius: 1px;
+    border-color: black;
 }
 
 .app-shopping-cart {
@@ -25,31 +26,31 @@
 }
 
 .app-link {
-    color: white;
+    color: black;
     text-shadow: none;
 }
 
     .app-link:hover {
-        color: white;
+        color: pink;
     }
 
 .app-nav > li > a {
-    color: white;
+    color: black;
     text-shadow: none;
 }
 
     .app-nav > li > a:hover {
-        color: white;
-        background-color: black;
+        color: black;
+        background-color: pink;
     }
 
     .app-nav > li > a:visited {
-        color: white;
-        background-color: black;
+        color: black;
+        background-color: pink;
     }
 
     .app-nav > li > a:active {
-        color: white;
+        color: black;
         background-color: black;
     }
 
@@ -211,25 +212,16 @@
 
 .app-glyphicon4 {
     color: black;
-    font-size: 25px;
+    font-size: 23px;
     padding-left: .2em;
-    margin-top: -9px;
-    /*border-radius: 50%;
-    background-color: white;
-    width: 45px;
-    height: 45px;*/
+    padding-top: .5em;
+    padding-right: 1em;
 }
 
-.app-numero-carrito-compras {
-    color: black;
-    font-size: 15px;
-    margin-top: .2em;
-    margin-left: 2em;
-    border-radius: 50%;
-    background-color: white;
-    width: 25px;
-    height: 20px;
-    text-align: center;
+.app-posicion-carrito {
+    position: fixed;
+    z-index: 9999;
+    left: 82%;
 }
 
 .app-seccion4 {
@@ -417,6 +409,9 @@ td, th {
     margin-top: 100px;
 }
 
+.app-alerta-terminado {
+    margin-top: 3.2%;
+}
 
 @media (max-width: 768px) {
     .app-seccion1 {
@@ -462,6 +457,7 @@ td, th {
 
     .navbar-toggle {
         position: absolute;
+        background-color: rgb(216, 149, 149);
     }
 
     .navbar-brand {
@@ -469,7 +465,12 @@ td, th {
     }
 
     .app-glyphicon4 {
-        font-size: 13px;
+        font-size: 20px;
+        padding: .6em;
+    }
+
+    .app-posicion-carrito {
+        left: 80%;
     }
 
     .app-shopping-cart-container {
@@ -483,11 +484,16 @@ td, th {
     .app-glyphicon2 {
         padding: 9px;
     }
+
+
+    .app-alerta-terminado {
+        margin-top: 16%;
+    }
 }
 
 
 
-@media (min-width: 769px) and (max-width: 1360px) {
+@media (min-width: 769px) and (max-width: 1366px) {
     .app-borde-pasos {
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
@@ -495,6 +501,11 @@ td, th {
 
     .app-glyphicon4 {
         font-size: 20px;
+        padding: 1em;
+    }
+
+    .app-posicion-carrito {
+        left: 93%;
     }
 
     .app-shopping-cart-container {
