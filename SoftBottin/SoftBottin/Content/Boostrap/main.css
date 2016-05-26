@@ -211,9 +211,26 @@
 
 .app-glyphicon4 {
     color: black;
-    font-size: 20px;
+    font-size: 25px;
+    padding-left: .2em;
+    margin-top: -9px;
+    /*border-radius: 50%;
+    background-color: white;
+    width: 45px;
+    height: 45px;*/
 }
 
+.app-numero-carrito-compras {
+    color: black;
+    font-size: 15px;
+    margin-top: .2em;
+    margin-left: 2em;
+    border-radius: 50%;
+    background-color: white;
+    width: 25px;
+    height: 20px;
+    text-align: center;
+}
 
 .app-seccion4 {
     background: #f7f8fa;
