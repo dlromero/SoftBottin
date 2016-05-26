@@ -1,4 +1,3 @@
-D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\obj\Debug\SoftBottin.csprojResolveAssemblyReference.cache
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\SoftBottin.dll.config
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\SoftBottin.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\SoftBottin.pdb
@@ -55,5 +54,6 @@ D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\Microsoft.Owin.Security.Google.x
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\Microsoft.Owin.Security.Twitter.xml
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\bin\SoftBottinBD.pdb
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\obj\Debug\SoftBottin.csprojResolveAssemblyReference.cache
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\obj\Debug\SoftBottin.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\obj\Debug\SoftBottin.pdb
