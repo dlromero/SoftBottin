@@ -1,4 +1,3 @@
-D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\obj\Debug\SoftBottin.Tests.csprojResolveAssemblyReference.cache
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottin.Tests.dll.config
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottin.Tests.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottin.Tests.pdb
@@ -29,5 +28,7 @@ D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\Microsoft.Owin.xml
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\System.Web.Optimization.xml
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottinWS.pdb
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottinBD.pdb
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\bin\Debug\SoftBottin.XmlSerializers.dll
+D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\obj\Debug\SoftBottin.Tests.csprojResolveAssemblyReference.cache
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\obj\Debug\SoftBottin.Tests.dll
 D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin.Tests\obj\Debug\SoftBottin.Tests.pdb
