@@ -20,17 +20,17 @@ Actualización Vista  :  D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\View
 
 
 
-******************************************
+******************************************************************************************************************************
 		     Version: 1.0.0.2
 		       Autor: Daniel Romero
 			   Fecha: 28 de Mayo de 2016
   		 Descripcion:
 			
-Actualización Estilo :	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
+Actualización Estilo	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
 
-Actualización Script :	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Scripts\Security\Principal.js	Edit
+Actualización DataBase :	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml	Edit
+							D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.designer.cs	Edit
 
-Actualización Vista  :  D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
 
 
 
