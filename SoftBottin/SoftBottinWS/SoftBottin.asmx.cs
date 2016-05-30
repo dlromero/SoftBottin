@@ -158,6 +158,48 @@ namespace SoftBottinWS
                 return false;
             }
         }
+        /// <summary>
+        /// Daniel Romero 28 de Mayo de 2016
+        /// Metodo que se crea para verificar si un usario puede ingresar a la aplicacion
+        /// </summary>
+        /// <param name="sUserName"></param>
+        /// <param name="sPassword"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool SigIn(string sUserName, string sPassword)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.UserAccount niUserAccount = new SoftBottinBD.UserAccount
+                {
+                    UserName = sUserName,
+                    Password = sPassword
+                };
+
+                var userSigIn = from user in dbConection.UserAccounts
+                                where user.UserName.Equals(niUserAccount.UserName) &&
+                                      user.Password.Equals(niUserAccount.Password)
+                                select user;
+
+                if (userSigIn.ToList().Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                //sErrMessage = ex.Message;
+                return false;
+            }
+        }
         #endregion
     }
 }

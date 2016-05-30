@@ -8,7 +8,7 @@
 
 .app-header {
     /*background: url("../Images/zapato3.jpg") repeat-x center top fixed;*/
-    font-family: "Avenir", Futura, Helvetica, sans-serif;
+    font-family: 'Juice ITC';
     letter-spacing: 2px;
     text-transform: uppercase;
     /*padding-bottom: 80px;*/
@@ -124,6 +124,8 @@
 
 .navbar-brand {
     height: 50px;
+    font-size: 30px;
+    color: #EC407A;
 }
 
 .app-formulario1 {
@@ -413,6 +415,16 @@ td, th {
     margin-top: 3.2%;
 }
 
+.navbar-toggle {
+    margin-top: 15px;
+}
+
+
+
+#menu > ul > li > a {
+    font-size: 16px;
+}
+
 @media (max-width: 768px) {
     .app-seccion1 {
         width: 90%;
@@ -461,14 +473,14 @@ td, th {
     }
 
     .navbar-brand {
-        margin-left: 50px;
-        padding: 9px 15px;
-        font-size: 15px;
+        margin-left: 43px;
+        padding: 15px 15px;
+        font-size: 23px;
+        height: 60px;
     }
 
     .app-glyphicon4 {
         font-size: 20px;
-        padding: .6em;
     }
 
     .app-posicion-carrito {

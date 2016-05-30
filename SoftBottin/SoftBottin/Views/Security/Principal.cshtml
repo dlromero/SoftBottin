@@ -29,44 +29,69 @@
     <header class="app-header">
         <nav class="navbar app-navbar navbar-fixed-top">
             <div class="container ">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                        <span class="icon-bar app-icon"></span>
-                        <span class="icon-bar app-icon"></span>
-                        <span class="icon-bar app-icon"></span>
-                    </button>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                            <span class="icon-bar app-icon"></span>
+                            <span class="icon-bar app-icon"></span>
+                            <span class="icon-bar app-icon"></span>
+                        </button>
+                        @Html.ActionLink("BOTTINI CALZADO Y ACCSESORIOS", "Principal", new { }, new { @class = "navbar-brand app-link" })
 
-                    @Html.ActionLink("Bottini Calzado Accesorios", "Principal", new { }, new { @class = "navbar-brand app-link" })
+                    </div>
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="nav navbar-nav navbar-right app-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Ultimas Colecciones 2016<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Tacones Abril 2016</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Botas Abril 2016</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Estilo Militar Abril 2016</a></li>
+                                </ul>
+                            </li>
+                            @if (Session["userName"] == null)
+                            {
+                                <li>
+                                    <a href="" data-toggle="modal" data-target="#mdlogIn">
+                                        Ingresa
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-toggle="modal" data-target="#mdSignIn">
+                                        Registrate
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <b>@Session["userName"]</b><b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Mi cuenta</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Mis pedidos</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Cerrar sesion</a></li>
+                                    </ul>
+                                </li>                               
+                            }
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav navbar-right app-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Ultimas Colecciones 2016<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Tacones Abril 2016</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Botas Abril 2016</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Estilo Militar Abril 2016</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="modal" data-target="#mdlogIn">
-                                Ingresa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="modal" data-target="#mdSignIn">
-                                Registrate
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <span class="glyphicon glyphicon-shopping-cart app-glyphicon4 text-right" id="numberShoesPick">0</span>
                 </div>
+
             </div>
         </nav>
-        <span class="glyphicon glyphicon-shopping-cart app-glyphicon4 text-right app-posicion-carrito" id="numberShoesPick">0</span>
+
 
         @*<div class="navbar-fixed-top  app-shopping-cart-container">
                 <div class="row " id="divShoppingCard">
@@ -143,8 +168,8 @@
 
                     <form role="form" id="formSigIn">
                         <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailLogIn">
-                            <label for="EmailLogIn">¡Tu correo electrónico!</label>
-                            <input type="email" class="form-control" id="tbEmailLogIn" placeholder="Escribe tu correo electrónico" required>
+                            <label for="EmailLogIn">¡Tu usuario o correo electrónico!</label>
+                            <input type="text" class="form-control" id="tbEmailLogIn" placeholder="Escribe tu usuario o correo electrónico" required>
                             <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailLogIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -158,9 +183,13 @@
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div id="dvMessagePasswordLogIn" class="help-block hidden">¡Tu contraseña!</div>
                         </div>
+                        <div class="alert alert-danger" style="display:none;" role="alert" id="altErrorSigIn">
+                            <strong>Error!</strong> El usuario o la contraseña son incorrectos.
+                        </div>
                         <div class="checkbox">
                             <label><input type="checkbox"> Recuerdame</label>
                         </div>
+
                         <button type="submit" class="btn btn-success btn-block" id="btnSigIn">Ingresa</button>
                     </form>
                     <br />
@@ -248,10 +277,8 @@
     <section class="app-seccion2">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12xol "></div>
-
                 <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
-                <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <div class="col-xs-10 col-sm-12 col-md-3 img-circle app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-tag app-glyphicon3"></span>
                         Paso 1
@@ -273,14 +300,14 @@
                     </div>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+                <div class="col-xs-10 col-sm-12 col-md-3 app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-send app-glyphicon3"></span>
                         Paso 2
                     </h2>
                     <p class="app-separador"></p>
                     <p class="app-justificar app-negrilla">
-                        ¿Dónde lo llevemos?
+                        ¿A dónde te llevamos?
                     </p>
 
                     <div class="media app-media">
@@ -297,7 +324,7 @@
                     </div>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+                <div class="col-xs-10 col-sm-12 col-md-3 app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-check app-glyphicon3"></span>
                         Paso 3
@@ -653,143 +680,143 @@
         </div>
     </section>
 
-    <section class="app-seccion5">
-        <div class="container">
-            <div class="row">
-                <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (tendencia militar)</span> Abril de 2016 </h1>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Cafe Cuero<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato12.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
+    @*<section class="app-seccion5">
+            <div class="container">
+                <div class="row">
+                    <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (tendencia militar)</span> Abril de 2016 </h1>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Cafe Cuero<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador"></p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato12.jpg")" alt="" class="img-responsive">
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Verde Natural <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato11.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Cafe Oscuro <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador">
-                        </p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato10.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Verde Natural <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador"></p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato11.jpg")" alt="" class="img-responsive">
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Cafe en linea <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato9.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Cuello Militar<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato7.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Cafe Oscuro <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador">
+                            </p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato10.jpg")" alt="" class="img-responsive">
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">Bota Gris Cordones <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Militar/Zapato6.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Cafe en linea <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador"></p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato9.jpg")" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Cuello Militar<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador"></p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato7.jpg")" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h2 class="app-titulo2">Bota Gris Cordones <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
+                            <p class="app-separador"></p>
+                            <img src="@Url.Content("~/Content/Images/Militar/Zapato6.jpg")" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-ok"></span>
+                                Existentes: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                Colores: 3
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                <span class="pull-left glyphicon glyphicon-usd"></span>
+                                150.000
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>*@
 
     <section class="app-seccion2">
         <div class="container">

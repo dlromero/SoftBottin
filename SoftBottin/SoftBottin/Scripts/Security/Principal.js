@@ -43,14 +43,14 @@ $(document).ready(function () {
     $("#tbEmailLogIn").on("input", function () {
 
         if ($("#tbEmailLogIn").val() != "") {
-            if (isValidEmailAddress($("#tbEmailLogIn").val())) {
+            if ($("#tbEmailLogIn").val() != "") {
                 ChangeFormControlColor("formEmailLogIn", "success");
                 ChangeGlyphiconColor("spGlyphiconEmailLogIn", "ok");
-                ChangeDivMessageShow("dvMessageEmailLogIn", "¡Tu correo electrónico, es correcto!");
+                ChangeDivMessageHide("dvMessageEmailLogIn");
             } else {
                 ChangeFormControlColor("formEmailLogIn", "error");
                 ChangeGlyphiconColor("spGlyphiconEmailLogIn", "remove");
-                ChangeDivMessageShow("dvMessageEmailLogIn", "¡Tu correo electrónico, no es correcto!");
+                ChangeDivMessageShow("dvMessageEmailLogIn", "¡Tu correo usuario o electrónico, no es correcto!");
             }
         } else {
             ChangeFormControlColor("formEmailLogIn", "warning");
@@ -76,14 +76,14 @@ $(document).ready(function () {
 
     $("#btnSigIn").on("click", function () {
         if ($("#formSigIn")[0].checkValidity()) {
-            alert("Valid Form");
-            return true;
+            sigIn($("#tbEmailLogIn").val(), $("#tbPasswordLogIn").val());
+            return false;
         } else {
             if ($("#tbEmailLogIn").val() == "") {
                 $("#tbEmailLogIn").focus();
                 ChangeFormControlColor("formEmailLogIn", "error");
                 ChangeGlyphiconColor("spGlyphiconEmailLogIn", "remove");
-                ChangeDivMessageShow("dvMessageEmailLogIn", "¡Tu correo electrónico, es requerido!");
+                ChangeDivMessageShow("dvMessageEmailLogIn", "¡Tu usuario o correo electrónico, es requerido!");
             } else
                 if ($("#tbPasswordLogIn").val() == "") {
                     $("#tbPasswordLogIn").focus();
@@ -198,40 +198,6 @@ $(document).ready(function () {
         return pattern.test(password);
     };
 
-    // Inicio Funciones Colores con Boostrap
-
-    // success
-    // warning
-    // error
-    function ChangeFormControlColor(idField, desStatus) {
-        $("#" + idField).removeClass("has-success");
-        $("#" + idField).removeClass("has-warning");
-        $("#" + idField).removeClass("has-error");
-        $("#" + idField).addClass("has-" + desStatus);
-    }
-
-    // ok
-    // warning-sign
-    // remove
-    function ChangeGlyphiconColor(idField, desStatus) {
-        $("#" + idField).removeClass("glyphicon-ok");
-        $("#" + idField).removeClass("glyphicon-warning-sign");
-        $("#" + idField).removeClass("glyphicon-remove");
-        $("#" + idField).addClass("glyphicon-" + desStatus);
-    }
-
-
-    function ChangeDivMessageShow(idField, Message) {
-        $("#" + idField).removeClass("hidden");
-        $("#" + idField).html(Message);
-    }
-
-    function ChangeDivMessageHide(idField) {
-        $("#" + idField).addClass("hidden");
-    }
-
-
-    //Fin Funciones Colores con Boostrap
 
     /*Fin de Utilidades */
 
@@ -398,7 +364,6 @@ $(document).ready(function () {
 
 
 // Adicionar Producto al carrito de compras
-
 function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor, showSize) {
 
     var shoe = { reference: shoeReference, price: shoePrice, color: shoeColor, size: showSize };
@@ -462,12 +427,75 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
 
 }
 
-function goPurchasingSummary()
-{
+function goPurchasingSummary() {
     var url = $("#RedirectTo").val();
     location.href = url;
+}
+
+function sigIn(piUserName, piPassword) {
+
+    var user = { sUserName: piUserName, sPassword: piPassword };
+
+    $.ajax({
+        url: window.rootUrl + 'Security/sigIn',
+        type: 'POST',
+        data: "{'objUser':'" + JSON.stringify(user) + "'}",
+        contentType: 'application/json',
+        success: function (data) {
+            if (data) {
+                window.location = window.rootUrl + "Security/Principal";
+            } else {
+                //spGlyphiconErrorSigIn
+                ChangeFormControlColor("formErorMessageLogIn", "error");
+                ChangeGlyphiconColor("spGlyphiconErrorSigIn", "remove");
+                ChangeDivMessageShow("dvMessageErrorLogIn", "¡Tu usuario o contraseña son incorrectos!");
+                $("#altErrorSigIn").show();
+                
+            }
+            
+        },
+        error: function (dataError) {
+            alert(dataError);
+        }
+    });
 }
 
 
 // Fin producto al carrito de compras
 
+
+
+// Inicio Funciones Colores con Boostrap
+
+// success
+// warning
+// error
+function ChangeFormControlColor(idField, desStatus) {
+    $("#" + idField).removeClass("has-success");
+    $("#" + idField).removeClass("has-warning");
+    $("#" + idField).removeClass("has-error");
+    $("#" + idField).addClass("has-" + desStatus);
+}
+
+// ok
+// warning-sign
+// remove
+function ChangeGlyphiconColor(idField, desStatus) {
+    $("#" + idField).removeClass("glyphicon-ok");
+    $("#" + idField).removeClass("glyphicon-warning-sign");
+    $("#" + idField).removeClass("glyphicon-remove");
+    $("#" + idField).addClass("glyphicon-" + desStatus);
+}
+
+
+function ChangeDivMessageShow(idField, Message) {
+    $("#" + idField).removeClass("hidden");
+    $("#" + idField).html(Message);
+}
+
+function ChangeDivMessageHide(idField) {
+    $("#" + idField).addClass("hidden");
+}
+
+
+//Fin Funciones Colores con Boostrap

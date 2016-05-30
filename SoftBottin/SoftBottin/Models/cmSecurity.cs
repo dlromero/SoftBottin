@@ -53,10 +53,29 @@ namespace SoftBottin.Models
                 return false;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sUser"></param>
+        /// <param name="sPassword"></param>
+        /// <returns></returns>
+        public bool SigIn(string sUser, string sPassword)
+        {
+            try
+            {
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.SigIn(sUser, sPassword);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         #endregion
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class cmProduct
     {
         public string sReference { get; set; }
@@ -64,5 +83,13 @@ namespace SoftBottin.Models
         public string sColor { get; set; }
         public string sSize { get; set; }
 
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class cmUser
+    {
+        public string sUserName { get; set; }
+        public string sPassword { get; set; }
     }
 }

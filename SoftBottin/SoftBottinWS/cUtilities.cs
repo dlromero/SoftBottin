@@ -57,13 +57,14 @@ namespace SoftBottinWS
             {
                 string sPath = @"\ZAW\logs",
                        fullPath,
-                       sFileName = @"\" + DateTime.Now.ToString() + "txt",
+                       sFileName = DateTime.Now.Year + "_" + DateTime.Now.Month + "_"
+                                        + DateTime.Now.Day + ".txt",
                        sPathString;
                 fullPath = Path.GetFullPath(sPath);
 
                 sPathString = System.IO.Path.Combine(fullPath, sFileName);
 
-                sMessage = "---" + DateTime.Now.ToString() + "----" + sMessage + "---";
+                sMessage = "---" + DateTime.Now.ToString() + "----" + sMessage + "---\r\n";
 
                 if (!Directory.Exists(sPath))
                 {
@@ -71,12 +72,12 @@ namespace SoftBottinWS
                 }
                 else if (!File.Exists(sPathString))
                 {
-                    File.Create(sPathString);
+                    File.Create(sPathString).Close();
                     File.WriteAllText(sPathString, sMessage);
                 }
                 else
                 {
-                    File.WriteAllText(sPathString, sMessage);
+                    File.AppendAllText(sPathString, sMessage);
                 }
 
                 sError = "";

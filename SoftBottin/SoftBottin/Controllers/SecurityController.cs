@@ -22,6 +22,10 @@ namespace SoftBottin.Controllers
         // GET: Security
         public ActionResult Principal()
         {
+            if (Session["userName"] != null)
+            {
+                string sTest = "";
+            }
             return View();
         }
 
@@ -200,6 +204,30 @@ namespace SoftBottin.Controllers
             catch (Exception)
             {
                 return View();
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult sigIn(string objUser)
+        {
+            try
+            {
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                cmUser user = jss.Deserialize<cmUser>(objUser);
+                cmSecurity niSecurity = new cmSecurity();
+                bool bAccess = niSecurity.SigIn(user.sUserName, user.sPassword);
+                if (bAccess)
+                {
+                    Session["userName"] = user.sUserName;
+                }
+
+                return new JsonResult() { Data = bAccess };
+            }
+            catch (Exception)
+            {
+                return new JsonResult() { };
             }
         }
     }

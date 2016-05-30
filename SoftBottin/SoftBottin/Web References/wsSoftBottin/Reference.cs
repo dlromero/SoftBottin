@@ -35,6 +35,8 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback AddEmailNewUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SigInOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +83,9 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         public event AddEmailNewUserCompletedEventHandler AddEmailNewUserCompleted;
+        
+        /// <remarks/>
+        public event SigInCompletedEventHandler SigInCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetProducts", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -165,6 +170,37 @@ namespace SoftBottin.wsSoftBottin {
             if ((this.AddEmailNewUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddEmailNewUserCompleted(this, new AddEmailNewUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SigIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SigIn(string sUserName, string sPassword) {
+            object[] results = this.Invoke("SigIn", new object[] {
+                        sUserName,
+                        sPassword});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SigInAsync(string sUserName, string sPassword) {
+            this.SigInAsync(sUserName, sPassword, null);
+        }
+        
+        /// <remarks/>
+        public void SigInAsync(string sUserName, string sPassword, object userState) {
+            if ((this.SigInOperationCompleted == null)) {
+                this.SigInOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSigInOperationCompleted);
+            }
+            this.InvokeAsync("SigIn", new object[] {
+                        sUserName,
+                        sPassword}, this.SigInOperationCompleted, userState);
+        }
+        
+        private void OnSigInOperationCompleted(object arg) {
+            if ((this.SigInCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SigInCompleted(this, new SigInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -269,6 +305,32 @@ namespace SoftBottin.wsSoftBottin {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void SigInCompletedEventHandler(object sender, SigInCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SigInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SigInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
