@@ -2,6 +2,7 @@
 using SoftBottinWS;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -128,7 +129,11 @@ namespace SoftBottin.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objShoe"></param>
+        /// <returns></returns>
         [ActionName("AddNewProduct")]
         public JsonResult AddNewProduct(string objShoe)
         {
@@ -214,13 +219,15 @@ namespace SoftBottin.Controllers
         {
             try
             {
-                JavaScriptSerializer jss = new JavaScriptSerializer();
-                cmUser user = jss.Deserialize<cmUser>(objUser);
+                JavaScriptSerializer jSerializer = new JavaScriptSerializer();
+                cmUser user = jSerializer.Deserialize<cmUser>(objUser);
                 cmSecurity niSecurity = new cmSecurity();
-                bool bAccess = niSecurity.SigIn(user.sUserName, user.sPassword);
+                DataSet dsUser = new DataSet();
+                bool bAccess = niSecurity.SigIn(user.sUserName, user.sPassword, out dsUser, out sErrMsj);
                 if (bAccess)
                 {
                     Session["userName"] = user.sUserName;
+                    Session["RoleID"] = dsUser.Tables[0].Rows[0]["RoleId"].ToString();
                 }
 
                 return new JsonResult() { Data = bAccess };
@@ -230,5 +237,24 @@ namespace SoftBottin.Controllers
                 return new JsonResult() { };
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LogOut()
+        {
+            try
+            {
+                Session.RemoveAll();
+                return View("Principal");
+            }
+            catch (Exception)
+            {
+                return View("Principal");
+            }
+        }
+
+
     }
 }

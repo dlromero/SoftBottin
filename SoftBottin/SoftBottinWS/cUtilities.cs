@@ -26,7 +26,10 @@ namespace SoftBottinWS
             {
                 Type ColType = Nullable.GetUnderlyingType(propInfo.PropertyType) ?? propInfo.PropertyType;
 
-                t.Columns.Add(propInfo.Name, ColType);
+                if (ColType.IsSerializable)
+                {
+                    t.Columns.Add(propInfo.Name, ColType);
+                }
             }
 
             //go through each property on T and add each value to the table
@@ -36,7 +39,10 @@ namespace SoftBottinWS
 
                 foreach (var propInfo in elementType.GetProperties())
                 {
-                    row[propInfo.Name] = propInfo.GetValue(item, null) ?? DBNull.Value;
+                    if (propInfo.PropertyType.IsSerializable)
+                    {
+                        row[propInfo.Name] = propInfo.GetValue(item, null) ?? DBNull.Value;
+                    }
                 }
 
                 t.Rows.Add(row);

@@ -57,6 +57,28 @@ Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Secur
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.4
+		       Autor: Daniel Romero
+			   Fecha: 30 de Mayo de 2016
+  		 Descripcion:
+			
+Actualización Estilo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
+
+Actualización DataBase		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.designer.cs	Edit
+
+Actualización Controlador	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\SecurityController.cs	Edit
+
+Actualización Modelo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\cmSecurity.cs	Edit
+
+Actualización clase			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinWS\cUtilities.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinWS\SoftBottin.asmx.cs	Edit
+
+Actualización Script		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Scripts\Security\Principal.js	Edit
+
+Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+
 
 
 

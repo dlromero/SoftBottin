@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SoftBottinWS;
+using System.Data;
 
 namespace SoftBottin.Models
 {
@@ -54,20 +55,25 @@ namespace SoftBottin.Models
             }
         }
         /// <summary>
-        /// 
+        /// Daniel Romero 30 de Mayo de 2016
+        /// Creacion de metodo para Autenticarce en el sistema
         /// </summary>
         /// <param name="sUser"></param>
         /// <param name="sPassword"></param>
         /// <returns></returns>
-        public bool SigIn(string sUser, string sPassword)
+        public bool SigIn(string sUser, string sPassword, out DataSet dsUser, out string sErrMessage)
         {
             try
             {
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.SigIn(sUser, sPassword);
+                sErrMessage = "";
+                return niWsSoftBottin.SigIn(sUser, sPassword, out dsUser, out sErrMessage);
             }
             catch (Exception ex)
             {
+                dsUser = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
                 return false;
             }
         }

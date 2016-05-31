@@ -166,7 +166,7 @@ namespace SoftBottinWS
         /// <param name="sPassword"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool SigIn(string sUserName, string sPassword)
+        public bool SigIn(string sUserName, string sPassword, out DataSet dsUser, out string sErrMessage)
         {
             try
             {
@@ -184,10 +184,14 @@ namespace SoftBottinWS
 
                 if (userSigIn.ToList().Count > 0)
                 {
+                    dsUser = cUtilities.ToDataSet(userSigIn.ToList());
+                    sErrMessage = "";
                     return true;
                 }
                 else
                 {
+                    dsUser = new DataSet();
+                    sErrMessage = "Not Found";
                     return false;
                 }
 
@@ -195,8 +199,9 @@ namespace SoftBottinWS
             }
             catch (Exception ex)
             {
+                dsUser = new DataSet();
                 cUtilities.WriteLog(ex.Message, out sErrMsj);
-                //sErrMessage = ex.Message;
+                sErrMessage = ex.Message;
                 return false;
             }
         }

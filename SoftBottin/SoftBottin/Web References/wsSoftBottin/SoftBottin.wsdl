@@ -53,6 +53,15 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="SigInResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsUser">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

@@ -20,6 +20,7 @@ namespace SoftBottin.wsSoftBottin {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -175,10 +176,12 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SigIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool SigIn(string sUserName, string sPassword) {
+        public bool SigIn(string sUserName, string sPassword, out System.Data.DataSet dsUser, out string sErrMessage) {
             object[] results = this.Invoke("SigIn", new object[] {
                         sUserName,
                         sPassword});
+            dsUser = ((System.Data.DataSet)(results[1]));
+            sErrMessage = ((string)(results[2]));
             return ((bool)(results[0]));
         }
         
@@ -331,6 +334,22 @@ namespace SoftBottin.wsSoftBottin {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet dsUser {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
             }
         }
     }

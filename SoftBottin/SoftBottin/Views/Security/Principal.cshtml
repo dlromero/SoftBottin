@@ -30,7 +30,7 @@
         <nav class="navbar app-navbar navbar-fixed-top">
             <div class="container ">
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <div class="navbar-header">
+                    <div class="navbar-header" style="font-family:Juice ITC">
                         <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
                             <span class="icon-bar app-icon"></span>
                             <span class="icon-bar app-icon"></span>
@@ -72,14 +72,41 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <b>@Session["userName"]</b><b class="caret"></b>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Mi cuenta</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Mis pedidos</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Cerrar sesion</a></li>
-                                    </ul>
-                                </li>                               
+                                    @if (Session["RoleID"].ToString() == "1")
+                                    {
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Mi cuenta</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Tipos de Zapatos</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Zapatos</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Colores por Zapatos</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Tallas por Zapatos</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Promociones</a></li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                @Html.ActionLink("Cerrar sesion", "LogOut", "Security")
+                                            </li>
+                                        </ul>
+                                    }
+                                    else if (Session["RoleID"].ToString() == "2")
+                                    {
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Mi cuenta</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Mis pedidos</a></li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                @*LogOut*@
+                                                @Html.ActionLink("Cerrar sesion", "LogOut", "Security")
+                                            </li>
+                                        </ul>
+
+                                    }
+                                </li>
                             }
 
                         </ul>
@@ -91,7 +118,24 @@
 
             </div>
         </nav>
-
+        @if (Session["userName"] != null)
+        {
+            <div class="row">
+                <div class="col-md-12 text-center navbar-fixed-top  app-alerta-inicio">
+                    <div class="alert alert-success " role="alert" id="altSIgIn">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Bienvenido!</strong> Ahora encontrara mas opciones en el menu principal.
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $("#altSIgIn").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#altSIgIn").hide();
+                });
+            </script>
+        }
 
         @*<div class="navbar-fixed-top  app-shopping-cart-container">
                 <div class="row " id="divShoppingCard">
@@ -278,7 +322,7 @@
         <div class="container">
             <div class="row">
                 <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
-                <div class="col-xs-10 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-tag app-glyphicon3"></span>
                         Paso 1
@@ -300,7 +344,7 @@
                     </div>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-10 col-sm-12 col-md-3 app-borde-pasos">
+                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-send app-glyphicon3"></span>
                         Paso 2
@@ -324,7 +368,7 @@
                     </div>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-10 col-sm-12 col-md-3 app-borde-pasos">
+                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
                     <h2 class="app-titulo2">
                         <span class="glyphicon glyphicon-check app-glyphicon3"></span>
                         Paso 3
