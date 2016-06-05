@@ -1,946 +1,469 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="">
-<!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Principal</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap.min.css")" rel="stylesheet" />
 
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />
-    <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
-    <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
-</head>
-<body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <header class="app-header">
-        <nav class="navbar app-navbar navbar-fixed-top">
-            <div class="container ">
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <div class="navbar-header" style="font-family:Juice ITC">
-                        <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                            <span class="icon-bar app-icon"></span>
-                            <span class="icon-bar app-icon"></span>
-                            <span class="icon-bar app-icon"></span>
-                        </button>
-                        @Html.ActionLink("BOTTINI CALZADO Y ACCSESORIOS", "Principal", new { }, new { @class = "navbar-brand app-link" })
-
-                    </div>
-                    <div class="collapse navbar-collapse" id="menu">
-                        <ul class="nav navbar-nav navbar-right app-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Ultimas Colecciones 2016<b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Tacones Abril 2016</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Botas Abril 2016</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Estilo Militar Abril 2016</a></li>
-                                </ul>
-                            </li>
-                            @if (Session["userName"] == null)
-                            {
-                                <li>
-                                    <a href="" data-toggle="modal" data-target="#mdlogIn">
-                                        Ingresa
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" data-toggle="modal" data-target="#mdSignIn">
-                                        Registrate
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <b>@Session["userName"]</b><b class="caret"></b>
-                                    </a>
-                                    @if (Session["RoleID"].ToString() == "1")
-                                    {
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Mi cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Tipos de Zapatos</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Zapatos</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Colores por Zapatos</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Tallas por Zapatos</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Promociones</a></li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                @Html.ActionLink("Cerrar sesion", "LogOut", "Security")
-                                            </li>
-                                        </ul>
-                                    }
-                                    else if (Session["RoleID"].ToString() == "2")
-                                    {
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Mi cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Mis pedidos</a></li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                @*LogOut*@
-                                                @Html.ActionLink("Cerrar sesion", "LogOut", "Security")
-                                            </li>
-                                        </ul>
-
-                                    }
-                                </li>
-                            }
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                    <span class="glyphicon glyphicon-shopping-cart app-glyphicon4 text-right" id="numberShoesPick">0</span>
-                </div>
-
-            </div>
-        </nav>
-        @if (Session["userName"] != null)
-        {
-            <div class="row">
-                <div class="col-md-12 text-center navbar-fixed-top  app-alerta-inicio">
-                    <div class="alert alert-success " role="alert" id="altSIgIn">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Bienvenido!</strong> Ahora encontrara mas opciones en el menu principal.
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $("#altSIgIn").fadeTo(2000, 500).slideUp(500, function () {
-                    $("#altSIgIn").hide();
-                });
-            </script>
-        }
-
-        @*<div class="navbar-fixed-top  app-shopping-cart-container">
-                <div class="row " id="divShoppingCard">
-                    <div class="col-md-1 col-md-offset-11" id="divShoppingCardSee">
-                        <div class="well pull-right">
-                            <span class="glyphicon glyphicon-shopping-cart app-glyphicon4" style="margin-top:1%" id="numberShoesPick">0</span>
-                            <br />
-                            <h4 class="app-letra">Detalle</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-md-offset-7" style="display:none" id="divShoppingCardDetail">
-                        <div class="well pull-right">
-                            <button type="button" class="close" id="btCloseShoppingCard">&times;</button>
-                            <table class="table table-bordered" id="tbShoppingCardDetail">
-                                <thead>
-                                    <tr>
-                                        <th class="hidden-xs"></th>
-                                        <th class="hidden-xs">Foto</th>
-                                        <th>Nombre</th>
-                                        <th class="hidden-xs">Cantidad</th>
-                                        <th>Precio</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>$0.0</td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
+<section class="app-seccion2">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center navbar-fixed-top  app-alerta-terminado">
-                <div class="alert alert-success " style="display:none;" role="alert" id="altSuccess">
-                    @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>*@
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                </div>
-            </div>
-        </div>
-    </header>
+            <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-tag app-glyphicon3"></span>
+                    Paso 1
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿Qué zapatos quieres?
+                </p>
+                <div class="media app-media">
 
-
-    <div id="mdlogIn" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Iniciar sesión</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-5">
-                            <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                            </fb:login-button>
-                            <div id="status">
-                            </div>
-                        </div>
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
                     </div>
-
-                    <form role="form" id="formSigIn">
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailLogIn">
-                            <label for="EmailLogIn">¡Tu usuario o correo electrónico!</label>
-                            <input type="text" class="form-control" id="tbEmailLogIn" placeholder="Escribe tu usuario o correo electrónico" required>
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailLogIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageEmailLogIn" class="help-block hidden">¡ Tu correo electrónico !</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordLogIn">
-                            <label for="pwdLogIn">¡Tu contraseña!</label>
-                            <input type="password" class="form-control" id="tbPasswordLogIn" placeholder="Escribe tu contraseña" required>
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordLogIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordLogIn" class="help-block hidden">¡Tu contraseña!</div>
-                        </div>
-                        <div class="alert alert-danger" style="display:none;" role="alert" id="altErrorSigIn">
-                            <strong>Error!</strong> El usuario o la contraseña son incorrectos.
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Recuerdame</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-success btn-block" id="btnSigIn">Ingresa</button>
-                    </form>
-                    <br />
-                    <button type="button" class="btn btn-warning btn-block" id="bt_mdSignIn">¿No tienes cuenta? Registrate.</button>
+                    <div class="media-body">
+                        <h4 class="media-heading">Agrégalo al carrito de compras</h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
                 </div>
-                <div class="modal-footer">
+            </div>
+            <div class="hidden-xs hidden-sm col-md-1"></div>
+            <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-send app-glyphicon3"></span>
+                    Paso 2
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿A dónde te llevamos?
+                </p>
+
+                <div class="media app-media">
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            Ingresa información de envío
+                        </h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-1"></div>
+            <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-check app-glyphicon3"></span>
+                    Paso 3
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿Cómo lo quieres pagar?
+                </p>
+
+                <div class="media app-media">
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Selecciona tu medio de pago</h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
                 </div>
             </div>
 
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="app-titulo">Puedes ver los pasos en <span class="app-resaltar">video</span>:</h1>
+                <video controls poster="@Url.Content("~/Content/Images/Zapato3.jpg")" class="img-responsive app-video">
+                    <source src="@Url.Content("~/Content/videos/video.mp4")"></source>
+                </video>
+            </div>
         </div>
     </div>
+</section>
 
-    <div id="mdSignIn" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registrate</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-5">
-                            <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                            </fb:login-button>
-                            <div id="status">
-                            </div>
-                        </div>
-                    </div>
-                    <form role="form">
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formFirstName">
-                            <label for="FirstName">¡Tu nombre!</label>
-                            <input type="text" class="form-control" id="tbFirstName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconFirstName">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageFirstName" class="help-block hidden">¡Tu nombre!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="fromLastName">
-                            <label for="LastName">¡Tu apellido!</label>
-                            <input type="text" class="form-control" id="tbLastName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconLastName">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageLastName" class="help-block hidden">¡Tu apellido!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailSigIn">
-                            <label for="EmailSigIn">¡Tu correo electrónico!</label>
-                            <input type="email" class="form-control" id="tbEmailSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageEmailSigIn" class="help-block hidden">¡Tu correo electrónico!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordSigIn">
-                            <label for="PasswordSigIn">¡Tu contraseña!</label>
-                            <input type="password" class="form-control" id="tbPasswordSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordSigIn" class="help-block hidden">¡Tu contraseña!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordConfirmSigIn">
-                            <label for="PasswordConfirmSigIn">¡Confirma tu contraseña, por seguridad!</label>
-                            <input type="password" class="form-control" id="tbPasswordConfirmSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordConfirmSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordConfirmSigIn" class="help-block hidden">¡Confirma tu contraseña, por seguridad!</div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-block">Registrate</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <section class="app-seccion2">
-        <div class="container">
-            <div class="row">
-                <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
-                <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
-                    <h2 class="app-titulo2">
-                        <span class="glyphicon glyphicon-tag app-glyphicon3"></span>
-                        Paso 1
-                    </h2>
-                    <p class="app-separador"></p>
-                    <p class="app-justificar app-negrilla">
-                        ¿Qué zapatos quieres?
-                    </p>
-                    <div class="media app-media">
-
-                        <div class="pull-left">
-                            <span class="pull-right glyphicon glyphicon-ok"></span>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Agrégalo al carrito de compras</h4>
-                            <p class="app-justificar">
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
-                    <h2 class="app-titulo2">
-                        <span class="glyphicon glyphicon-send app-glyphicon3"></span>
-                        Paso 2
-                    </h2>
-                    <p class="app-separador"></p>
-                    <p class="app-justificar app-negrilla">
-                        ¿A dónde te llevamos?
-                    </p>
-
+<section class="app-seccion3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">Compra con la <span class="app-resaltar">tecnología  </span> y la <span class="app-resaltar">seguridad  </span>de <span> PayU </span></h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="media app-media">
                         <div class="pull-left">
-                            <span class="pull-right glyphicon glyphicon-ok"></span>
+                            <span class="glyphicon glyphicon-eye-open app-glyphicon1"></span>
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">
-                                Ingresa información de envío
+                                Lo que dicen los usuarios de PayU
                             </h4>
-                            <p class="app-justificar">
+                            <p class="app-justificar2">
+                                “Cada vez que veo el logo de PayU, estoy seguro de que mis datos están protegidos”.
+                                José Salcedo, Comprador PayU
+                                <br />
+                                Para ver má testomios ver: <a href="http://www.payu.com.co/compradores#benefits-testimonials"> Testimonios PayU</a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="media app-media">
+                        <img src="~/Content/Images/payu@2x.png" class="img-responsive img-center" alt="PayU">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">
+                    Este sitio usa
+                    <span class="app-resaltar">
+                        tecnología SSL
+                    </span>
+                </h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-lock app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Realiza tus compras con seguridad
+                            </h4>
+                            <p class="app-justificar2">
+                                Este sitio protege tu información.
                             </p>
                         </div>
                     </div>
+                    <div class="media app-media">
+                        <img src="~/Content/Images/HTTPS_icon.png" class="img-responsive img-center" />
+                    </div>
                 </div>
-                <div class="hidden-xs hidden-sm col-md-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
-                    <h2 class="app-titulo2">
-                        <span class="glyphicon glyphicon-check app-glyphicon3"></span>
-                        Paso 3
-                    </h2>
-                    <p class="app-separador"></p>
-                    <p class="app-justificar app-negrilla">
-                        ¿Cómo lo quieres pagar?
-                    </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="app-seccion4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">
+                    <span class="app-resaltar">Calidad</span>
+                    <span class="app-resaltar3">100% </span>
+                    <span class="app-resaltar">Colombiana</span>
+                </h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-wrench app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Materiales Colombianos
+                            </h4>
+                            <p class="app-justificar2">
+                                Cada una de las piezas con las que se construye este zapato son colombianas, es decir calidad 100% colombiana.
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="media app-media">
                         <div class="pull-left">
-                            <span class="pull-right glyphicon glyphicon-ok"></span>
+                            <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Selecciona tu medio de pago</h4>
-                            <p class="app-justificar">
+                            <h4 class="media-heading">
+                                Manos Colombianas
+                            </h4>
+                            <p class="app-justificar2">
+                                Las personas que hacen posible estos zapatos son nativos de Colombia.
                             </p>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="app-titulo">Puedes ver los pasos en <span class="app-resaltar">video</span>:</h1>
-                    <video controls poster="@Url.Content("~/Content/Images/Zapato3.jpg")" class="img-responsive app-video">
-                        <source src="@Url.Content("~/Content/videos/video.mp4")"></source>
-                    </video>
-                </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">Que dicen nuestros <span class="app-resaltar">clientes</span>:</h1>
+                <ul>
+                    <li>
+                        <span class="app-comentarios"> "La experiencia de comprar sin salir de casa no la cambio por nada" Carlos Ortega.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "La calidad de estos zapatos, hace que los recomiende"  Juliana Perez.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Me siento muy bien al apoyar el trabajo colombiano"  Hernan Avendaño.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Gracias por hacerme feliz"  Cristina Moreno.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Recomendaría este sitio, me cambiaron el producto ya que no me quedaba"  Esperanza Subachoque.</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="app-seccion3">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h1 class="app-titulo">Compra con la <span class="app-resaltar">tecnología  </span> y la <span class="app-resaltar">seguridad  </span>de <span> PayU </span></h1>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-eye-open app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Lo que dicen los usuarios de PayU
-                                </h4>
-                                <p class="app-justificar2">
-                                    “Cada vez que veo el logo de PayU, estoy seguro de que mis datos están protegidos”.
-                                    José Salcedo, Comprador PayU
-                                    <br />
-                                    Para ver má testomios ver: <a href="http://www.payu.com.co/compradores#benefits-testimonials"> Testimonios PayU</a>
-                                </p>
+<section class="app-seccion5" id="lastCollection">
+    <div class="container">
+        <div class="row">
+            <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (Tacónes)</span> Abril de 2016 </h1>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
+                    <h2 class="app-titulo2">
+                        Tacón Charol Beige
+                    </h2>
+                    <p class="app-separador"></p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato1.jpg")" alt="" class="img-responsive">
 
-
-                            </div>
-                        </div>
-                        <div class="media app-media">
-                            <img src="~/Content/Images/payu@2x.png" class="img-responsive img-center" alt="PayU">
-                        </div>
+                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
+                        Ver Detalle
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h1 class="app-titulo">
-                        Este sitio usa
-                        <span class="app-resaltar">
-                            tecnología SSL
+                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 1
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 2
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        80.000
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
+                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045','Tacón Charol Beige', '80000', 'red', '40')">
+                            Agregar
                         </span>
-                    </h1>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-lock app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Realiza tus compras con seguridad
-                                </h4>
-                                <p class="app-justificar2">
-                                    Este sitio protege tu información.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media app-media">
-                            <img src="~/Content/Images/HTTPS_icon.png" class="img-responsive img-center" />
-                        </div>
+
+                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
+                            Comprar
+                        </span>
                     </div>
                 </div>
 
             </div>
-        </div>
-    </section>
-
-
-    <section class="app-seccion4">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h1 class="app-titulo">
-                        <span class="app-resaltar">Calidad</span>
-                        <span class="app-resaltar3">100% </span>
-                        <span class="app-resaltar">Colombiana</span>
-                    </h1>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-wrench app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Materiales Colombianos
-                                </h4>
-                                <p class="app-justificar2">
-                                    Cada una de las piezas con las que se construye este zapato son colombianas, es decir calidad 100% colombiana.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Manos Colombianas
-                                </h4>
-                                <p class="app-justificar2">
-                                    Las personas que hacen posible estos zapatos son nativos de Colombia.
-                                </p>
-                            </div>
-                        </div>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
+                    <h2 class="app-titulo2">
+                        Tacón Charol Rosa
+                    </h2>
+                    <p class="app-separador"></p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato2.jpg")" alt="" class="img-responsive">
+                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5235")"'>
+                        Ver Detalle
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        150.000
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
+                        <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
+                            Agregar
+                        </span>
 
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h1 class="app-titulo">Que dicen nuestros <span class="app-resaltar">clientes</span>:</h1>
-                    <ul>
-                        <li>
-                            <span class="app-comentarios"> "La experiencia de comprar sin salir de casa no la cambio por nada" Carlos Ortega.</span>
-                        </li>
-                        <li>
-                            <span class="app-comentarios"> "La calidad de estos zapatos, hace que los recomiende"  Juliana Perez.</span>
-                        </li>
-                        <li>
-                            <span class="app-comentarios"> "Me siento muy bien al apoyar el trabajo colombiano"  Hernan Avendaño.</span>
-                        </li>
-                        <li>
-                            <span class="app-comentarios"> "Gracias por hacerme feliz"  Cristina Moreno.</span>
-                        </li>
-                        <li>
-                            <span class="app-comentarios"> "Recomendaría este sitio, me cambiaron el producto ya que no me quedaba"  Esperanza Subachoque.</span>
-                        </li>
-                    </ul>
+                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
+                            Comprar
+                        </span>
+                    </div>
                 </div>
-
             </div>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
+                    <h2 class="app-titulo2">
+                        Tacón Escarchado
+                    </h2>
+                    <p class="app-separador">
+                    </p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato3.jpg")" alt="" class="img-responsive">
+                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5285")"'>
+                        Ver Detalle
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        150.000
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
+                        <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553047', 'Tacón Escarchado', '150000', 'black', '36')">
+                            Agregar
+                        </span>
+
+                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
+                            Comprar
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h2 class="app-titulo2">
+                        Tacón Azul Gamusa
+                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553048', '150.000', 'pink', '35')"></span>
+                    </h2>
+                    <p class="app-separador"></p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato4.jpg")" alt="" class="img-responsive">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        150.000
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                    <h2 class="app-titulo2">
+                        Tacón Grueso Verde
+                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553049', '150.000', 'black', '38')"></span>
+                    </h2>
+                    <p class="app-separador"></p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato5.jpg")" alt="" class="img-responsive">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        150.000
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-12 app-margen-inferior-catalogo">
+                    <h2 class="app-titulo2">
+                        Tacón Rojo Rosa
+                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553050', '150.000', 'black', '39')"></span>
+                    </h2>
+                    <p class="app-separador"></p>
+                    <img src="@Url.Content("~/Content/Images/Tacones/Zapato6.jpg")" alt="" class="img-responsive">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                        Existentes: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                        Colores: 3
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                        150.000
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="app-seccion5" id="lastCollection">
-        <div class="container">
-            <div class="row">
-                <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (Tacónes)</span> Abril de 2016 </h1>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                        <h2 class="app-titulo2">
-                            Tacón Charol Beige
-                        </h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato1.jpg")" alt="" class="img-responsive">
 
-                        <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
-                            Ver Detalle
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 ">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 1
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 2
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            80.000
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                            <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045','Tacón Charol Beige', '80000', 'red', '40')">
-                                Agregar
-                            </span>
+<section class="app-seccion2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12xol "></div>
 
-                            <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                                Comprar
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                        <h2 class="app-titulo2">
-                            Tacón Charol Rosa
-                        </h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato2.jpg")" alt="" class="img-responsive">
-                        <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5235")"'>
-                            Ver Detalle
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                            <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
-                                Agregar
-                            </span>
-
-                            <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                                Comprar
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                        <h2 class="app-titulo2">
-                            Tacón Escarchado
-                        </h2>
-                        <p class="app-separador">
-                        </p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato3.jpg")" alt="" class="img-responsive">
-                        <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5285")"'>
-                            Ver Detalle
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                            <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553047', 'Tacón Escarchado', '150000', 'black', '36')">
-                                Agregar
-                            </span>
-
-                            <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                                Comprar
-                            </span>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="app-titulo"><span class="app-resaltar">Acerca de Nostros</span> </h1>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h2 class="app-titulo2">
-                            Tacón Azul Gamusa
-                            <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553048', '150.000', 'pink', '35')"></span>
-                        </h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato4.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                    <div class="col-xs-12 col-sm-12 col-md-12 ">
-                        <h2 class="app-titulo2">
-                            Tacón Grueso Verde
-                            <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553049', '150.000', 'black', '38')"></span>
-                        </h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato5.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                    <div class="col-xs-12 col-sm-12 col-md-12 app-margen-inferior-catalogo">
-                        <h2 class="app-titulo2">
-                            Tacón Rojo Rosa
-                            <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553050', '150.000', 'black', '39')"></span>
-                        </h2>
-                        <p class="app-separador"></p>
-                        <img src="@Url.Content("~/Content/Images/Tacones/Zapato6.jpg")" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-ok"></span>
-                            Existentes: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-adjust"></span>
-                            Colores: 3
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                            <span class="pull-left glyphicon glyphicon-usd"></span>
-                            150.000
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </section>
-
-    @*<section class="app-seccion5">
-            <div class="container">
-                <div class="row">
-                    <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (tendencia militar)</span> Abril de 2016 </h1>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Cafe Cuero<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador"></p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato12.jpg")" alt="" class="img-responsive">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-time app-glyphicon1"></span>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Verde Natural <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador"></p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato11.jpg")" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Cafe Oscuro <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador">
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Contáctanos
+                            </h4>
+                            <p class="app-justificar2">
+                                Llámanos o escríbenos, y tendrás respuesta en tiempo record.
+                                <span class="pull-right glyphicon glyphicon-time"></span>
+                                Tenemos a tú disposición: whatsapp, facebook, twitter, celular, correo electrónico.
                             </p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato10.jpg")" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Cafe en linea <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador"></p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato9.jpg")" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Cuello Militar<span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador"></p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato7.jpg")" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h2 class="app-titulo2">Bota Gris Cordones <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2"></span></h2>
-                            <p class="app-separador"></p>
-                            <img src="@Url.Content("~/Content/Images/Militar/Zapato6.jpg")" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-ok"></span>
-                                Existentes: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                Colores: 3
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                                <span class="pull-left glyphicon glyphicon-usd"></span>
-                                150.000
-                            </div>
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>*@
-
-    <section class="app-seccion2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12xol "></div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="app-titulo"><span class="app-resaltar">Acerca de Nostros</span> </h1>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-time app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Contáctanos
-                                </h4>
-                                <p class="app-justificar2">
-                                    Llámanos o escríbenos, y tendrás respuesta en tiempo record.
-                                    <span class="pull-right glyphicon glyphicon-time"></span>
-                                    Tenemos a tú disposición: whatsapp, facebook, twitter, celular, correo electrónico.
-                                </p>
-                            </div>
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
                         </div>
-
-                        <div class="media app-media">
-                            <div class="pull-left">
-                                <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Entendemos que tú eres la mayor prioridad
-                                </h4>
-                                <p class="app-justificar2">
-                                    Estaremos siempre dispuestos hasta que quedes satisfecho. Entendemos que tú eres la mayor prioridad.
-                                    <span class="pull-right glyphicon glyphicon-thumbs-up"></span>
-                                </p>
-                            </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Entendemos que tú eres la mayor prioridad
+                            </h4>
+                            <p class="app-justificar2">
+                                Estaremos siempre dispuestos hasta que quedes satisfecho. Entendemos que tú eres la mayor prioridad.
+                                <span class="pull-right glyphicon glyphicon-thumbs-up"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="app-footer">
-        <div class="app-empresa">
-            <h4>Bottini Calzado Accesorios</h4>
-            <p>Si no lo vez entonces lo inventamos. By FR - ZAW</p>
-            <p>Este sitio fue hecho con pasión</p>
-        </div>
-        <span class="icon-facebook app-icon1"></span>
-        <span class="icon-twitter app-icon1"></span>
-        <span class="icon-google-plus app-icon1"></span>
-    </footer>
+<footer class="app-footer">
+    <div class="app-empresa">
+        <h4>Bottini Calzado Accesorios</h4>
+        <p>Si no lo vez entonces lo inventamos. By FR - ZAW</p>
+        <p>Este sitio fue hecho con pasión</p>
+    </div>
+    <span class="icon-facebook app-icon1"></span>
+    <span class="icon-twitter app-icon1"></span>
+    <span class="icon-google-plus app-icon1"></span>
+</footer>
 
-    @Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"));
-
-    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
-    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>
-    <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
-    <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
-    <script src="@Url.Content("~/Scripts/Security/Principal.js")"></script>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        (function (b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
-            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
-            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
-            e.src = '//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e, r)
-        }(window, document, 'script', 'ga'));
-        ga('create', 'UA-34048295-4', 'auto'); ga('send', 'pageview');
-    </script>
-    <script>
-        window.rootUrl = '@Url.Content("~/")';
-    </script>
-</body>
-</html>
+@Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"));
+<script src="@Url.Content("~/Scripts/Security/Principal.js")"></script>

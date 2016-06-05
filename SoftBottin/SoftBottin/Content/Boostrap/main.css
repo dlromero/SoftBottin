@@ -430,6 +430,17 @@ td, th {
     font-size: 16px;
 }
 
+.app-tipos-zapatos {
+    margin-top: 60px;
+}
+
+
+@media(max-width: 406px) {
+    .navbar-brand {
+        height: 76px;
+    }
+}
+
 @media (max-width: 768px) {
     .app-seccion1 {
         width: 90%;
@@ -508,8 +519,26 @@ td, th {
     .app-alerta-terminado {
         margin-top: 16%;
     }
+
+    .app-tipos-zapatos {
+        margin-top: 80px;
+    }
+
+    .app-tipos-zapatos-botones {
+        margin-top: 5px;
+    }
 }
 
+
+@media(min-width: 769px ) and (max-width: 1200px) {
+    .navbar-brand {
+        height: 76px;
+    }
+
+    .app-tipos-zapatos {
+        margin-top: 130px;
+    }
+}
 
 
 @media (min-width: 769px) and (max-width: 1360px) {
@@ -538,10 +567,8 @@ td, th {
     .app-letra {
         font-size: 10px;
     }
-}
 
-@media(max-width: 406px) {
-    .navbar-brand {
-        height: 76px;
+    .app-tipos-zapatos-botones {
+        margin-top: 5px;
     }
 }

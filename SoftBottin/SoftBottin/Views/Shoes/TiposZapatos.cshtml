@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Tipos de zapatos";
+}
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+
+
+<section class="app-tipos-zapatos">
+    <div class="container">
+        @if (ViewBag.AddSuccefull = true)
+        {
+            <div class="row">
+                <div class="col-md-12 text-center navbar-fixed-top  app-alerta-terminado">
+                    <div class="alert alert-success " style="display:none;" role="alert" id="altSuccess">
+                        <strong>Tipo de zapato guardado con exito!</strong>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-xs-12 col-sm-12 col-md-6 app-tipos-zapatos-botones">
+            @Html.ActionLink("Crear Tipo de Zapato", "CrearTipoZapato", "Shoes", new { }, new { @class = "btn btn-primary btn-lg btn-block" })
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 app-tipos-zapatos-botones">
+            @Html.ActionLink("Editar o eliminar Tipo de Zapato", "EditarTipoZapato", "Shoes", new { }, new { @class = "btn btn-primary btn-lg btn-block" })
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+        </div>
+        <h2>Tipos de zapatos</h2>
+        <div class="table-responsive">
+            <table id="myDataTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Referencia</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myDataTable').dataTable({
+            //"bServerSide": true,
+            "sAjaxSource": "AjaxHandler",
+            "bProcessing": true,
+            "aoColumns": [
+                            {
+                                "sName": "ID",
+                                "bSearchable": false,
+                                "bSortable": false,
+                                "fnRender": function (oObj) {
+                                    return '<a href=\"Details/' +
+                                    oObj.aData[0] + '\">View</a>';
+                                }
+                            },
+                            { "sName": "NAME" },
+                            { "sName": "DESCRIPTION" },
+                            { "sName": "REFERENCE" }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+            }
+        });
+    });
+</script>

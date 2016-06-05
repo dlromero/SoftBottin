@@ -1,0 +1,71 @@
+﻿@model SoftBottin.Models.Shoes.cShoeType
+@{
+    ViewBag.Title = "Crear Tipo de Zapato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+
+<section class="app-tipos-zapatos">
+    <h2>Crear Tipo Zapato</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        @Html.TextBoxFor(dina => dina.sName,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "name",
+                                             placeholder = "Ingrese Nombre",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sName)
+                        <p class="help-block">Ingrese el nombre del tipo de zapato.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        @Html.TextBoxFor(dina => dina.sDescription,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "description",
+                                             placeholder = "Ingrese Descripción",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sDescription)
+                        <p class="help-block">Ingrese la descrpción del tipo de zapato.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="ref">Referencia</label>
+                        @Html.TextBoxFor(dina => dina.sRef,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "ref",
+                                             placeholder = "Ingrese Referencia",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sRef)
+
+                        <p class="help-block">Ingrese la referencia del tipo de zapato.</p>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.ActionLink("Cancelar", "TiposZapatos", "Shoes", new { }, new { @class = "btn btn-danger btn-block" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>

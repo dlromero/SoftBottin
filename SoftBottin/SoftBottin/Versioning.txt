@@ -80,6 +80,47 @@ Actualización Script		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Scripts\Sec
 Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.5
+		       Autor: Daniel Romero
+			   Fecha: 5 de Junio de 2016
+  		 Descripcion:
+			
+Actualización Estilo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
+
+Actualización DataBase		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml.layout	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinBD\SoftBottinDataClasses.designer.cs	Edit
+
+
+Actualización Controlador	:	DD:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Add
+
+Actualización Modelo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\cmSecurity.cs	Edit
+
+Actualización clase			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoeType.cs	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Web References\wsSoftBottin\Reference.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Web References\wsSoftBottin\SoftBottin.wsdl	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinWS\SoftBottin.asmx.cs	Edit
+
+
+Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+							    D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml	Add4
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\CrearTipoZapato.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\EditarTipoZapato.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\TiposZapatos.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml	Add
+
+Actualización csproject		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\SoftBottin.csproj	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\SoftBottin.csproj.user	Edit
+
+Actualización Web.config	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Web.config	Edit
+
+
+
+
+
+
+
 
 
 

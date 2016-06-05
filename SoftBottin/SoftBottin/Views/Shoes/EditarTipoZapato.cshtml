@@ -1,0 +1,116 @@
+﻿@model SoftBottin.Models.Shoes.cShoeType
+@{
+    ViewBag.Title = "Editar o eliminar Tipo de Zapato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lsShoesTypes = ViewBag.lsShoesTypes;
+}
+
+
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+@using (Html.BeginForm("EditarTipoZapato", "Shoes", FormMethod.Post))
+{
+
+    <section class="app-tipos-zapatos">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <h1 class="display-4">Tipos de zapatos:</h1>
+                        @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes, "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="editShoeType" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="display-4">Editar o eliminar un Tipo de Zapato:</h1>
+
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        @Html.TextBoxFor(dina => dina.sName,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "name",
+                                             placeholder = "Ingrese Nombre",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sName)
+                        <p class="help-block">Ingrese el nombre del tipo de zapato.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        @Html.TextBoxFor(dina => dina.sDescription,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "description",
+                                             placeholder = "Ingrese Descripción",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sDescription)
+                        <p class="help-block">Ingrese la descripción del tipo de zapato.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="ref">Referencia</label>
+                        @Html.TextBoxFor(dina => dina.sRef,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "ref",
+                                             placeholder = "Ingrese Referencia",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sRef)
+
+                        <p class="help-block">Ingrese la referencia del tipo de zapato.</p>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.ActionLink("Eliminar", "EliminarTipoZapato", "Shoes",
+                                    new { }, new { @class = "btn btn-danger btn-block", id = "deleteShoeType" })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+}
+
+<script type="text/javascript">
+
+    $("#lsShoesTypes").change(function () {
+        $.ajax({
+            url: window.rootUrl + 'Shoes/GetShoeById',
+            type: 'GET',
+            data: { iIdShoeType: +$("#lsShoesTypes").val() },
+            contentType: 'application/json',
+            success: function (data) {
+                if (data != null) {
+                    var json = $.parseJSON(data);
+                    $("#name").val(json.sName);
+                    $("#description").val(json.sDescription);
+                    $("#ref").val(json.sRef);
+                    $("#editShoeType").show();
+
+                    $("#deleteShoeType").prop('href', "/Shoes/EliminarTipoZapato?iShoeTypeId=" + json.iId);
+                }
+            },
+            error: function (dataError) {
+                alert(dataError);
+            }
+        });
+    });
+
+</script>

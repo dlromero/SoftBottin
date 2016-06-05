@@ -65,6 +65,98 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AddShoeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShoeTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddShoeTypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShoesTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetShoesTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetShoesTypesResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsShoesTypes">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShoesTypesById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iShoeType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShoesTypesByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetShoesTypesByIdResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsShoesTypes">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditShoeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditShoeTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EditShoeTypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteShoeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteShoeTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteShoeTypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetProductsSoapIn">
@@ -91,6 +183,36 @@
   <wsdl:message name="SigInSoapOut">
     <wsdl:part name="parameters" element="tns:SigInResponse" />
   </wsdl:message>
+  <wsdl:message name="AddShoeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:AddShoeType" />
+  </wsdl:message>
+  <wsdl:message name="AddShoeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:AddShoeTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShoesTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShoesTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetShoesTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShoesTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShoesTypesByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShoesTypesById" />
+  </wsdl:message>
+  <wsdl:message name="GetShoesTypesByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShoesTypesByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditShoeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:EditShoeType" />
+  </wsdl:message>
+  <wsdl:message name="EditShoeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:EditShoeTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteShoeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteShoeType" />
+  </wsdl:message>
+  <wsdl:message name="DeleteShoeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteShoeTypeResponse" />
+  </wsdl:message>
   <wsdl:portType name="SoftBottinSoap">
     <wsdl:operation name="GetProducts">
       <wsdl:input message="tns:GetProductsSoapIn" />
@@ -107,6 +229,26 @@
     <wsdl:operation name="SigIn">
       <wsdl:input message="tns:SigInSoapIn" />
       <wsdl:output message="tns:SigInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddShoeType">
+      <wsdl:input message="tns:AddShoeTypeSoapIn" />
+      <wsdl:output message="tns:AddShoeTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypes">
+      <wsdl:input message="tns:GetShoesTypesSoapIn" />
+      <wsdl:output message="tns:GetShoesTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypesById">
+      <wsdl:input message="tns:GetShoesTypesByIdSoapIn" />
+      <wsdl:output message="tns:GetShoesTypesByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditShoeType">
+      <wsdl:input message="tns:EditShoeTypeSoapIn" />
+      <wsdl:output message="tns:EditShoeTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShoeType">
+      <wsdl:input message="tns:DeleteShoeTypeSoapIn" />
+      <wsdl:output message="tns:DeleteShoeTypeSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SoftBottinSoap" type="tns:SoftBottinSoap">
@@ -147,6 +289,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddShoeType">
+      <soap:operation soapAction="http://tempuri.org/AddShoeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypes">
+      <soap:operation soapAction="http://tempuri.org/GetShoesTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypesById">
+      <soap:operation soapAction="http://tempuri.org/GetShoesTypesById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditShoeType">
+      <soap:operation soapAction="http://tempuri.org/EditShoeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShoeType">
+      <soap:operation soapAction="http://tempuri.org/DeleteShoeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SoftBottinSoap12" type="tns:SoftBottinSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -179,6 +366,51 @@
     </wsdl:operation>
     <wsdl:operation name="SigIn">
       <soap12:operation soapAction="http://tempuri.org/SigIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddShoeType">
+      <soap12:operation soapAction="http://tempuri.org/AddShoeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetShoesTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoesTypesById">
+      <soap12:operation soapAction="http://tempuri.org/GetShoesTypesById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditShoeType">
+      <soap12:operation soapAction="http://tempuri.org/EditShoeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShoeType">
+      <soap12:operation soapAction="http://tempuri.org/DeleteShoeType" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

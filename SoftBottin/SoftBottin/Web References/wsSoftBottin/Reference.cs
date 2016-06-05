@@ -38,6 +38,16 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback SigInOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddShoeTypeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetShoesTypesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetShoesTypesByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EditShoeTypeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteShoeTypeOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -87,6 +97,21 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         public event SigInCompletedEventHandler SigInCompleted;
+        
+        /// <remarks/>
+        public event AddShoeTypeCompletedEventHandler AddShoeTypeCompleted;
+        
+        /// <remarks/>
+        public event GetShoesTypesCompletedEventHandler GetShoesTypesCompleted;
+        
+        /// <remarks/>
+        public event GetShoesTypesByIdCompletedEventHandler GetShoesTypesByIdCompleted;
+        
+        /// <remarks/>
+        public event EditShoeTypeCompletedEventHandler EditShoeTypeCompleted;
+        
+        /// <remarks/>
+        public event DeleteShoeTypeCompletedEventHandler DeleteShoeTypeCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetProducts", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -204,6 +229,166 @@ namespace SoftBottin.wsSoftBottin {
             if ((this.SigInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SigInCompleted(this, new SigInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddShoeType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddShoeType(string sName, string sDescription, string sRef, out string sErrMessage) {
+            object[] results = this.Invoke("AddShoeType", new object[] {
+                        sName,
+                        sDescription,
+                        sRef});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddShoeTypeAsync(string sName, string sDescription, string sRef) {
+            this.AddShoeTypeAsync(sName, sDescription, sRef, null);
+        }
+        
+        /// <remarks/>
+        public void AddShoeTypeAsync(string sName, string sDescription, string sRef, object userState) {
+            if ((this.AddShoeTypeOperationCompleted == null)) {
+                this.AddShoeTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddShoeTypeOperationCompleted);
+            }
+            this.InvokeAsync("AddShoeType", new object[] {
+                        sName,
+                        sDescription,
+                        sRef}, this.AddShoeTypeOperationCompleted, userState);
+        }
+        
+        private void OnAddShoeTypeOperationCompleted(object arg) {
+            if ((this.AddShoeTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddShoeTypeCompleted(this, new AddShoeTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetShoesTypes", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool GetShoesTypes(out System.Data.DataSet dsShoesTypes, out string sErrMessage) {
+            object[] results = this.Invoke("GetShoesTypes", new object[0]);
+            dsShoesTypes = ((System.Data.DataSet)(results[1]));
+            sErrMessage = ((string)(results[2]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetShoesTypesAsync() {
+            this.GetShoesTypesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetShoesTypesAsync(object userState) {
+            if ((this.GetShoesTypesOperationCompleted == null)) {
+                this.GetShoesTypesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetShoesTypesOperationCompleted);
+            }
+            this.InvokeAsync("GetShoesTypes", new object[0], this.GetShoesTypesOperationCompleted, userState);
+        }
+        
+        private void OnGetShoesTypesOperationCompleted(object arg) {
+            if ((this.GetShoesTypesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetShoesTypesCompleted(this, new GetShoesTypesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetShoesTypesById", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool GetShoesTypesById(int iShoeType, out System.Data.DataSet dsShoesTypes, out string sErrMessage) {
+            object[] results = this.Invoke("GetShoesTypesById", new object[] {
+                        iShoeType});
+            dsShoesTypes = ((System.Data.DataSet)(results[1]));
+            sErrMessage = ((string)(results[2]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetShoesTypesByIdAsync(int iShoeType) {
+            this.GetShoesTypesByIdAsync(iShoeType, null);
+        }
+        
+        /// <remarks/>
+        public void GetShoesTypesByIdAsync(int iShoeType, object userState) {
+            if ((this.GetShoesTypesByIdOperationCompleted == null)) {
+                this.GetShoesTypesByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetShoesTypesByIdOperationCompleted);
+            }
+            this.InvokeAsync("GetShoesTypesById", new object[] {
+                        iShoeType}, this.GetShoesTypesByIdOperationCompleted, userState);
+        }
+        
+        private void OnGetShoesTypesByIdOperationCompleted(object arg) {
+            if ((this.GetShoesTypesByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetShoesTypesByIdCompleted(this, new GetShoesTypesByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/EditShoeType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool EditShoeType(int iId, string sName, string sDescription, string sRef, out string sErrMessage) {
+            object[] results = this.Invoke("EditShoeType", new object[] {
+                        iId,
+                        sName,
+                        sDescription,
+                        sRef});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EditShoeTypeAsync(int iId, string sName, string sDescription, string sRef) {
+            this.EditShoeTypeAsync(iId, sName, sDescription, sRef, null);
+        }
+        
+        /// <remarks/>
+        public void EditShoeTypeAsync(int iId, string sName, string sDescription, string sRef, object userState) {
+            if ((this.EditShoeTypeOperationCompleted == null)) {
+                this.EditShoeTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditShoeTypeOperationCompleted);
+            }
+            this.InvokeAsync("EditShoeType", new object[] {
+                        iId,
+                        sName,
+                        sDescription,
+                        sRef}, this.EditShoeTypeOperationCompleted, userState);
+        }
+        
+        private void OnEditShoeTypeOperationCompleted(object arg) {
+            if ((this.EditShoeTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EditShoeTypeCompleted(this, new EditShoeTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteShoeType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteShoeType(int iId, out string sErrMessage) {
+            object[] results = this.Invoke("DeleteShoeType", new object[] {
+                        iId});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteShoeTypeAsync(int iId) {
+            this.DeleteShoeTypeAsync(iId, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteShoeTypeAsync(int iId, object userState) {
+            if ((this.DeleteShoeTypeOperationCompleted == null)) {
+                this.DeleteShoeTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteShoeTypeOperationCompleted);
+            }
+            this.InvokeAsync("DeleteShoeType", new object[] {
+                        iId}, this.DeleteShoeTypeOperationCompleted, userState);
+        }
+        
+        private void OnDeleteShoeTypeOperationCompleted(object arg) {
+            if ((this.DeleteShoeTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteShoeTypeCompleted(this, new DeleteShoeTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -350,6 +535,192 @@ namespace SoftBottin.wsSoftBottin {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void AddShoeTypeCompletedEventHandler(object sender, AddShoeTypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddShoeTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddShoeTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void GetShoesTypesCompletedEventHandler(object sender, GetShoesTypesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetShoesTypesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetShoesTypesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet dsShoesTypes {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void GetShoesTypesByIdCompletedEventHandler(object sender, GetShoesTypesByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetShoesTypesByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetShoesTypesByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet dsShoesTypes {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void EditShoeTypeCompletedEventHandler(object sender, EditShoeTypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EditShoeTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EditShoeTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void DeleteShoeTypeCompletedEventHandler(object sender, DeleteShoeTypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteShoeTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteShoeTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
             }
         }
     }
