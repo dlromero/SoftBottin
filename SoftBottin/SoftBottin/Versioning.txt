@@ -117,6 +117,23 @@ Actualización Web.config	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Web.conf
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.6
+		       Autor: Daniel Romero
+			   Fecha: 8 de Junio de 2016
+  		 Descripcion:
+			
+Actualización Controlador	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
+
+
+Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\EditarTipoZapato.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml	Edit
+
+
+
+
+
 
 
 

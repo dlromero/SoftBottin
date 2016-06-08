@@ -104,7 +104,7 @@
                     $("#ref").val(json.sRef);
                     $("#editShoeType").show();
 
-                    $("#deleteShoeType").prop('href', "/Shoes/EliminarTipoZapato?iShoeTypeId=" + json.iId);
+                    $("#deleteShoeType").prop('href', window.rootUrl + "Shoes/EliminarTipoZapato?iShoeTypeId=" + json.iId);
                 }
             },
             error: function (dataError) {

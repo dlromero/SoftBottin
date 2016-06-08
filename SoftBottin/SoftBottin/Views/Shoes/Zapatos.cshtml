@@ -1,8 +1,181 @@
-﻿
+﻿@model SoftBottin.Models.Shoes.cShoeType
 @{
     ViewBag.Title = "Zapatos";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lsShoesTypes = ViewBag.lsShoesTypes;
 }
 
-<h2>Zapatos</h2>
+<style>
+    h2 {
+        text-align: center;
+        margin: 30px 0;
+    }
 
+    .demo-card {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 100px;
+    }
+
+    h4.title {
+        text-align: center;
+    }
+</style>
+
+
+<section class="app-tipos-zapatos">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <h1 class="display-4">Administración de zapatos:</h1>
+                    @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes, "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="editShoeType" style="display: none;">
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <h2 class="display-1">Zapato 1</h2>
+            <h4 class="title">Flats 55</h4>
+            <div class="demo-card">
+                <div class="card">
+                    <div class="card-header">
+                        Foto
+                    </div>
+                    <img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG">
+                    <div class="card-block">
+                        <h4 class="card-title">Zapato 1</h4>
+                        <h6 class="card-subtitle text-muted">En existencia: 8</h6>
+                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    @*<div class="card-block">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Otro link</a>
+                    </div>*@
+                    <div class="card-block">
+                        <a href="#" class="btn btn-primary btn-block">Editar</a>
+                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        En existencia: 8
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <h2 class="display-1">Zapato 2</h2>
+            <h4 class="title">Flats 55</h4>
+            <div class="demo-card">
+                <div class="card">
+                    <div class="card-header">
+                        Foto
+                    </div>
+                    <img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb077546-13855.JPG">
+                    <div class="card-block">
+                        <h4 class="card-title">Zapato 2</h4>
+                        <h6 class="card-subtitle text-muted">En existencia: 2</h6>
+                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    @*<div class="card-block">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Otro link</a>
+                    </div>*@
+                    <div class="card-block">
+                        <a href="#" class="btn btn-primary btn-block">Editar</a>
+                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        En existencia: 2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <h2 class="display-1">Zapato 3</h2>
+            <h4 class="title">Flats 55</h4>
+            <div class="demo-card">
+                <div class="card">
+                    <div class="card-header">
+                        Foto
+                    </div>
+                    <img class="card-img-top img-responsive" src="http://calzadosrivera.es/8271-productlist/zapato-botin-dorking-combinado-6507suge.jpg">
+                    <div class="card-block">
+                        <h4 class="card-title">Zapato 3</h4>
+                        <h6 class="card-subtitle text-muted">En existencia: 5</h6>
+                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    @*<div class="card-block">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Otro link</a>
+                    </div>*@
+                    <div class="card-block">
+                        <a href="#" class="btn btn-primary btn-block">Editar</a>
+                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        En existencia: 5
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <h2 class="display-1">Zapato 4</h2>
+            <h4 class="title">Flats 55</h4>
+            <div class="demo-card">
+                <div class="card">
+                    <div class="card-header">
+                        Foto
+                    </div>
+                    <img class="card-img-top img-responsive" src="http://es.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bot%C3%ADn-skylight-zapatos--A9SQ1FSU02_PM2_Front%20view.jpg">
+                    <div class="card-block">
+                        <h4 class="card-title">Zapato 4</h4>
+                        <h6 class="card-subtitle text-muted">En existencia: 10</h6>
+                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    @*<div class="card-block">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Otro link</a>
+                    </div>*@
+                    <div class="card-block">
+                        <a href="#" class="btn btn-primary btn-block">Editar</a>
+                        <a href="#" class="btn btn-warning btn-block">Dar de alta</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        En existencia: 10
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    $("#lsShoesTypes").change(function () {
+        $("#editShoeType").show();
+    });
+
+</script>

@@ -41,7 +41,20 @@ namespace SoftBottin.Controllers
         {
             try
             {
+                cShoeType niShoeType = new cShoeType();
+                DataSet dsShoesTypes = new DataSet();
+                string sErrMessage = "";
+                niShoeType.GetShoesTypes(out dsShoesTypes, out sErrMessage);
 
+                List<SelectListItem> lsShoesTypes = new List<SelectListItem>();
+                for (int iShoesTypes = 0; iShoesTypes < dsShoesTypes.Tables[0].Rows.Count; iShoesTypes++)
+                {
+                    SelectListItem slItem = new SelectListItem();
+                    slItem.Text = dsShoesTypes.Tables[0].Rows[iShoesTypes]["Name"].ToString();
+                    slItem.Value = dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString();
+                    lsShoesTypes.Add(slItem);
+                }
+                ViewBag.lsShoesTypes = lsShoesTypes;
                 return View();
             }
             catch (Exception)
