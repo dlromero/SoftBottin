@@ -234,5 +234,21 @@ namespace SoftBottin.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CrearZapato()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+
     }
 }

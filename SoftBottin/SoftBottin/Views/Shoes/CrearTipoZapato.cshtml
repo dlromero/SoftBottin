@@ -10,7 +10,7 @@
 
 
 <section class="app-tipos-zapatos">
-    <h2>Crear Tipo Zapato</h2>
+    <h2>Crear Zapato</h2>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -28,7 +28,7 @@
                                              maxlength = "100"
                                          })
                         @Html.ValidationMessageFor(model => model.sName)
-                        <p class="help-block">Ingrese el nombre del tipo de zapato.</p>
+                        <p class="help-block">Ingrese el nombre del zapato.</p>
                     </div>
                     <div class="form-group">
                         <label for="description">Descripción</label>
@@ -41,7 +41,7 @@
                                              maxlength = "100"
                                          })
                         @Html.ValidationMessageFor(model => model.sDescription)
-                        <p class="help-block">Ingrese la descrpción del tipo de zapato.</p>
+                        <p class="help-block">Ingrese la descrpción del zapato.</p>
                     </div>
                     <div class="form-group">
                         <label for="ref">Referencia</label>
@@ -56,7 +56,7 @@
                         @Html.ValidationMessageFor(model => model.sRef)
 
                         <p class="help-block">Ingrese la referencia del tipo de zapato.</p>
-                    </div>
+                    </div>                   
                     <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <button type="submit" class="btn btn-success btn-block">Guardar</button>
                     </div>

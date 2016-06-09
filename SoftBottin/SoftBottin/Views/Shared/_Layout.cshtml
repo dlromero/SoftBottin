@@ -173,8 +173,7 @@
                         <div class="checkbox">
                             <label><input type="checkbox"> Recuerdame</label>
                         </div>
-
-                        <button type="submit" class="btn btn-success btn-block" id="btnSigIn">Ingresa</button>
+                        <button type="submit" class="btn btn-success btn-block" id="btnSigIn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Ingresa</button>
                     </form>
                     <br />
                     <button type="button" class="btn btn-warning btn-block" id="bt_mdSignIn">¿No tienes cuenta? Registrate.</button>
@@ -262,7 +261,7 @@
     <footer class="app-footer">
         <div class="app-empresa">
             <h4>Bottini Calzado Accesorios</h4>
-            <p>Si no lo vez entonces lo inventamos. By FR - ZAW</p>
+            <p>Si no lo vez lo inventamos. By FR - ZAW</p>
             <p>Este sitio fue hecho con pasión</p>
         </div>
         <span class="icon-facebook app-icon1"></span>
@@ -289,9 +288,20 @@
             r.parentNode.insertBefore(e, r)
         }(window, document, 'script', 'ga'));
         ga('create', 'UA-34048295-4', 'auto'); ga('send', 'pageview');
+
+
+
+        $('#btnSigIn').on('click', function () {
+            var $this = $(this);
+            $this.button('loading');
+            setTimeout(function () {
+                $this.button('reset');
+            }, 8000);
+        });
     </script>
     <script>
         window.rootUrl = '@Url.Content("~/")';
     </script>
+
 </body>
 </html>

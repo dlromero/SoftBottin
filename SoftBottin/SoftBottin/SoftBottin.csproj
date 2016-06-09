@@ -332,6 +332,7 @@
     <Content Include="Views\Shoes\CrearTipoZapato.cshtml" />
     <Content Include="Views\Shoes\EditarTipoZapato.cshtml" />
     <Content Include="Views\Shoes\Zapatos.cshtml" />
+    <Content Include="Views\Shoes\CrearZapato.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
