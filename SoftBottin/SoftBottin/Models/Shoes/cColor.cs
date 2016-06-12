@@ -9,7 +9,7 @@ using System.Web;
 
 namespace SoftBottin.Models.Shoes
 {
-    public class cShoeType
+    public class cColor
     {
 
         #region Global
@@ -30,15 +30,6 @@ namespace SoftBottin.Models.Shoes
         /// <summary>
         /// 
         /// </summary>
-        [Required(ErrorMessage = "El nombre es requerido")]
-        [DisplayName("Name")]
-        public string sName
-        {
-            get; set;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         [Required(ErrorMessage = "La descripción es requerida")]
         [DisplayName("Description")]
         public string sDescription
@@ -47,8 +38,8 @@ namespace SoftBottin.Models.Shoes
         }
 
         [Required(ErrorMessage = "La referencia es requerida")]
-        [DisplayName("Referencia")]
-        public string sRef
+        [DisplayName("Color")]
+        public string sRGB
         {
             get; set;
         }
@@ -56,78 +47,51 @@ namespace SoftBottin.Models.Shoes
 
         #region Methods
         /// <summary>
-        /// 
+        /// 11 de Julio de 2016 Daniel Romero
+        /// Metodo que permite consultar todos los colores
         /// </summary>
-        public cShoeType()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objShowType"></param>
+        /// <param name="dsColors"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
-        public bool AddShoeType(cShoeType objShowType, out string sErrMessage)
+        public bool GetColors(out DataSet dsColors, out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.AddShoeType(objShowType.sName, objShowType.sDescription, objShowType.sRef, out sErrMessage);
+                return niWsSoftBottin.GetColors(out dsColors, out sErrMessage);
             }
             catch (Exception ex)
             {
                 cUtilities.WriteLog(ex.Message, out sErrMessage);
                 sErrMessage = ex.Message;
+                dsColors = new DataSet();
                 return false;
             }
         }
         /// <summary>
-        /// 
+        /// 11 de Julio de 2016 Daniel Romero
+        /// Metodo que permite consultar todos los colores por id
         /// </summary>
-        /// <param name="dsShoesTypes"></param>
+        /// <param name="iColorID"></param>
+        /// <param name="pocColor"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
-        public bool GetShoesTypes(out DataSet dsShoesTypes, out string sErrMessage)
+        public bool GetColorsById(int iColorID, out cColor pocColor, out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.GetShoesTypes(out dsShoesTypes, out sErrMessage);
-            }
-            catch (Exception ex)
-            {
-                cUtilities.WriteLog(ex.Message, out sErrMessage);
-                sErrMessage = ex.Message;
-                dsShoesTypes = new DataSet();
-                return false;
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="iShoeType"></param>
-        /// <param name="pocShoeType"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        public bool GetShoesTypesById(int iShoeType, out cShoeType pocShoeType, out string sErrMessage)
-        {
-            try
-            {
-                sErrMessage = "";
-                niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                DataSet dsShoesTypes = new DataSet();
-                pocShoeType = new cShoeType();
-                if (niWsSoftBottin.GetShoesTypesById(iShoeType, out dsShoesTypes, out sErrMessage))
+                DataSet dsColor = new DataSet();
+                pocColor = new cColor();
+                if (niWsSoftBottin.GetColorById(iColorID, out dsColor, out sErrMessage))
                 {
-                    for (int iShoeTypes = 0; iShoeTypes < dsShoesTypes.Tables[0].Rows.Count; iShoeTypes++)
+                    for (int iShoeTypes = 0; iShoeTypes < dsColor.Tables[0].Rows.Count; iShoeTypes++)
                     {
-                        pocShoeType.iId = Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoeTypes]["Id"].ToString());
-                        pocShoeType.sName = dsShoesTypes.Tables[0].Rows[iShoeTypes]["Name"].ToString();
-                        pocShoeType.sDescription = dsShoesTypes.Tables[0].Rows[iShoeTypes]["Description"].ToString();
-                        pocShoeType.sRef = dsShoesTypes.Tables[0].Rows[iShoeTypes]["Ref"].ToString();
+                        pocColor.iId = Convert.ToInt32(dsColor.Tables[0].Rows[iShoeTypes]["Id"].ToString());
+                        pocColor.sDescription = dsColor.Tables[0].Rows[iShoeTypes]["Description"].ToString();
+                        pocColor.sRGB = dsColor.Tables[0].Rows[iShoeTypes]["RGB"].ToString();
                     }
                 }
 
@@ -137,26 +101,69 @@ namespace SoftBottin.Models.Shoes
             {
                 cUtilities.WriteLog(ex.Message, out sErrMessage);
                 sErrMessage = ex.Message;
-                pocShoeType = new cShoeType();
+                pocColor = new cColor();
                 return false;
             }
         }
-
         /// <summary>
-        /// 
+        /// 11 de Julio de 2016 Daniel Romero
+        /// Metodo que permite adicion un color
         /// </summary>
-        /// <param name="objShowType"></param>
+        /// <param name="objColor"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
-        public bool EditShoeType(cShoeType objShowType, out string sErrMessage)
+        public bool AddColor(cColor objColor, out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.EditShoeType(objShowType.iId, objShowType.sName,
-                                                   objShowType.sDescription, objShowType.sRef,
-                                                   out sErrMessage);
+                return niWsSoftBottin.AddColor(objColor.sDescription, objColor.sRGB, out sErrMessage);
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 11 de Julio de 2016 Daniel Romero
+        /// Metodo que permite editar un color
+        /// </summary>
+        /// <param name="objColor"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool EditColor(cColor objColor, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.EditColor(objColor.iId, objColor.sDescription,
+                                                   objColor.sRGB, out sErrMessage);
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 11 de Julio de 2016 Daniel Romero
+        /// Metodo que permite eliminar un color
+        /// </summary>
+        /// <param name="iIdColor"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool DeleteColor(int iIdColor, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.DeleteColor(iIdColor, out sErrMessage);
             }
             catch (Exception ex)
             {
@@ -166,27 +173,7 @@ namespace SoftBottin.Models.Shoes
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="iIdShoeType"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        public bool DeleteShoeType(int iIdShoeType, out string sErrMessage)
-        {
-            try
-            {
-                sErrMessage = "";
-                niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.DeleteShoeType(iIdShoeType, out sErrMessage);
-            }
-            catch (Exception ex)
-            {
-                cUtilities.WriteLog(ex.Message, out sErrMessage);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
         #endregion
+
     }
 }
