@@ -167,6 +167,8 @@
     </Compile>
     <Compile Include="Models\cmProductDetail.cs" />
     <Compile Include="Models\cmSecurity.cs" />
+    <Compile Include="Models\Shoes\cColor.cs" />
+    <Compile Include="Models\Shoes\cShoe.cs" />
     <Compile Include="Models\Shoes\cShoeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -333,6 +335,9 @@
     <Content Include="Views\Shoes\EditarTipoZapato.cshtml" />
     <Content Include="Views\Shoes\Zapatos.cshtml" />
     <Content Include="Views\Shoes\CrearZapato.cshtml" />
+    <Content Include="Views\Shoes\Colores.cshtml" />
+    <Content Include="Views\Shoes\CrearColor.cshtml" />
+    <Content Include="Views\Shoes\EditarColor.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

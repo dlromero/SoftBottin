@@ -1,0 +1,61 @@
+﻿@model SoftBottin.Models.Shoes.cColor
+@{
+    ViewBag.Title = "Crear Color";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+
+<section class="app-tipos-zapatos">
+    <h2>Crear Color</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        @Html.TextBoxFor(dina => dina.sDescription,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "description",
+                                             placeholder = "Ingrese Descripción",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sDescription)
+                        <p class="help-block">Ingrese la descripción del color.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="ref">Referencia</label>
+                        @Html.TextBoxFor(dina => dina.sRGB,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "RGB",
+                                             placeholder = "Seleccione Color",
+                                             type = "color",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sRGB)
+
+                        <p class="help-block">Seleccione el color.</p>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.ActionLink("Cancelar", "Colores", "Shoes", new { }, new { @class = "btn btn-danger btn-block" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+

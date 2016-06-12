@@ -149,6 +149,34 @@ Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Secur
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.8
+		       Autor: Daniel Romero
+			   Fecha: 12 de Junio de 2016
+  		 Descripcion:
+			
+Actualización Controlador	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
+
+Nuevos Modelos				:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cColor.cs	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoe.cs	Add
+
+Actualización Modelo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoeType.cs	Edit
+
+
+Actualización vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\CrearZapato.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\TiposZapatos.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml	Edit
+
+Nueva Vista					:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Colores.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\CrearColor.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\EditarColor.cshtml	Add
+
+
+
+
+
 
 
 

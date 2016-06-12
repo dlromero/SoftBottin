@@ -30,6 +30,540 @@ namespace SoftBottinWS
         #endregion
 
         #region Methods
+
+        #region Zapatos
+        /// <summary>
+        ///  Daniel Romero 11 de Junio de 2016
+        /// Metodo que se crea para consultar los colores existentes
+        /// </summary>
+        /// <param name="dsColors"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetShoesByType(int iShoeType, out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var products = (from pds in dbConection.Products
+                                join typ in dbConection.ProductTypes
+                                on pds.Type equals typ.Id
+                                join prd in dbConection.ProductDetails
+                                on pds.Id equals prd.IdProduct
+                                join clr in dbConection.Colors
+                                on prd.IdColor equals clr.Id
+                                where pds.Type.Equals(iShoeType)
+                                select new
+                                {
+                                    IdProduct = pds.Id,
+                                    NameProduct = pds.Name,
+                                    DescriptionProduct = pds.Description,
+                                    QuantityExisting = pds.QuantityExisting,
+                                    QuantitySold = pds.QuantitySold,
+                                    PurchasePrice = pds.PurchasePrice,
+                                    SalePrice = pds.SalePrice,
+                                    IdType = pds.Type,
+                                    TypeDescription = typ.Name,
+                                    IdProductDetail = prd.Id,
+                                    Size = prd.Size,
+                                    Quantity = prd.Quantity,
+                                    IdColor = clr.Id,
+                                    ColorDescription = clr.Description,
+                                    RGB = clr.RGB
+                                }).OrderByDescending(x => x.Size);
+
+                if (products.ToList().Count > 0)
+                {
+                    dsShoes = cUtilities.ToDataSet(products.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Daniel Romero 12 de Junio de 2016
+        /// Metodo que se crea para crear un zapato
+        /// </summary>
+        /// <param name="sName"></param>
+        /// <param name="sDescription"></param>
+        /// <param name="sRef"></param>
+        /// <param name="iQuantityExisting"></param>
+        /// <param name="iQuantitySold"></param>
+        /// <param name="iPurchasePrice"></param>
+        /// <param name="iSalePrice"></param>
+        /// <param name="iShoeType"></param>
+        /// <param name="iIdInsert"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool AddShoe(string sName, string sDescription, string sRef,
+                            int iQuantityExisting, int iQuantitySold, int iPurchasePrice,
+                            int iSalePrice, int iShoeType, out int iIdInsert, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.Product niProduct = new SoftBottinBD.Product
+                {
+                    Name = sName,
+                    Description = sDescription,
+                    QuantityExisting = iQuantityExisting,
+                    QuantitySold = iQuantitySold,
+                    PurchasePrice = iPurchasePrice,
+                    SalePrice = iSalePrice,
+                    Type = iShoeType
+                };
+
+                dbConection.Products.InsertOnSubmit(niProduct);
+                dbConection.SubmitChanges();
+
+                iIdInsert = niProduct.Id;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                iIdInsert = -1;
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Daniel Romero 12 de Junio de 2016
+        /// Metodo que se crea para crear el detalle de un zapato
+        /// </summary>
+        /// <param name="iIdShoe"></param>
+        /// <param name="iIdColor"></param>
+        /// <param name="iSize"></param>
+        /// <param name="iQuantity"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.ProductDetail niProductDetail = new SoftBottinBD.ProductDetail
+                {
+                    IdProduct = iIdShoe,
+                    IdColor = iIdColor,
+                    Size = iSize,
+                    Quantity = iQuantity
+                };
+
+                dbConection.ProductDetails.InsertOnSubmit(niProductDetail);
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+
+        #endregion
+
+        #region Tipos de Zapatos
+        /// <summary>
+        /// Daniel Romero 4 de Junio de 2016
+        /// Metodo que se crea para insertar un nuevo tipo de zapato
+        /// </summary>
+        /// <param name="sName"></param>
+        /// <param name="sDescription"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool AddShoeType(string sName, string sDescription, string sRef, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.ProductType niProductType = new SoftBottinBD.ProductType
+                {
+                    Name = sName,
+                    Description = sDescription,
+                    Ref = sRef
+                };
+
+                dbConection.ProductTypes.InsertOnSubmit(niProductType);
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Daniel Romero 4 de Junio de 2016
+        /// Metodo que se crea para consultar los tipos de zapatos
+        /// </summary>
+        /// <param name="dsShoesTypes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetShoesTypes(out DataSet dsShoesTypes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var shoesTypes = from showTypes in dbConection.ProductTypes
+                                 select showTypes;
+
+                if (shoesTypes.ToList().Count > 0)
+                {
+                    dsShoesTypes = cUtilities.ToDataSet(shoesTypes.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoesTypes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoesTypes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iShoeType"></param>
+        /// <param name="dsShoesTypes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetShoesTypesById(int iShoeType, out DataSet dsShoesTypes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var shoesTypes = from shoeTypesq in dbConection.ProductTypes
+                                 where shoeTypesq.Id.Equals(iShoeType)
+                                 select shoeTypesq;
+
+                if (shoesTypes.ToList().Count > 0)
+                {
+                    dsShoesTypes = cUtilities.ToDataSet(shoesTypes.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoesTypes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoesTypes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 5 de Junio de 2016
+        /// Metodo que se crea para modificar un tipo de zapato segun el id
+        /// </summary>
+        /// <param name="iId"></param>
+        /// <param name="sName"></param>
+        /// <param name="sDescription"></param>
+        /// <param name="sRef"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool EditShoeType(int iId, string sName, string sDescription, string sRef, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.ProductType niProductType = new SoftBottinBD.ProductType
+                {
+                    Id = iId,
+                    Name = sName,
+                    Description = sDescription,
+                    Ref = sRef
+                };
+
+                var query = from pty in dbConection.ProductTypes
+                            where pty.Id.Equals(iId)
+                            select pty;
+
+                foreach (SoftBottinBD.ProductType pty in query)
+                {
+                    pty.Name = niProductType.Name;
+                    pty.Description = niProductType.Description;
+                    pty.Ref = niProductType.Ref;
+                }
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 5 de Junio de 2016
+        /// Metodo que se crea para eliminar un tipo de zapato segun el id
+        /// </summary>
+        /// <param name="iId"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool DeleteShoeType(int iId, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var query = from pty in dbConection.ProductTypes
+                            where pty.Id.Equals(iId)
+                            select pty;
+
+                foreach (var detail in query)
+                {
+                    dbConection.ProductTypes.DeleteOnSubmit(detail);
+                }
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Colores
+        /// <summary>
+        ///  Daniel Romero 11 de Junio de 2016
+        /// Metodo que se crea para consultar los colores existentes
+        /// </summary>
+        /// <param name="dsColors"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetColors(out DataSet dsColors, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var colors = from clr in dbConection.Colors
+                             select clr;
+
+                if (colors.ToList().Count > 0)
+                {
+                    dsColors = cUtilities.ToDataSet(colors.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsColors = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsColors = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Daniel Romero 11 de Junio de 2016
+        /// Metodo que se crea para consultar los colores existentes por id 
+        /// </summary>
+        /// <param name="iColorId"></param>
+        /// <param name="dsColors"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetColorById(int iColorId, out DataSet dsColors, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var colors = from clr in dbConection.Colors
+                             where clr.Id.Equals(iColorId)
+                             select clr;
+
+                if (colors.ToList().Count > 0)
+                {
+                    dsColors = cUtilities.ToDataSet(colors.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsColors = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsColors = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Daniel Romero 11 de Junio de 2016
+        /// Metodo que se crea para insertar un nuevo color
+        /// </summary>
+        /// <param name="sDescription"></param>
+        /// <param name="sRGB"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool AddColor(string sDescription, string sRGB, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.Color niColor = new SoftBottinBD.Color
+                {
+                    Description = sDescription,
+                    RGB = sRGB
+                };
+
+                dbConection.Colors.InsertOnSubmit(niColor);
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 11 de Junio de 2016
+        /// Metodo que se crea para modificar un color segun el id
+        /// </summary>
+        /// <param name="iId"></param>
+        /// <param name="sDescription"></param>
+        /// <param name="sRGB"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool EditColor(int iId, string sDescription, string sRGB, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.Color niColors = new SoftBottinBD.Color
+                {
+                    Id = iId,
+                    Description = sDescription,
+                    RGB = sRGB
+                };
+
+                var query = from clr in dbConection.Colors
+                            where clr.Id.Equals(iId)
+                            select clr;
+
+                foreach (SoftBottinBD.Color clr in query)
+                {
+                    clr.Description = niColors.Description;
+                    clr.RGB = niColors.RGB;
+                }
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// 11 de Junio de 2016
+        /// Metodo que se crea para eliminar un color segun el id
+        /// </summary>
+        /// <param name="iId"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool DeleteColor(int iId, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var query = from clr in dbConection.Colors
+                            where clr.Id.Equals(iId)
+                            select clr;
+
+                foreach (var detail in query)
+                {
+                    dbConection.Colors.DeleteOnSubmit(detail);
+                }
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Inicio de sesion
         /// <summary>
         /// Daniel Romero 20 de Febrero de 2016
         /// Metodo que permite traer todos los productos
@@ -206,203 +740,7 @@ namespace SoftBottinWS
             }
         }
 
-        /// <summary>
-        /// Daniel Romero 4 de Junio de 2016
-        /// Metodo que se crea para insertar un nuevo tipo de zapato
-        /// </summary>
-        /// <param name="sName"></param>
-        /// <param name="sDescription"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public bool AddShoeType(string sName, string sDescription, string sRef, out string sErrMessage)
-        {
-            try
-            {
-                sErrMessage = "";
-                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
-                SoftBottinBD.ProductType niProductType = new SoftBottinBD.ProductType
-                {
-                    Name = sName,
-                    Description = sDescription,
-                    Ref = sRef
-                };
-
-                dbConection.ProductTypes.InsertOnSubmit(niProductType);
-                dbConection.SubmitChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                cUtilities.WriteLog(ex.Message, out sErrMsj);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
-
-
-        /// <summary>
-        /// Daniel Romero 4 de Junio de 2016
-        /// Metodo que se crea para consultar los tipos de zapatos
-        /// </summary>
-        /// <param name="dsShoesTypes"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public bool GetShoesTypes(out DataSet dsShoesTypes, out string sErrMessage)
-        {
-            try
-            {
-                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
-
-                var shoesTypes = from showTypes in dbConection.ProductTypes
-                                 select showTypes;
-
-                if (shoesTypes.ToList().Count > 0)
-                {
-                    dsShoesTypes = cUtilities.ToDataSet(shoesTypes.ToList());
-                    sErrMessage = "";
-                    return true;
-                }
-                else
-                {
-                    dsShoesTypes = new DataSet();
-                    sErrMessage = "Not Found";
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                dsShoesTypes = new DataSet();
-                cUtilities.WriteLog(ex.Message, out sErrMsj);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="iShoeType"></param>
-        /// <param name="dsShoesTypes"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public bool GetShoesTypesById(int iShoeType, out DataSet dsShoesTypes, out string sErrMessage)
-        {
-            try
-            {
-                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
-
-                var shoesTypes = from shoeTypesq in dbConection.ProductTypes
-                                 where shoeTypesq.Id.Equals(iShoeType)
-                                 select shoeTypesq;
-
-                if (shoesTypes.ToList().Count > 0)
-                {
-                    dsShoesTypes = cUtilities.ToDataSet(shoesTypes.ToList());
-                    sErrMessage = "";
-                    return true;
-                }
-                else
-                {
-                    dsShoesTypes = new DataSet();
-                    sErrMessage = "Not Found";
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                dsShoesTypes = new DataSet();
-                cUtilities.WriteLog(ex.Message, out sErrMsj);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
-
-
-
-        /// <summary>
-        /// 5 de Junio de 2016
-        /// Metodo que se crea para modificar un tipo de zapato segun el id
-        /// </summary>
-        /// <param name="iId"></param>
-        /// <param name="sName"></param>
-        /// <param name="sDescription"></param>
-        /// <param name="sRef"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public bool EditShoeType(int iId, string sName, string sDescription, string sRef, out string sErrMessage)
-        {
-            try
-            {
-                sErrMessage = "";
-                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
-                SoftBottinBD.ProductType niProductType = new SoftBottinBD.ProductType
-                {
-                    Id = iId,
-                    Name = sName,
-                    Description = sDescription,
-                    Ref = sRef
-                };
-
-                var query = from pty in dbConection.ProductTypes
-                            where pty.Id.Equals(iId)
-                            select pty;
-
-                foreach (SoftBottinBD.ProductType pty in query)
-                {
-                    pty.Name = niProductType.Name;
-                    pty.Description = niProductType.Description;
-                    pty.Ref = niProductType.Ref;
-                }
-                dbConection.SubmitChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                cUtilities.WriteLog(ex.Message, out sErrMsj);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 5 de Junio de 2016
-        /// Metodo que se crea para eliminar un tipo de zapato segun el id
-        /// </summary>
-        /// <param name="iId"></param>
-        /// <param name="sErrMessage"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public bool DeleteShoeType(int iId, out string sErrMessage)
-        {
-            try
-            {
-                sErrMessage = "";
-                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
-                var query = from pty in dbConection.ProductTypes
-                            where pty.Id.Equals(iId)
-                            select pty;
-
-                foreach (var detail in query)
-                {
-                    dbConection.ProductTypes.DeleteOnSubmit(detail);
-                }
-                dbConection.SubmitChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                cUtilities.WriteLog(ex.Message, out sErrMsj);
-                sErrMessage = ex.Message;
-                return false;
-            }
-        }
-
-
+        #endregion
 
         #endregion
     }

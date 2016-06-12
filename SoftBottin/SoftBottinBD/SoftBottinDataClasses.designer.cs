@@ -30,9 +30,6 @@ namespace SoftBottinBD
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertColor(Color instance);
-    partial void UpdateColor(Color instance);
-    partial void DeleteColor(Color instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -57,6 +54,9 @@ namespace SoftBottinBD
     partial void InsertProductType(ProductType instance);
     partial void UpdateProductType(ProductType instance);
     partial void DeleteProductType(ProductType instance);
+    partial void InsertColor(Color instance);
+    partial void UpdateColor(Color instance);
+    partial void DeleteColor(Color instance);
     #endregion
 		
 		public SoftBottinDataClassesDataContext() : 
@@ -87,14 +87,6 @@ namespace SoftBottinBD
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Color> Colors
-		{
-			get
-			{
-				return this.GetTable<Color>();
-			}
 		}
 		
 		public System.Data.Linq.Table<User> Users
@@ -160,119 +152,13 @@ namespace SoftBottinBD
 				return this.GetTable<ProductType>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Color")]
-	public partial class Color : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Description;
-		
-		private EntitySet<ProductDetail> _ProductDetails;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public Color()
-		{
-			this._ProductDetails = new EntitySet<ProductDetail>(new Action<ProductDetail>(this.attach_ProductDetails), new Action<ProductDetail>(this.detach_ProductDetails));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<Color> Colors
 		{
 			get
 			{
-				return this._Id;
+				return this.GetTable<Color>();
 			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_ProductDetails", ThisKey="Id", OtherKey="IdColor")]
-		public EntitySet<ProductDetail> ProductDetails
-		{
-			get
-			{
-				return this._ProductDetails;
-			}
-			set
-			{
-				this._ProductDetails.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ProductDetails(ProductDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Color = this;
-		}
-		
-		private void detach_ProductDetails(ProductDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Color = null;
 		}
 	}
 	
@@ -1488,9 +1374,9 @@ namespace SoftBottinBD
 		
 		private EntitySet<Invoice> _Invoices;
 		
-		private EntityRef<Color> _Color;
-		
 		private EntityRef<Product> _Product;
+		
+		private EntityRef<Color> _Color;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1512,8 +1398,8 @@ namespace SoftBottinBD
 		{
 			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
-			this._Color = default(EntityRef<Color>);
 			this._Product = default(EntityRef<Product>);
+			this._Color = default(EntityRef<Color>);
 			OnCreated();
 		}
 		
@@ -1651,40 +1537,6 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_Color", ThisKey="IdColor", OtherKey="Id", IsForeignKey=true)]
-		public Color Color
-		{
-			get
-			{
-				return this._Color.Entity;
-			}
-			set
-			{
-				Color previousValue = this._Color.Entity;
-				if (((previousValue != value) 
-							|| (this._Color.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Color.Entity = null;
-						previousValue.ProductDetails.Remove(this);
-					}
-					this._Color.Entity = value;
-					if ((value != null))
-					{
-						value.ProductDetails.Add(this);
-						this._IdColor = value.Id;
-					}
-					else
-					{
-						this._IdColor = default(int);
-					}
-					this.SendPropertyChanged("Color");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDetail", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
 		public Product Product
 		{
@@ -1715,6 +1567,40 @@ namespace SoftBottinBD
 						this._IdProduct = default(int);
 					}
 					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_Color", ThisKey="IdColor", OtherKey="Id", IsForeignKey=true)]
+		public Color Color
+		{
+			get
+			{
+				return this._Color.Entity;
+			}
+			set
+			{
+				Color previousValue = this._Color.Entity;
+				if (((previousValue != value) 
+							|| (this._Color.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Color.Entity = null;
+						previousValue.ProductDetails.Remove(this);
+					}
+					this._Color.Entity = value;
+					if ((value != null))
+					{
+						value.ProductDetails.Add(this);
+						this._IdColor = value.Id;
+					}
+					else
+					{
+						this._IdColor = default(int);
+					}
+					this.SendPropertyChanged("Color");
 				}
 			}
 		}
@@ -2277,6 +2163,144 @@ namespace SoftBottinBD
 		{
 			this.SendPropertyChanging();
 			entity.ProductType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Color")]
+	public partial class Color : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Description;
+		
+		private string _RGB;
+		
+		private EntitySet<ProductDetail> _ProductDetails;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnRGBChanging(string value);
+    partial void OnRGBChanged();
+    #endregion
+		
+		public Color()
+		{
+			this._ProductDetails = new EntitySet<ProductDetail>(new Action<ProductDetail>(this.attach_ProductDetails), new Action<ProductDetail>(this.detach_ProductDetails));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RGB", DbType="NVarChar(50)")]
+		public string RGB
+		{
+			get
+			{
+				return this._RGB;
+			}
+			set
+			{
+				if ((this._RGB != value))
+				{
+					this.OnRGBChanging(value);
+					this.SendPropertyChanging();
+					this._RGB = value;
+					this.SendPropertyChanged("RGB");
+					this.OnRGBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_ProductDetails", ThisKey="Id", OtherKey="IdColor")]
+		public EntitySet<ProductDetail> ProductDetails
+		{
+			get
+			{
+				return this._ProductDetails;
+			}
+			set
+			{
+				this._ProductDetails.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ProductDetails(ProductDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Color = this;
+		}
+		
+		private void detach_ProductDetails(ProductDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Color = null;
 		}
 	}
 }

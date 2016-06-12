@@ -1,0 +1,103 @@
+﻿@model SoftBottin.Models.Shoes.cColor
+@{
+    ViewBag.Title = "Editar o eliminar Color";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lsColors = ViewBag.lsColors;
+}
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+@using (Html.BeginForm("EditarColor", "Shoes", FormMethod.Post))
+{
+
+    <section class="app-tipos-zapatos">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <h1 class="display-4">Colores:</h1>
+                        @Html.DropDownListFor(mdl => mdl.iId, lsColors, "Seleccione un Color",
+                       new { @class = "form-control", id = "lsColors" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="editColor" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="display-4">Editar o eliminar un Color:</h1>
+
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        @Html.TextBoxFor(dina => dina.sDescription,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "description",
+                                             placeholder = "Ingrese Descripción",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sDescription)
+                        <p class="help-block">Ingrese la descripción del tipo de zapato.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="ref">Referencia</label>
+                        @Html.TextBoxFor(dina => dina.sRGB,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "RGB",
+                                             placeholder = "Ingrese Referencia",
+                                             maxlength = "100",
+                                             type = "color"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sRGB)
+
+                        <p class="help-block">Ingrese la referencia del tipo de zapato.</p>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.ActionLink("Eliminar", "EliminarColor", "Shoes",
+                                    new { }, new { @class = "btn btn-danger btn-block", id = "deleteColor" })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+}
+
+<script type="text/javascript">
+
+    $("#lsColors").change(function () {
+        $.ajax({
+            url: window.rootUrl + 'Shoes/GetColorById',
+            type: 'GET',
+            data: { iIdColor: +$("#lsColors").val() },
+            contentType: 'application/json',
+            success: function (data) {
+                if (data != null) {
+                    var json = $.parseJSON(data);
+                    $("#description").val(json.sDescription);
+                    $("#RGB").val(json.sRGB);
+                    $("#editColor").show();
+                    $("#deleteColor").prop('href', window.rootUrl + "Shoes/EliminarColor?iIdColor=" + json.iId);
+                }
+            },
+            error: function (dataError) {
+                alert(dataError);
+            }
+        });
+    });
+
+</script>
+
+

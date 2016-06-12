@@ -35,7 +35,7 @@
                     </div>
                     <br />
                     <br />
-                    <br />                    
+                    <br />
                     @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes, "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
                 </div>
             </div>
@@ -43,145 +43,66 @@
     </div>
 </section>
 <section id="editShoeType" style="display: none;">
-    <div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <h2 class="display-1">Zapato 1</h2>
-            <h4 class="title">Flats 55</h4>
-            <div class="demo-card">
-                <div class="card">
-                    <div class="card-header">
-                        Foto
-                    </div>
-                    <img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG">
-                    <div class="card-block">
-                        <h4 class="card-title">Zapato 1</h4>
-                        <h6 class="card-subtitle text-muted">En existencia: 8</h6>
-                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
-                    @*<div class="card-block">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Otro link</a>
-                    </div>*@
-                    <div class="card-block">
-                        <a href="#" class="btn btn-primary btn-block">Editar</a>
-                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        En existencia: 8
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <h2 class="display-1">Zapato 2</h2>
-            <h4 class="title">Flats 55</h4>
-            <div class="demo-card">
-                <div class="card">
-                    <div class="card-header">
-                        Foto
-                    </div>
-                    <img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb077546-13855.JPG">
-                    <div class="card-block">
-                        <h4 class="card-title">Zapato 2</h4>
-                        <h6 class="card-subtitle text-muted">En existencia: 2</h6>
-                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
-                    @*<div class="card-block">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Otro link</a>
-                    </div>*@
-                    <div class="card-block">
-                        <a href="#" class="btn btn-primary btn-block">Editar</a>
-                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        En existencia: 2
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <h2 class="display-1">Zapato 3</h2>
-            <h4 class="title">Flats 55</h4>
-            <div class="demo-card">
-                <div class="card">
-                    <div class="card-header">
-                        Foto
-                    </div>
-                    <img class="card-img-top img-responsive" src="http://calzadosrivera.es/8271-productlist/zapato-botin-dorking-combinado-6507suge.jpg">
-                    <div class="card-block">
-                        <h4 class="card-title">Zapato 3</h4>
-                        <h6 class="card-subtitle text-muted">En existencia: 5</h6>
-                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
-                    @*<div class="card-block">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Otro link</a>
-                    </div>*@
-                    <div class="card-block">
-                        <a href="#" class="btn btn-primary btn-block">Editar</a>
-                        <a href="#" class="btn btn-danger btn-block">Dar de baja</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        En existencia: 5
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <h2 class="display-1">Zapato 4</h2>
-            <h4 class="title">Flats 55</h4>
-            <div class="demo-card">
-                <div class="card">
-                    <div class="card-header">
-                        Foto
-                    </div>
-                    <img class="card-img-top img-responsive" src="http://es.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bot%C3%ADn-skylight-zapatos--A9SQ1FSU02_PM2_Front%20view.jpg">
-                    <div class="card-block">
-                        <h4 class="card-title">Zapato 4</h4>
-                        <h6 class="card-subtitle text-muted">En existencia: 10</h6>
-                        <p class="card-text">Ejemplo de texto contenido dentro de una tarjeta bootstrap y blah, blah, blah...</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
-                    @*<div class="card-block">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Otro link</a>
-                    </div>*@
-                    <div class="card-block">
-                        <a href="#" class="btn btn-primary btn-block">Editar</a>
-                        <a href="#" class="btn btn-warning btn-block">Dar de alta</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        En existencia: 10
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container" id="containerShoes">
     </div>
 </section>
 
 <script type="text/javascript">
 
     $("#lsShoesTypes").change(function () {
+
+        $.ajax({
+            url: window.rootUrl + 'Shoes/AjaxHandlerZapatos',
+            type: 'GET',
+            data: { iIdShoeType: +$("#lsShoesTypes").val() },
+            contentType: 'application/json',
+            success: function (data) {
+                if (data != null) {
+                    var json = $.parseJSON(data);
+
+                    var htmlFinal = "";
+
+                    jQuery.each(json, function (i, val) {
+                        htmlFinal = htmlFinal + '<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">' +
+                               '<h2 class="display-1">' + val.sTypeDescription + '</h2>' +
+                               '<h4 class="title">' + val.sNameProduct + '</h4>' +
+                               '<div class="demo-card">' +
+                               '<div class="card">' +
+                               '<div class="card-header">' +
+                               'Foto' +
+                               '</div>' +
+                               '<img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG">' +
+                               '<div class="card-block">' +
+                               '<h4 class="card-title">Talla: ' + val.sSize + '</h4>' +
+                               '<h6 class="card-subtitle text-muted">Color:' + val.sColorDescription + '</h6>' +
+                               '<p class="card-text">' + val.sDescriptionProduct + '</p>' +
+                               '<ul class="list-group list-group-flush">' +
+                               '<li class="list-group-item">En existencia:' + val.sQuantityExisting + '</li>' +
+                               '<li class="list-group-item">Vendidos:' + val.sQuantitySold + '</li>' +
+                               '<li class="list-group-item">Precio:' + val.sSalePrice + '</li>' +
+                               '</ul>' +
+                               '</div>' +
+                                '<div class="card-block">' +
+                                '<a href="#" class="btn btn-primary btn-block">Editar</a>' +
+                                '<a href="#" class="btn btn-danger btn-block">Dar de baja</a>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                    });
+                    if (htmlFinal == "") {
+                        htmlFinal = "Sin datos";
+                    }
+                    $("#containerShoes").html(htmlFinal);
+
+                }
+            },
+            error: function (dataError) {
+                alert(dataError);
+            }
+        });
+
+
         $("#editShoeType").show();
     });
 

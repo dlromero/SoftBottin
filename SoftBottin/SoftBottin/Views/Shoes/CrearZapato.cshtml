@@ -1,7 +1,9 @@
-﻿@model SoftBottin.Models.Shoes.cShoeType
+﻿@model SoftBottin.Models.Shoes.cShoe
 @{
-    ViewBag.Title = "Crear Tipo de Zapato";
+    ViewBag.Title = "Crear Zapato";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lsShoesTypes = ViewBag.lsShoesTypes;
+    List<SelectListItem> lsColors = ViewBag.lsColors;
 }
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
@@ -62,41 +64,54 @@
                                          })
                         @Html.ValidationMessageFor(model => model.sRef)
 
-                        <p class="help-block">Ingrese la referencia del tipo de zapato.</p>
+                        <p class="help-block">Ingrese la referencia del zapato.</p>
                     </div>
                     <div class="form-group">
-                        <label for="ref">Tipo de zapato</label>
-                        @Html.DropDownListFor(dina => dina.sRef, new List<SelectListItem>(),
-                               new
-                               {
-                                   @class = "form-control",
-                                   id = "ref",
-                                   placeholder = "Seleccione tipo de zapato",
-                                   maxlength = "100"
-                               })
-                        @Html.ValidationMessageFor(model => model.sRef)
+                        <label for="ref">Costo</label>
+                        @Html.TextBoxFor(dina => dina.sCost,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "ref",
+                                             placeholder = "Ingrese Costos",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sCost)
 
-                        <p class="help-block">Ingrese el tipo de zapato.</p>
+                        <p class="help-block">Ingrese el costo.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="ref">Precio</label>
+                        @Html.TextBoxFor(dina => dina.sPrice,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             id = "ref",
+                                             placeholder = "Ingrese Precio",
+                                             maxlength = "100"
+                                         })
+                        @Html.ValidationMessageFor(model => model.sPrice)
+
+                        <p class="help-block">Ingrese el precio.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ref">Tipo de zapato</label>
+                        @Html.DropDownListFor(mdl => mdl.iShoeType, lsShoesTypes, "Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                        <p class="help-block">Seleccione un tipo de zapato.</p>
                     </div>
 
                     <div class="panel panel-default panel-primary">
                         <div class="panel-heading ">
-                            Agregar un color
+                            Agregar un color de zapato
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="ref">Seleccione el color</label>
-                                @Html.DropDownListFor(dina => dina.sRef, new List<SelectListItem>(),
-                               new
-                               {
-                                   @class = "form-control",
-                                   id = "ref",
-                                   placeholder = "Seleccione los colores",
-                                   maxlength = "100"
-                               })
-                                @Html.ValidationMessageFor(model => model.sRef)
+                                <label for="ref">Seleccione un color</label>
+                                @Html.DropDownListFor(mdl => mdl.iColor, lsColors, "Color", new { @class = "form-control", id = "lsColors" })
+                                @Html.ValidationMessageFor(model => model.iColor)
 
-                                <p class="help-block">Seleccione los colores.</p>
+                                <p class="help-block">Seleccione un color.</p>
                             </div>
                             <div class="form-group">
                                 <label for="ref">Seleccione las fotos</label>
@@ -159,31 +174,9 @@
 
                                 <p class="help-block">Seleccione las tallas.</p>
                             </div>
-
                             <div class="panel panel-default panel-info">
                                 <div class="panel-heading ">
                                     Cantidad existente para la talla: <span class="badge">33</span>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label for="ref">Ingrese la cantidad existente por talla</label>
-                                        @Html.TextBoxFor(dina => dina.sRef,
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             id = "ref",
-                                             placeholder = "Cantidad existente por talla",
-                                             maxlength = "100"
-                                         })
-                                        @Html.ValidationMessageFor(model => model.sRef)
-
-                                        <p class="help-block">Ingrese la cantidad existente por talla.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default panel-info">
-                                <div class="panel-heading ">
-                                    Cantidad existente para la talla: <span class="badge">34</span>
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -210,12 +203,31 @@
                     <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <button type="submit" class="btn btn-success btn-block">Guardar</button>
                     </div>
-                            <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                @Html.ActionLink("Cancelar", "TiposZapatos", "Shoes", new { }, new { @class = "btn btn-danger btn-block" })
-                            </div>
+                    <div class="-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.ActionLink("Cancelar", "TiposZapatos", "Shoes", new { }, new { @class = "btn btn-danger btn-block" })
+                    </div>
+                    @Html.HiddenFor(mdl => mdl.sColorDetail, new { @id = "sColorDetail" });
                 }
             </div>
         </div>
     </div>
 
 </section>
+
+<script type="text/javascript">
+
+    var arrObjColors = [];
+
+    function preSave() {
+        var myObject = {
+            'IdColor': 6,
+            'Size': 34,
+            'Quantity': 5
+        };
+
+
+
+        $("#sColorDetail").val(jQuery.parseJSON(arrObjColors));
+    }
+
+</script>

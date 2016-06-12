@@ -2,58 +2,18 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="GetProducts">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetProductsResponse">
+      <s:element name="GetShoesByType">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GetProductsResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iShoeType" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetProductById">
+      <s:element name="GetShoesByTypeResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="iProductId" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetProductByIdResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GetProductByIdResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="AddEmailNewUser">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sEmail" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="AddEmailNewUserResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="AddEmailNewUserResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SigIn">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="sUserName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="sPassword" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SigInResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="SigInResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="dsUser">
+            <s:element minOccurs="1" maxOccurs="1" name="GetShoesByTypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsShoes">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -61,6 +21,47 @@
                 </s:sequence>
               </s:complexType>
             </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShoe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRef" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iQuantityExisting" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iQuantitySold" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iPurchasePrice" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSalePrice" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iShoeType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShoeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddShoeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iIdInsert" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShoeDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iIdShoe" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iIdColor" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iQuantity" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShoeDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddShoeDetailResult" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -157,31 +158,178 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetColors">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetColorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetColorsResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsColors">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColorById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iColorId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColorByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetColorByIdResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsColors">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddColor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRGB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddColorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddColorResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditColor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRGB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditColorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EditColorResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteColor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteColorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteColorResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProducts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetProductsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iProductId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetProductByIdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddEmailNewUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddEmailNewUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddEmailNewUserResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SigIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SigInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SigInResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsUser">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="GetProductsSoapIn">
-    <wsdl:part name="parameters" element="tns:GetProducts" />
+  <wsdl:message name="GetShoesByTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShoesByType" />
   </wsdl:message>
-  <wsdl:message name="GetProductsSoapOut">
-    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  <wsdl:message name="GetShoesByTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShoesByTypeResponse" />
   </wsdl:message>
-  <wsdl:message name="GetProductByIdSoapIn">
-    <wsdl:part name="parameters" element="tns:GetProductById" />
+  <wsdl:message name="AddShoeSoapIn">
+    <wsdl:part name="parameters" element="tns:AddShoe" />
   </wsdl:message>
-  <wsdl:message name="GetProductByIdSoapOut">
-    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  <wsdl:message name="AddShoeSoapOut">
+    <wsdl:part name="parameters" element="tns:AddShoeResponse" />
   </wsdl:message>
-  <wsdl:message name="AddEmailNewUserSoapIn">
-    <wsdl:part name="parameters" element="tns:AddEmailNewUser" />
+  <wsdl:message name="AddShoeDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:AddShoeDetail" />
   </wsdl:message>
-  <wsdl:message name="AddEmailNewUserSoapOut">
-    <wsdl:part name="parameters" element="tns:AddEmailNewUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="SigInSoapIn">
-    <wsdl:part name="parameters" element="tns:SigIn" />
-  </wsdl:message>
-  <wsdl:message name="SigInSoapOut">
-    <wsdl:part name="parameters" element="tns:SigInResponse" />
+  <wsdl:message name="AddShoeDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:AddShoeDetailResponse" />
   </wsdl:message>
   <wsdl:message name="AddShoeTypeSoapIn">
     <wsdl:part name="parameters" element="tns:AddShoeType" />
@@ -213,22 +361,72 @@
   <wsdl:message name="DeleteShoeTypeSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteShoeTypeResponse" />
   </wsdl:message>
+  <wsdl:message name="GetColorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetColors" />
+  </wsdl:message>
+  <wsdl:message name="GetColorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetColorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetColorByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetColorById" />
+  </wsdl:message>
+  <wsdl:message name="GetColorByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetColorByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddColorSoapIn">
+    <wsdl:part name="parameters" element="tns:AddColor" />
+  </wsdl:message>
+  <wsdl:message name="AddColorSoapOut">
+    <wsdl:part name="parameters" element="tns:AddColorResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditColorSoapIn">
+    <wsdl:part name="parameters" element="tns:EditColor" />
+  </wsdl:message>
+  <wsdl:message name="EditColorSoapOut">
+    <wsdl:part name="parameters" element="tns:EditColorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteColorSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteColor" />
+  </wsdl:message>
+  <wsdl:message name="DeleteColorSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteColorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="GetProductByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddEmailNewUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddEmailNewUser" />
+  </wsdl:message>
+  <wsdl:message name="AddEmailNewUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddEmailNewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SigInSoapIn">
+    <wsdl:part name="parameters" element="tns:SigIn" />
+  </wsdl:message>
+  <wsdl:message name="SigInSoapOut">
+    <wsdl:part name="parameters" element="tns:SigInResponse" />
+  </wsdl:message>
   <wsdl:portType name="SoftBottinSoap">
-    <wsdl:operation name="GetProducts">
-      <wsdl:input message="tns:GetProductsSoapIn" />
-      <wsdl:output message="tns:GetProductsSoapOut" />
+    <wsdl:operation name="GetShoesByType">
+      <wsdl:input message="tns:GetShoesByTypeSoapIn" />
+      <wsdl:output message="tns:GetShoesByTypeSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetProductById">
-      <wsdl:input message="tns:GetProductByIdSoapIn" />
-      <wsdl:output message="tns:GetProductByIdSoapOut" />
+    <wsdl:operation name="AddShoe">
+      <wsdl:input message="tns:AddShoeSoapIn" />
+      <wsdl:output message="tns:AddShoeSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="AddEmailNewUser">
-      <wsdl:input message="tns:AddEmailNewUserSoapIn" />
-      <wsdl:output message="tns:AddEmailNewUserSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <wsdl:input message="tns:SigInSoapIn" />
-      <wsdl:output message="tns:SigInSoapOut" />
+    <wsdl:operation name="AddShoeDetail">
+      <wsdl:input message="tns:AddShoeDetailSoapIn" />
+      <wsdl:output message="tns:AddShoeDetailSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddShoeType">
       <wsdl:input message="tns:AddShoeTypeSoapIn" />
@@ -250,11 +448,47 @@
       <wsdl:input message="tns:DeleteShoeTypeSoapIn" />
       <wsdl:output message="tns:DeleteShoeTypeSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetColors">
+      <wsdl:input message="tns:GetColorsSoapIn" />
+      <wsdl:output message="tns:GetColorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColorById">
+      <wsdl:input message="tns:GetColorByIdSoapIn" />
+      <wsdl:output message="tns:GetColorByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddColor">
+      <wsdl:input message="tns:AddColorSoapIn" />
+      <wsdl:output message="tns:AddColorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditColor">
+      <wsdl:input message="tns:EditColorSoapIn" />
+      <wsdl:output message="tns:EditColorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteColor">
+      <wsdl:input message="tns:DeleteColorSoapIn" />
+      <wsdl:output message="tns:DeleteColorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input message="tns:GetProductsSoapIn" />
+      <wsdl:output message="tns:GetProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input message="tns:GetProductByIdSoapIn" />
+      <wsdl:output message="tns:GetProductByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmailNewUser">
+      <wsdl:input message="tns:AddEmailNewUserSoapIn" />
+      <wsdl:output message="tns:AddEmailNewUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SigIn">
+      <wsdl:input message="tns:SigInSoapIn" />
+      <wsdl:output message="tns:SigInSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SoftBottinSoap" type="tns:SoftBottinSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetProducts">
-      <soap:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+    <wsdl:operation name="GetShoesByType">
+      <soap:operation soapAction="http://tempuri.org/GetShoesByType" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -262,8 +496,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetProductById">
-      <soap:operation soapAction="http://tempuri.org/GetProductById" style="document" />
+    <wsdl:operation name="AddShoe">
+      <soap:operation soapAction="http://tempuri.org/AddShoe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -271,17 +505,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddEmailNewUser">
-      <soap:operation soapAction="http://tempuri.org/AddEmailNewUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <soap:operation soapAction="http://tempuri.org/SigIn" style="document" />
+    <wsdl:operation name="AddShoeDetail">
+      <soap:operation soapAction="http://tempuri.org/AddShoeDetail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -334,29 +559,92 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="SoftBottinSoap12" type="tns:SoftBottinSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetProducts">
-      <soap12:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+    <wsdl:operation name="GetColors">
+      <soap:operation soapAction="http://tempuri.org/GetColors" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColorById">
+      <soap:operation soapAction="http://tempuri.org/GetColorById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddColor">
+      <soap:operation soapAction="http://tempuri.org/AddColor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditColor">
+      <soap:operation soapAction="http://tempuri.org/EditColor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteColor">
+      <soap:operation soapAction="http://tempuri.org/DeleteColor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetProductById">
-      <soap12:operation soapAction="http://tempuri.org/GetProductById" style="document" />
+      <soap:operation soapAction="http://tempuri.org/GetProductById" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddEmailNewUser">
-      <soap12:operation soapAction="http://tempuri.org/AddEmailNewUser" style="document" />
+      <soap:operation soapAction="http://tempuri.org/AddEmailNewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SigIn">
+      <soap:operation soapAction="http://tempuri.org/SigIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SoftBottinSoap12" type="tns:SoftBottinSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetShoesByType">
+      <soap12:operation soapAction="http://tempuri.org/GetShoesByType" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -364,8 +652,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <soap12:operation soapAction="http://tempuri.org/SigIn" style="document" />
+    <wsdl:operation name="AddShoe">
+      <soap12:operation soapAction="http://tempuri.org/AddShoe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddShoeDetail">
+      <soap12:operation soapAction="http://tempuri.org/AddShoeDetail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -411,6 +708,87 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteShoeType">
       <soap12:operation soapAction="http://tempuri.org/DeleteShoeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColors">
+      <soap12:operation soapAction="http://tempuri.org/GetColors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColorById">
+      <soap12:operation soapAction="http://tempuri.org/GetColorById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddColor">
+      <soap12:operation soapAction="http://tempuri.org/AddColor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditColor">
+      <soap12:operation soapAction="http://tempuri.org/EditColor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteColor">
+      <soap12:operation soapAction="http://tempuri.org/DeleteColor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap12:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap12:operation soapAction="http://tempuri.org/GetProductById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmailNewUser">
+      <soap12:operation soapAction="http://tempuri.org/AddEmailNewUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SigIn">
+      <soap12:operation soapAction="http://tempuri.org/SigIn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
