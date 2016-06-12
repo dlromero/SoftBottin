@@ -175,6 +175,18 @@ Nueva Vista					:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Colore
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.9
+		       Autor: Daniel Romero
+			   Fecha: 12 de Junio de 2016
+  		 Descripcion:			
+
+Nuevos Modelos				:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cColor.cs	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoe.cs	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoeType.cs	Edit
+
+
+
 
 
 
