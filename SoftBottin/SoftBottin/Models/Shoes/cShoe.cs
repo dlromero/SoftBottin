@@ -33,12 +33,12 @@ namespace SoftBottin.Models.Shoes
             get; set;
         }
 
-        public string sCost
+        public int iCost
         {
             get; set;
         }
 
-        public string sPrice
+        public int iPrice
         {
             get; set;
         }
@@ -109,13 +109,15 @@ namespace SoftBottin.Models.Shoes
         /// <returns></returns>
         public bool AddShoe(string sName, string sDescription, string sRef,
                             int iQuantityExisting, int iQuantitySold, int iPurchasePrice,
-                            int iSalePrice, int iShoeType, List<cShoeDetail> lsColorDetail, out string sErrMessage)
+                            int iSalePrice, int iShoeType, List<cShoeDetail> lsColorDetail,
+                            out int iIdInsert,
+                            out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                int iIdInsert = 0;
+                iIdInsert = 0;
                 if (niWsSoftBottin.AddShoe(sName, sDescription, sRef, iQuantityExisting,
                                       iQuantitySold, iPurchasePrice, iSalePrice, iShoeType,
                                       out iIdInsert, out sErrMessage))
@@ -127,6 +129,8 @@ namespace SoftBottin.Models.Shoes
                                                      lsColorDetail[iColor].iIdColor,
                                                      lsColorDetail[iColor].iSize,
                                                      lsColorDetail[iColor].iQuantity,
+                                                     lsColorDetail[iColor].iQuantityExisting,
+                                                     lsColorDetail[iColor].iQuantitySold,
                                                      out sErrMessage);
                     }
 
@@ -141,10 +145,34 @@ namespace SoftBottin.Models.Shoes
             {
                 cUtilities.WriteLog(ex.Message, out sErrMessage);
                 sErrMessage = ex.Message;
+                iIdInsert = -1;
                 return false;
             }
         }
 
+
+        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                if (niWsSoftBottin.AddImageShoe(iIdShoe, sName, sType, btFileByte, out sErrMessage))
+                {                   
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
 
         #endregion
     }
@@ -230,11 +258,6 @@ namespace SoftBottin.Models.Shoes
     public partial class cShoeDetail
     {
 
-        public int iIdProduct
-        {
-            get; set;
-        }
-
         public int iIdColor
         {
             get; set;
@@ -246,6 +269,16 @@ namespace SoftBottin.Models.Shoes
         }
 
         public int iQuantity
+        {
+            get; set;
+        }
+
+        public int iQuantityExisting
+        {
+            get; set;
+        }
+
+        public int iQuantitySold
         {
             get; set;
         }

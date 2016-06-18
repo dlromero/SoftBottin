@@ -42,9 +42,6 @@ namespace SoftBottinBD
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
-    partial void InsertProductDetail(ProductDetail instance);
-    partial void UpdateProductDetail(ProductDetail instance);
-    partial void DeleteProductDetail(ProductDetail instance);
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
@@ -57,6 +54,9 @@ namespace SoftBottinBD
     partial void InsertColor(Color instance);
     partial void UpdateColor(Color instance);
     partial void DeleteColor(Color instance);
+    partial void InsertProductDetail(ProductDetail instance);
+    partial void UpdateProductDetail(ProductDetail instance);
+    partial void DeleteProductDetail(ProductDetail instance);
     #endregion
 		
 		public SoftBottinDataClassesDataContext() : 
@@ -121,14 +121,6 @@ namespace SoftBottinBD
 			}
 		}
 		
-		public System.Data.Linq.Table<ProductDetail> ProductDetails
-		{
-			get
-			{
-				return this.GetTable<ProductDetail>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Role> Roles
 		{
 			get
@@ -158,6 +150,14 @@ namespace SoftBottinBD
 			get
 			{
 				return this.GetTable<Color>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ProductDetail> ProductDetails
+		{
+			get
+			{
+				return this.GetTable<ProductDetail>();
 			}
 		}
 	}
@@ -1354,302 +1354,6 @@ namespace SoftBottinBD
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductDetail")]
-	public partial class ProductDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _IdProduct;
-		
-		private int _IdColor;
-		
-		private int _Size;
-		
-		private int _Quantity;
-		
-		private EntitySet<Image> _Images;
-		
-		private EntitySet<Invoice> _Invoices;
-		
-		private EntityRef<Product> _Product;
-		
-		private EntityRef<Color> _Color;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdProductChanging(int value);
-    partial void OnIdProductChanged();
-    partial void OnIdColorChanging(int value);
-    partial void OnIdColorChanged();
-    partial void OnSizeChanging(int value);
-    partial void OnSizeChanged();
-    partial void OnQuantityChanging(int value);
-    partial void OnQuantityChanged();
-    #endregion
-		
-		public ProductDetail()
-		{
-			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
-			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
-			this._Product = default(EntityRef<Product>);
-			this._Color = default(EntityRef<Color>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProduct", DbType="Int NOT NULL")]
-		public int IdProduct
-		{
-			get
-			{
-				return this._IdProduct;
-			}
-			set
-			{
-				if ((this._IdProduct != value))
-				{
-					if (this._Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdProductChanging(value);
-					this.SendPropertyChanging();
-					this._IdProduct = value;
-					this.SendPropertyChanged("IdProduct");
-					this.OnIdProductChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdColor", DbType="Int NOT NULL")]
-		public int IdColor
-		{
-			get
-			{
-				return this._IdColor;
-			}
-			set
-			{
-				if ((this._IdColor != value))
-				{
-					if (this._Color.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdColorChanging(value);
-					this.SendPropertyChanging();
-					this._IdColor = value;
-					this.SendPropertyChanged("IdColor");
-					this.OnIdColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="Int NOT NULL")]
-		public int Size
-		{
-			get
-			{
-				return this._Size;
-			}
-			set
-			{
-				if ((this._Size != value))
-				{
-					this.OnSizeChanging(value);
-					this.SendPropertyChanging();
-					this._Size = value;
-					this.SendPropertyChanged("Size");
-					this.OnSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Image", Storage="_Images", ThisKey="Id", OtherKey="IdDetail")]
-		public EntitySet<Image> Images
-		{
-			get
-			{
-				return this._Images;
-			}
-			set
-			{
-				this._Images.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Invoice", Storage="_Invoices", ThisKey="Id", OtherKey="IdProductDetail")]
-		public EntitySet<Invoice> Invoices
-		{
-			get
-			{
-				return this._Invoices;
-			}
-			set
-			{
-				this._Invoices.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDetail", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
-		public Product Product
-		{
-			get
-			{
-				return this._Product.Entity;
-			}
-			set
-			{
-				Product previousValue = this._Product.Entity;
-				if (((previousValue != value) 
-							|| (this._Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Product.Entity = null;
-						previousValue.ProductDetails.Remove(this);
-					}
-					this._Product.Entity = value;
-					if ((value != null))
-					{
-						value.ProductDetails.Add(this);
-						this._IdProduct = value.Id;
-					}
-					else
-					{
-						this._IdProduct = default(int);
-					}
-					this.SendPropertyChanged("Product");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_Color", ThisKey="IdColor", OtherKey="Id", IsForeignKey=true)]
-		public Color Color
-		{
-			get
-			{
-				return this._Color.Entity;
-			}
-			set
-			{
-				Color previousValue = this._Color.Entity;
-				if (((previousValue != value) 
-							|| (this._Color.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Color.Entity = null;
-						previousValue.ProductDetails.Remove(this);
-					}
-					this._Color.Entity = value;
-					if ((value != null))
-					{
-						value.ProductDetails.Add(this);
-						this._IdColor = value.Id;
-					}
-					else
-					{
-						this._IdColor = default(int);
-					}
-					this.SendPropertyChanged("Color");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = this;
-		}
-		
-		private void detach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = null;
-		}
-		
-		private void attach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = this;
-		}
-		
-		private void detach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
 	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2301,6 +2005,350 @@ namespace SoftBottinBD
 		{
 			this.SendPropertyChanging();
 			entity.Color = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductDetail")]
+	public partial class ProductDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _IdProduct;
+		
+		private int _IdColor;
+		
+		private int _Size;
+		
+		private int _Quantity;
+		
+		private System.Nullable<int> _QuantityExisting;
+		
+		private System.Nullable<int> _QuantitySold;
+		
+		private EntitySet<Image> _Images;
+		
+		private EntitySet<Invoice> _Invoices;
+		
+		private EntityRef<Color> _Color;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdProductChanging(int value);
+    partial void OnIdProductChanged();
+    partial void OnIdColorChanging(int value);
+    partial void OnIdColorChanged();
+    partial void OnSizeChanging(int value);
+    partial void OnSizeChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnQuantityExistingChanging(System.Nullable<int> value);
+    partial void OnQuantityExistingChanged();
+    partial void OnQuantitySoldChanging(System.Nullable<int> value);
+    partial void OnQuantitySoldChanged();
+    #endregion
+		
+		public ProductDetail()
+		{
+			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
+			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
+			this._Color = default(EntityRef<Color>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProduct", DbType="Int NOT NULL")]
+		public int IdProduct
+		{
+			get
+			{
+				return this._IdProduct;
+			}
+			set
+			{
+				if ((this._IdProduct != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdProductChanging(value);
+					this.SendPropertyChanging();
+					this._IdProduct = value;
+					this.SendPropertyChanged("IdProduct");
+					this.OnIdProductChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdColor", DbType="Int NOT NULL")]
+		public int IdColor
+		{
+			get
+			{
+				return this._IdColor;
+			}
+			set
+			{
+				if ((this._IdColor != value))
+				{
+					if (this._Color.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdColorChanging(value);
+					this.SendPropertyChanging();
+					this._IdColor = value;
+					this.SendPropertyChanged("IdColor");
+					this.OnIdColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="Int NOT NULL")]
+		public int Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantityExisting", DbType="Int")]
+		public System.Nullable<int> QuantityExisting
+		{
+			get
+			{
+				return this._QuantityExisting;
+			}
+			set
+			{
+				if ((this._QuantityExisting != value))
+				{
+					this.OnQuantityExistingChanging(value);
+					this.SendPropertyChanging();
+					this._QuantityExisting = value;
+					this.SendPropertyChanged("QuantityExisting");
+					this.OnQuantityExistingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantitySold", DbType="Int")]
+		public System.Nullable<int> QuantitySold
+		{
+			get
+			{
+				return this._QuantitySold;
+			}
+			set
+			{
+				if ((this._QuantitySold != value))
+				{
+					this.OnQuantitySoldChanging(value);
+					this.SendPropertyChanging();
+					this._QuantitySold = value;
+					this.SendPropertyChanged("QuantitySold");
+					this.OnQuantitySoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Image", Storage="_Images", ThisKey="Id", OtherKey="IdDetail")]
+		public EntitySet<Image> Images
+		{
+			get
+			{
+				return this._Images;
+			}
+			set
+			{
+				this._Images.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Invoice", Storage="_Invoices", ThisKey="Id", OtherKey="IdProductDetail")]
+		public EntitySet<Invoice> Invoices
+		{
+			get
+			{
+				return this._Invoices;
+			}
+			set
+			{
+				this._Invoices.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Color_ProductDetail", Storage="_Color", ThisKey="IdColor", OtherKey="Id", IsForeignKey=true)]
+		public Color Color
+		{
+			get
+			{
+				return this._Color.Entity;
+			}
+			set
+			{
+				Color previousValue = this._Color.Entity;
+				if (((previousValue != value) 
+							|| (this._Color.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Color.Entity = null;
+						previousValue.ProductDetails.Remove(this);
+					}
+					this._Color.Entity = value;
+					if ((value != null))
+					{
+						value.ProductDetails.Add(this);
+						this._IdColor = value.Id;
+					}
+					else
+					{
+						this._IdColor = default(int);
+					}
+					this.SendPropertyChanged("Color");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDetail", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.ProductDetails.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.ProductDetails.Add(this);
+						this._IdProduct = value.Id;
+					}
+					else
+					{
+						this._IdProduct = default(int);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Images(Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.ProductDetail = this;
+		}
+		
+		private void detach_Images(Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.ProductDetail = null;
+		}
+		
+		private void attach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.ProductDetail = this;
+		}
+		
+		private void detach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.ProductDetail = null;
 		}
 	}
 }

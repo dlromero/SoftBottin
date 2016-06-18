@@ -36,6 +36,8 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback AddShoeDetailOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddImageShoeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddShoeTypeOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetShoesTypesOperationCompleted;
@@ -110,6 +112,9 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         public event AddShoeDetailCompletedEventHandler AddShoeDetailCompleted;
+        
+        /// <remarks/>
+        public event AddImageShoeCompletedEventHandler AddImageShoeCompleted;
         
         /// <remarks/>
         public event AddShoeTypeCompletedEventHandler AddShoeTypeCompleted;
@@ -231,23 +236,25 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddShoeDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, out string sErrMessage) {
+        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, int iQuantityExisting, int iQuantitySold, out string sErrMessage) {
             object[] results = this.Invoke("AddShoeDetail", new object[] {
                         iIdShoe,
                         iIdColor,
                         iSize,
-                        iQuantity});
+                        iQuantity,
+                        iQuantityExisting,
+                        iQuantitySold});
             sErrMessage = ((string)(results[1]));
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void AddShoeDetailAsync(int iIdShoe, int iIdColor, int iSize, int iQuantity) {
-            this.AddShoeDetailAsync(iIdShoe, iIdColor, iSize, iQuantity, null);
+        public void AddShoeDetailAsync(int iIdShoe, int iIdColor, int iSize, int iQuantity, int iQuantityExisting, int iQuantitySold) {
+            this.AddShoeDetailAsync(iIdShoe, iIdColor, iSize, iQuantity, iQuantityExisting, iQuantitySold, null);
         }
         
         /// <remarks/>
-        public void AddShoeDetailAsync(int iIdShoe, int iIdColor, int iSize, int iQuantity, object userState) {
+        public void AddShoeDetailAsync(int iIdShoe, int iIdColor, int iSize, int iQuantity, int iQuantityExisting, int iQuantitySold, object userState) {
             if ((this.AddShoeDetailOperationCompleted == null)) {
                 this.AddShoeDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddShoeDetailOperationCompleted);
             }
@@ -255,13 +262,51 @@ namespace SoftBottin.wsSoftBottin {
                         iIdShoe,
                         iIdColor,
                         iSize,
-                        iQuantity}, this.AddShoeDetailOperationCompleted, userState);
+                        iQuantity,
+                        iQuantityExisting,
+                        iQuantitySold}, this.AddShoeDetailOperationCompleted, userState);
         }
         
         private void OnAddShoeDetailOperationCompleted(object arg) {
             if ((this.AddShoeDetailCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddShoeDetailCompleted(this, new AddShoeDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddImageShoe", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddImageShoe(int iIdShoe, string sName, string sType, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] btFileByte, out string sErrMessage) {
+            object[] results = this.Invoke("AddImageShoe", new object[] {
+                        iIdShoe,
+                        sName,
+                        sType,
+                        btFileByte});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddImageShoeAsync(int iIdShoe, string sName, string sType, byte[] btFileByte) {
+            this.AddImageShoeAsync(iIdShoe, sName, sType, btFileByte, null);
+        }
+        
+        /// <remarks/>
+        public void AddImageShoeAsync(int iIdShoe, string sName, string sType, byte[] btFileByte, object userState) {
+            if ((this.AddImageShoeOperationCompleted == null)) {
+                this.AddImageShoeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddImageShoeOperationCompleted);
+            }
+            this.InvokeAsync("AddImageShoe", new object[] {
+                        iIdShoe,
+                        sName,
+                        sType,
+                        btFileByte}, this.AddImageShoeOperationCompleted, userState);
+        }
+        
+        private void OnAddImageShoeOperationCompleted(object arg) {
+            if ((this.AddImageShoeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddImageShoeCompleted(this, new AddImageShoeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -816,6 +861,40 @@ namespace SoftBottin.wsSoftBottin {
         private object[] results;
         
         internal AddShoeDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void AddImageShoeCompletedEventHandler(object sender, AddImageShoeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddImageShoeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddImageShoeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -56,19 +56,6 @@
       <Association Name="ProductType_Product" Member="ProductType" ThisKey="Type" OtherKey="Id" Type="ProductType" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ProductDetail" Member="ProductDetails">
-    <Type Name="ProductDetail">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IdColor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ProductDetail_Image" Member="Images" ThisKey="Id" OtherKey="IdDetail" Type="Image" />
-      <Association Name="ProductDetail_Invoice" Member="Invoices" ThisKey="Id" OtherKey="IdProductDetail" Type="Invoice" />
-      <Association Name="Product_ProductDetail" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
-      <Association Name="Color_ProductDetail" Member="Color" ThisKey="IdColor" OtherKey="Id" Type="Color" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Roles" Member="Roles">
     <Type Name="Role">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -102,6 +89,21 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RGB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Color_ProductDetail" Member="ProductDetails" ThisKey="Id" OtherKey="IdColor" Type="ProductDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductDetail" Member="ProductDetails">
+    <Type Name="ProductDetail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdColor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuantityExisting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuantitySold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ProductDetail_Image" Member="Images" ThisKey="Id" OtherKey="IdDetail" Type="Image" />
+      <Association Name="ProductDetail_Invoice" Member="Invoices" ThisKey="Id" OtherKey="IdProductDetail" Type="Invoice" />
+      <Association Name="Color_ProductDetail" Member="Color" ThisKey="IdColor" OtherKey="Id" Type="Color" IsForeignKey="true" />
+      <Association Name="Product_ProductDetail" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

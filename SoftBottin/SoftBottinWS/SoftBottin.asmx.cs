@@ -70,7 +70,7 @@ namespace SoftBottinWS
                                     IdColor = clr.Id,
                                     ColorDescription = clr.Description,
                                     RGB = clr.RGB
-                                }).OrderByDescending(x => x.Size);
+                                }).OrderByDescending(x => x.IdType);
 
                 if (products.ToList().Count > 0)
                 {
@@ -152,10 +152,14 @@ namespace SoftBottinWS
         /// <param name="iIdColor"></param>
         /// <param name="iSize"></param>
         /// <param name="iQuantity"></param>
+        /// <param name="iQuantityExisting"></param>
+        /// <param name="iQuantitySold"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, out string sErrMessage)
+        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize,
+                                  int iQuantity, int iQuantityExisting,
+                                  int iQuantitySold, out string sErrMessage)
         {
             try
             {
@@ -166,7 +170,9 @@ namespace SoftBottinWS
                     IdProduct = iIdShoe,
                     IdColor = iIdColor,
                     Size = iSize,
-                    Quantity = iQuantity
+                    Quantity = iQuantity,
+                    QuantityExisting = iQuantityExisting,
+                    QuantitySold = iQuantitySold
                 };
 
                 dbConection.ProductDetails.InsertOnSubmit(niProductDetail);
@@ -181,6 +187,43 @@ namespace SoftBottinWS
             }
         }
 
+        /// <summary>
+        /// Daniel Romero 18 de Junio de 2016
+        /// Metodo que se crea para subir una imagen de un zapato
+        /// </summary>
+        /// <param name="iIdShoe"></param>
+        /// <param name="sName"></param>
+        /// <param name="sType"></param>
+        /// <param name="btFileByte"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.Image niImage = new SoftBottinBD.Image
+                {
+                    IdDetail = iIdShoe,
+                    Description = sName,
+                    Name = sName,
+                    Type = sType,
+                    Image1 = btFileByte
+                };
+
+                dbConection.Images.InsertOnSubmit(niImage);
+                dbConection.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
 
         #endregion
 

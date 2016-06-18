@@ -3,6 +3,7 @@ using SoftBottin.Models.Shoes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -128,6 +129,7 @@ namespace SoftBottin.Controllers
                 ViewBag.lsShoesTypes = lsShoesTypes;
                 ViewBag.lsColors = lsColors;
 
+
                 return View();
             }
             catch (Exception)
@@ -136,6 +138,11 @@ namespace SoftBottin.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objShoe"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CrearZapato(cShoe objShoe)
         {
@@ -143,15 +150,116 @@ namespace SoftBottin.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    List<cShoeDetail> lscShoeType = JsonConvert.DeserializeObject<List<cShoeDetail>>(objShoe.sColorDetail);
+
+                    string sErrMessage = "";
                     cShoe niShoe = new cShoe();
-                    
+                    int iIdInsert = 0;
+                    if (niShoe.AddShoe(objShoe.sName, objShoe.sDescription, objShoe.sRef, 0,
+                                   0, objShoe.iCost, objShoe.iPrice, objShoe.iShoeType, lscShoeType,
+                                   out iIdInsert, out sErrMessage))
+                    {
+
+
+                        #region Imagenes
+
+                        List<HttpPostedFileBase> lsFilesFinal = new List<HttpPostedFileBase>();
+                        if (Session["lsFilesFinal"] != null)
+                        {
+                            lsFilesFinal = (List<HttpPostedFileBase>)Session["lsFilesFinal"];
+                        }
+
+
+                        foreach (HttpPostedFileBase item in lsFilesFinal)
+                        {
+                            byte[] data;
+                            using (Stream inputStream = item.InputStream)
+                            {
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                data = memoryStream.ToArray();
+                            }
+                            niShoe.AddImageShoe(iIdInsert, item.FileName, item.ContentType, data, out sErrMessage);
+                        }
+
+                        #endregion
+
+                        #region Cargar correctamnete Zapatos
+                        cShoeType niShoeType = new cShoeType();
+                        DataSet dsShoesTypes = new DataSet();
+                        niShoeType.GetShoesTypes(out dsShoesTypes, out sErrMessage);
+                        List<SelectListItem> lsShoesTypes = new List<SelectListItem>();
+                        for (int iShoesTypes = 0; iShoesTypes < dsShoesTypes.Tables[0].Rows.Count; iShoesTypes++)
+                        {
+                            SelectListItem slItem = new SelectListItem();
+                            slItem.Text = dsShoesTypes.Tables[0].Rows[iShoesTypes]["Name"].ToString();
+                            slItem.Value = dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString();
+                            lsShoesTypes.Add(slItem);
+                        }
+                        ViewBag.lsShoesTypes = lsShoesTypes;
+                        #endregion
+
+                        return View("Zapatos");
+                    }
+                    else
+                    {
+                        return View("CrearZapatos");
+                    }
 
                 }
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return View();
+            }
+        }
+
+
+
+        public ActionResult Imagenes()
+        {
+            return PartialView();
+        }
+
+
+        public JsonResult UploadFile()
+        {
+            try
+            {
+                List<HttpPostedFileBase> lsFilesFinal = new List<HttpPostedFileBase>();
+                if (Session["lsFilesFinal"] != null)
+                {
+                    lsFilesFinal = (List<HttpPostedFileBase>)Session["lsFilesFinal"];
+                }
+
+                foreach (string item in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[item] as HttpPostedFileBase;
+                    string fileName = file.FileName;
+                    string UploadPath = "~/Images/";
+
+                    if (file.ContentLength == 0)
+                        continue;
+                    if (file.ContentLength > 0)
+                    {
+                        string path = Path.Combine(HttpContext.Request.MapPath(UploadPath), fileName);
+                        string extension = Path.GetExtension(file.FileName);
+                        lsFilesFinal.Add(file);
+                        //file.SaveAs(path);
+                    }
+                }
+                Session["lsFilesFinal"] = lsFilesFinal;
+                return Json("");
+
+            }
+            catch (Exception)
+            {
+                return Json("There is error try again later");
             }
         }
 

@@ -55,6 +55,8 @@
             <s:element minOccurs="1" maxOccurs="1" name="iIdColor" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="iSize" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="iQuantity" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iQuantityExisting" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iQuantitySold" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -62,6 +64,24 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="AddShoeDetailResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddImageShoe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iIdShoe" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="btFileByte" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddImageShoeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddImageShoeResult" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -331,6 +351,12 @@
   <wsdl:message name="AddShoeDetailSoapOut">
     <wsdl:part name="parameters" element="tns:AddShoeDetailResponse" />
   </wsdl:message>
+  <wsdl:message name="AddImageShoeSoapIn">
+    <wsdl:part name="parameters" element="tns:AddImageShoe" />
+  </wsdl:message>
+  <wsdl:message name="AddImageShoeSoapOut">
+    <wsdl:part name="parameters" element="tns:AddImageShoeResponse" />
+  </wsdl:message>
   <wsdl:message name="AddShoeTypeSoapIn">
     <wsdl:part name="parameters" element="tns:AddShoeType" />
   </wsdl:message>
@@ -428,6 +454,10 @@
       <wsdl:input message="tns:AddShoeDetailSoapIn" />
       <wsdl:output message="tns:AddShoeDetailSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="AddImageShoe">
+      <wsdl:input message="tns:AddImageShoeSoapIn" />
+      <wsdl:output message="tns:AddImageShoeSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AddShoeType">
       <wsdl:input message="tns:AddShoeTypeSoapIn" />
       <wsdl:output message="tns:AddShoeTypeSoapOut" />
@@ -507,6 +537,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddShoeDetail">
       <soap:operation soapAction="http://tempuri.org/AddShoeDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddImageShoe">
+      <soap:operation soapAction="http://tempuri.org/AddImageShoe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -663,6 +702,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddShoeDetail">
       <soap12:operation soapAction="http://tempuri.org/AddShoeDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddImageShoe">
+      <soap12:operation soapAction="http://tempuri.org/AddImageShoe" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
