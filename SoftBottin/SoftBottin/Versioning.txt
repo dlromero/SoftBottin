@@ -186,6 +186,22 @@ Nuevos Modelos				:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cCo
 								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoeType.cs	Edit
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.10
+		       Autor: Daniel Romero
+			   Fecha: 18 de Junio de 2016
+  		 Descripcion:			
+
+Actualización Controlador	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
+
+Actualización Modelo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoe.cs	Edit
+
+
+Actualización Vistas		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\CrearZapato.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Imagenes.cshtml	Add
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml	Edit
+
+
 
 
 
