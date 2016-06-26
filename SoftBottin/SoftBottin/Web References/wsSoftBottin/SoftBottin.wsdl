@@ -64,6 +64,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="AddShoeDetailResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iIdDetailInsert" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -82,6 +83,29 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="AddImageShoeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShoeImages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iShoeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShoeImagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetShoeImagesResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsShoes">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
             <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -307,7 +331,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SigIn">
+      <s:element name="LogIn">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="sUserName" type="s:string" />
@@ -315,10 +339,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SigInResponse">
+      <s:element name="LogInResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="SigInResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="LogInResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsUser">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SignInResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckEmailResult" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="dsUser">
               <s:complexType>
                 <s:sequence>
@@ -356,6 +421,12 @@
   </wsdl:message>
   <wsdl:message name="AddImageShoeSoapOut">
     <wsdl:part name="parameters" element="tns:AddImageShoeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShoeImagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShoeImages" />
+  </wsdl:message>
+  <wsdl:message name="GetShoeImagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShoeImagesResponse" />
   </wsdl:message>
   <wsdl:message name="AddShoeTypeSoapIn">
     <wsdl:part name="parameters" element="tns:AddShoeType" />
@@ -435,11 +506,23 @@
   <wsdl:message name="AddEmailNewUserSoapOut">
     <wsdl:part name="parameters" element="tns:AddEmailNewUserResponse" />
   </wsdl:message>
-  <wsdl:message name="SigInSoapIn">
-    <wsdl:part name="parameters" element="tns:SigIn" />
+  <wsdl:message name="LogInSoapIn">
+    <wsdl:part name="parameters" element="tns:LogIn" />
   </wsdl:message>
-  <wsdl:message name="SigInSoapOut">
-    <wsdl:part name="parameters" element="tns:SigInResponse" />
+  <wsdl:message name="LogInSoapOut">
+    <wsdl:part name="parameters" element="tns:LogInResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignInSoapIn">
+    <wsdl:part name="parameters" element="tns:SignIn" />
+  </wsdl:message>
+  <wsdl:message name="SignInSoapOut">
+    <wsdl:part name="parameters" element="tns:SignInResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckEmail" />
+  </wsdl:message>
+  <wsdl:message name="CheckEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckEmailResponse" />
   </wsdl:message>
   <wsdl:portType name="SoftBottinSoap">
     <wsdl:operation name="GetShoesByType">
@@ -457,6 +540,10 @@
     <wsdl:operation name="AddImageShoe">
       <wsdl:input message="tns:AddImageShoeSoapIn" />
       <wsdl:output message="tns:AddImageShoeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShoeImages">
+      <wsdl:input message="tns:GetShoeImagesSoapIn" />
+      <wsdl:output message="tns:GetShoeImagesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddShoeType">
       <wsdl:input message="tns:AddShoeTypeSoapIn" />
@@ -510,9 +597,17 @@
       <wsdl:input message="tns:AddEmailNewUserSoapIn" />
       <wsdl:output message="tns:AddEmailNewUserSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <wsdl:input message="tns:SigInSoapIn" />
-      <wsdl:output message="tns:SigInSoapOut" />
+    <wsdl:operation name="LogIn">
+      <wsdl:input message="tns:LogInSoapIn" />
+      <wsdl:output message="tns:LogInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <wsdl:input message="tns:SignInSoapIn" />
+      <wsdl:output message="tns:SignInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckEmail">
+      <wsdl:input message="tns:CheckEmailSoapIn" />
+      <wsdl:output message="tns:CheckEmailSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SoftBottinSoap" type="tns:SoftBottinSoap">
@@ -546,6 +641,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddImageShoe">
       <soap:operation soapAction="http://tempuri.org/AddImageShoe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoeImages">
+      <soap:operation soapAction="http://tempuri.org/GetShoeImages" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -670,8 +774,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <soap:operation soapAction="http://tempuri.org/SigIn" style="document" />
+    <wsdl:operation name="LogIn">
+      <soap:operation soapAction="http://tempuri.org/LogIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <soap:operation soapAction="http://tempuri.org/SignIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEmail">
+      <soap:operation soapAction="http://tempuri.org/CheckEmail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -711,6 +833,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddImageShoe">
       <soap12:operation soapAction="http://tempuri.org/AddImageShoe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoeImages">
+      <soap12:operation soapAction="http://tempuri.org/GetShoeImages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -835,8 +966,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SigIn">
-      <soap12:operation soapAction="http://tempuri.org/SigIn" style="document" />
+    <wsdl:operation name="LogIn">
+      <soap12:operation soapAction="http://tempuri.org/LogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <soap12:operation soapAction="http://tempuri.org/SignIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckEmail">
+      <soap12:operation soapAction="http://tempuri.org/CheckEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

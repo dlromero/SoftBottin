@@ -18,6 +18,7 @@
     <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Security/Principal.js")"></script>
     <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
 </head>
 <body>
@@ -32,12 +33,12 @@
                             <span class="icon-bar app-icon"></span>
                         </button>
                         @*<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
-                            @Html.ActionLink("BOTTINI", "Principal", "Security", new { }, new { @class = "navbar-brand app-link" })
-                        </div>*@
+                                @Html.ActionLink("BOTTINI", "Principal", "Security", new { }, new { @class = "navbar-brand app-link" })
+                            </div>*@
                         @Html.ActionLink("BOTTINI", "Principal", "Security", new { }, new { @class = "navbar-brand app-link" })
                         @*<div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
-                            @Html.ActionLink("BOTTINI CALZADO Y ACCESORIOS", "Principal", "Security", new { }, new { @class = "navbar-brand app-link" })
-                        </div>*@
+                                @Html.ActionLink("BOTTINI CALZADO Y ACCESORIOS", "Principal", "Security", new { }, new { @class = "navbar-brand app-link" })
+                            </div>*@
                     </div>
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="nav navbar-nav navbar-right app-nav">
@@ -70,7 +71,7 @@
                             {
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <b>@Session["userName"]</b><b class="caret"></b>
+                                        <b>@Session["userName"].ToString().Split('@')[0]</b><b class="caret"></b>
                                     </a>
                                     @if (Session["RoleID"].ToString() == "1")
                                     {
@@ -136,7 +137,6 @@
 
     <div id="mdlogIn" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -147,14 +147,14 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-5">
                             <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                            <fb:login-button scope="public_profile,email" onlogin="checkLoginStateLogIn();">
                             </fb:login-button>
                             <div id="status">
                             </div>
                         </div>
                     </div>
 
-                    <form role="form" id="formSigIn">
+                    <form role="form" id="formLogIn">
                         <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailLogIn">
                             <label for="EmailLogIn">¡Tu usuario o correo electrónico!</label>
                             <input type="text" class="form-control" id="tbEmailLogIn" placeholder="Escribe tu usuario o correo electrónico" required>
@@ -171,13 +171,13 @@
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div id="dvMessagePasswordLogIn" class="help-block hidden">¡Tu contraseña!</div>
                         </div>
-                        <div class="alert alert-danger" style="display:none;" role="alert" id="altErrorSigIn">
+                        <div class="alert alert-danger" style="display:none;" role="alert" id="altErrorLogIn">
                             <strong>Error!</strong> El usuario o la contraseña son incorrectos.
                         </div>
                         <div class="checkbox">
                             <label><input type="checkbox"> Recuerdame</label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-block" id="btnSigIn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Ingresa</button>
+                        <button type="submit" class="btn btn-success btn-block" id="btnLogIn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Ingresa</button>
                     </form>
                     <br />
                     <button type="button" class="btn btn-warning btn-block" id="bt_mdSignIn">¿No tienes cuenta? Registrate.</button>
@@ -203,54 +203,54 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-5">
                             <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                            <fb:login-button scope="public_profile,email" onlogin="checkLoginStateSignIn();">
                             </fb:login-button>
                             <div id="status">
                             </div>
                         </div>
                     </div>
-                    <form role="form">
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formFirstName">
-                            <label for="FirstName">¡Tu nombre!</label>
-                            <input type="text" class="form-control" id="tbFirstName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconFirstName">
+                    <form role="form" id="formSignIn">
+                        <div class="form-group has-warning has-feedback app-form-group-input" id="formFirstNameSignIn">
+                            <label for="FirstNameSignIn">¡Tu nombre!</label>
+                            <input type="text" class="form-control" id="tbFirstNameSignIn" required>
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconFirstNameSignIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageFirstName" class="help-block hidden">¡Tu nombre!</div>
+                            <div id="dvMessageFirstNameSignIn" class="help-block hidden">¡Tu nombre!</div>
                         </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="fromLastName">
-                            <label for="LastName">¡Tu apellido!</label>
-                            <input type="text" class="form-control" id="tbLastName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconLastName">
+                        <div class="form-group has-warning has-feedback app-form-group-input" id="fromLastNameSignIn">
+                            <label for="LastNameSignIn">¡Tu apellido!</label>
+                            <input type="text" class="form-control" id="tbLastNameSignIn" required>
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconLastNameSignIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageLastName" class="help-block hidden">¡Tu apellido!</div>
+                            <div id="dvMessageLastNameSignIn" class="help-block hidden">¡Tu apellido!</div>
                         </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailSigIn">
-                            <label for="EmailSigIn">¡Tu correo electrónico!</label>
-                            <input type="email" class="form-control" id="tbEmailSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailSigIn">
+                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailSignIn">
+                            <label for="EmailSignIn">¡Tu correo electrónico!</label>
+                            <input type="email" class="form-control" id="tbEmailSignIn" required>
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailSignIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageEmailSigIn" class="help-block hidden">¡Tu correo electrónico!</div>
+                            <div id="dvMessageEmailSignIn" class="help-block hidden">¡Tu correo electrónico!</div>
                         </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordSigIn">
-                            <label for="PasswordSigIn">¡Tu contraseña!</label>
-                            <input type="password" class="form-control" id="tbPasswordSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordSigIn">
+                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordSignIn">
+                            <label for="PasswordSignIn">¡Tu contraseña!</label>
+                            <input type="password" class="form-control" id="tbPasswordSignIn" required>
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordSignIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordSigIn" class="help-block hidden">¡Tu contraseña!</div>
+                            <div id="dvMessagePasswordSignIn" class="help-block hidden">¡Tu contraseña!</div>
                         </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordConfirmSigIn">
-                            <label for="PasswordConfirmSigIn">¡Confirma tu contraseña, por seguridad!</label>
-                            <input type="password" class="form-control" id="tbPasswordConfirmSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordConfirmSigIn">
+                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordConfirmSignIn">
+                            <label for="PasswordConfirmSignIn">¡Confirma tu contraseña, por seguridad!</label>
+                            <input type="password" class="form-control" id="tbPasswordConfirmSignIn" required>
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordConfirmSignIn">
                             </span>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordConfirmSigIn" class="help-block hidden">¡Confirma tu contraseña, por seguridad!</div>
+                            <div id="dvMessagePasswordConfirmSignIn" class="help-block hidden">¡Confirma tu contraseña, por seguridad!</div>
                         </div>
-                        <button type="submit" class="btn btn-success btn-block">Registrate</button>
+                        <button type="submit" class="btn btn-success btn-block" id="btnSignIn">Registrate</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -259,7 +259,31 @@
 
         </div>
     </div>
+
     <section id="main">
+        @if (TempData["userName"] != null)
+        {
+            <div class="row">
+                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4em;">
+                    <div class="alert alert-success " role="alert" id="altSuccess">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Bienvenido!</strong> accediste con éxito.
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (TempData["SignIn"] != null)
+        {
+            <div class="row">
+                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4em;">
+                    <div class="alert alert-success " role="alert" id="altSuccess">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Quedaste registrado con éxtio!</strong> por favor accede.
+                    </div>
+                </div>
+            </div>
+        }
         @RenderBody()
     </section>
     <footer class="app-footer">
@@ -275,12 +299,13 @@
 
 
     <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    
+
     <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
     <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -303,8 +328,146 @@
             }, 8000);
         });
     </script>
-    <script>
+    <script type="text/javascript">
         window.rootUrl = '@Url.Content("~/")';
+
+
+        //Inicio API Facebook
+
+
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/es_CO/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+
+
+
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallbackLogIn(response) {
+            //console.log('statusChangeCallback');
+            //console.log(response);
+            if (response.status === 'connected') {
+                //testAPI();
+                fbAPILogIn();
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Por favor, ' +
+                  'inicie sesión en la app.';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Por favor, ' +
+                  'inicie sesión en Facebook.';
+            }
+        }
+
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallbackSignIn(response) {
+            //console.log('statusChangeCallback');
+            //console.log(response);
+            if (response.status === 'connected') {
+                //testAPI();
+                fbAPISignIn();
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Por favor, ' +
+                  'inicie sesión en la app.';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Por favor, ' +
+                  'inicie sesión en Facebook.';
+            }
+        }
+
+
+        function checkLoginStateLogIn() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallbackLogIn(response);
+            });
+        }
+
+        function checkLoginStateSignIn() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallbackSignIn(response);
+            });
+        }
+
+
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '994758580598409',
+                cookie: true,  // enable cookies to allow the server to access
+                xfbml: true,  // parse social plugins on this page
+                version: 'v2.2' // use version 2.2
+            });
+
+        };
+
+
+
+
+
+
+        function fbAPILogIn() {
+
+            FB.api('/me',
+                   { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+                       LogIn(response.email, response.id);
+                   });
+        }
+
+        function fbAPISignIn() {
+
+            FB.api('/me',
+                   { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+                       SignIn(response.first_name, response.last_name, response.email, response.id);
+                   });
+        }
+
+
+
+        // Here we run a very simple test of the Graph API after login is
+        // successful.  See statusChangeCallback() for when this call is made.
+        function testAPI() {
+
+
+
+
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me',
+                   { fields: "name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+
+                       LogIn(response.email, response.id);
+
+                       console.log(response);
+                       console.log('Successful login for: ' + response.name);
+                       console.log('Successful email for: ' + response.email);
+                       console.log('Successful birthday for: ' + response.birthday);
+                       console.log('Successful currency for: ' + response.currency);
+                       console.log('Successful first_name for: ' + response.first_name);
+                       console.log('Successful last_name for: ' + response.last_name);
+                       console.log('Successful gender for: ' + response.gender);
+                       console.log('Successful languages for: ' + response.languages);
+                       console.log('Successful location for: ' + response.location);
+                       console.log('Successful timezone for: ' + response.timezone);
+                       document.getElementById('status').innerHTML =
+                         'Thanks for logging in, ' + response.name + '!';
+                   });
+        }
+
+        //Fin API Facebook
+
+
+
+
     </script>
 
 </body>

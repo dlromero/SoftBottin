@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace SoftBottin.Controllers
 {
-    public class SecurityController : Controller
+    public class SecurityController : UtilitiesController
     {
         #region Global
         /// <summary>
@@ -23,10 +23,6 @@ namespace SoftBottin.Controllers
         // GET: Security
         public ActionResult Principal()
         {
-            if (Session["userName"] != null)
-            {
-                string sTest = "";
-            }
             return View();
         }
 
@@ -215,7 +211,7 @@ namespace SoftBottin.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public JsonResult sigIn(string objUser)
+        public JsonResult LogIn(string objUser)
         {
             try
             {
@@ -223,14 +219,44 @@ namespace SoftBottin.Controllers
                 cmUser user = jSerializer.Deserialize<cmUser>(objUser);
                 cmSecurity niSecurity = new cmSecurity();
                 DataSet dsUser = new DataSet();
-                bool bAccess = niSecurity.SigIn(user.sUserName, user.sPassword, out dsUser, out sErrMsj);
+                bool bAccess = niSecurity.LogIn(user.sUserName, user.sPassword, out dsUser, out sErrMsj);
                 if (bAccess)
                 {
                     Session["userName"] = user.sUserName;
                     Session["RoleID"] = dsUser.Tables[0].Rows[0]["RoleId"].ToString();
+                    TempData["userName"] = user.sUserName;
                 }
 
+
                 return new JsonResult() { Data = bAccess };
+            }
+            catch (Exception)
+            {
+                return new JsonResult() { };
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objUser"></param>
+        /// <returns></returns>
+        public JsonResult SignIn(string objUser)
+        {
+            try
+            {
+                Session.Remove("SignIn");
+                JavaScriptSerializer jSerializer = new JavaScriptSerializer();
+                cmUserSgnIn user = jSerializer.Deserialize<cmUserSgnIn>(objUser);
+                cmSecurity niSecurity = new cmSecurity();
+                DataSet dsUser = new DataSet();
+                bool bAccess = niSecurity.SignIn(user.sFirstName, user.sLastName, user.sEmail, user.sPassword, out sErrMsj);
+
+                TempData["SignIn"] = true;
+
+                return new JsonResult()
+                {
+                    Data = bAccess
+                };
             }
             catch (Exception)
             {
@@ -254,6 +280,47 @@ namespace SoftBottin.Controllers
                 return View("Principal");
             }
         }
+
+
+        /// <summary>
+        /// Daniel Romero 26 de Junio de 2016
+        /// Metodo que permite verificar la existencia de un email repetido
+        /// </summary>
+        /// <param name="sEmail"></param>
+        /// <returns></returns>
+        public JsonResult CheckEmail(string sEmail)
+        {
+            try
+            {
+
+                cmSecurity niSecurity = new cmSecurity();
+                DataSet dsUser = new DataSet();
+                bool bAccess = niSecurity.CheckEmail(sEmail, out dsUser, out sErrMsj);
+
+
+                if (dsUser.Tables.Count > 0)
+                {
+                    if (dsUser.Tables[0].Rows.Count > 0)
+                    {
+                        bAccess = false;
+                    }
+                }
+                else
+                {
+                    bAccess = true;
+                }
+
+                return new JsonResult()
+                {
+                    Data = bAccess
+                };
+            }
+            catch (Exception)
+            {
+                return new JsonResult() { };
+            }
+        }
+
 
 
     }

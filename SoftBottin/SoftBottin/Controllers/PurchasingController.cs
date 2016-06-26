@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SoftBottin.Controllers
 {
-    public class PurchasingController : Controller
+    public class PurchasingController : UtilitiesController
     {
         /// <summary>
         /// 

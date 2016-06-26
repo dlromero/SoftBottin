@@ -52,6 +52,9 @@ namespace SoftBottinWS
                                 on pds.Id equals prd.IdProduct
                                 join clr in dbConection.Colors
                                 on prd.IdColor equals clr.Id
+                                join img in dbConection.Images
+                                on prd.Id equals img.IdDetail into imageGroup
+                                from images in imageGroup.DefaultIfEmpty().Take(1)
                                 where pds.Type.Equals(iShoeType)
                                 select new
                                 {
@@ -69,7 +72,8 @@ namespace SoftBottinWS
                                     Quantity = prd.Quantity,
                                     IdColor = clr.Id,
                                     ColorDescription = clr.Description,
-                                    RGB = clr.RGB
+                                    RGB = clr.RGB,
+                                    ImageShoe = images.Image1 == null ? null : images.Image1
                                 }).OrderByDescending(x => x.IdType);
 
                 if (products.ToList().Count > 0)
@@ -159,7 +163,7 @@ namespace SoftBottinWS
         [WebMethod]
         public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize,
                                   int iQuantity, int iQuantityExisting,
-                                  int iQuantitySold, out string sErrMessage)
+                                  int iQuantitySold, out int iIdDetailInsert, out string sErrMessage)
         {
             try
             {
@@ -177,12 +181,15 @@ namespace SoftBottinWS
 
                 dbConection.ProductDetails.InsertOnSubmit(niProductDetail);
                 dbConection.SubmitChanges();
+                iIdDetailInsert = niProductDetail.Id;
+
                 return true;
             }
             catch (Exception ex)
             {
                 cUtilities.WriteLog(ex.Message, out sErrMsj);
                 sErrMessage = ex.Message;
+                iIdDetailInsert = -1;
                 return false;
             }
         }
@@ -219,6 +226,46 @@ namespace SoftBottinWS
             }
             catch (Exception ex)
             {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Daniel Romero 19 de Junio de 2016
+        /// Metodo que se crea para obtener una imagen de un zapato
+        /// </summary>
+        /// <param name="iShoeID"></param>
+        /// <param name="dsShoes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetShoeImages(int iShoeID, out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var imag = (from img in dbConection.Images
+                            where img.IdDetail.Equals(iShoeID)
+                            select img).Take(1);
+
+                if (imag.ToList().Count > 0)
+                {
+                    dsShoes = cUtilities.ToDataSet(imag.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoes = new DataSet();
                 cUtilities.WriteLog(ex.Message, out sErrMsj);
                 sErrMessage = ex.Message;
                 return false;
@@ -743,7 +790,7 @@ namespace SoftBottinWS
         /// <param name="sPassword"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool SigIn(string sUserName, string sPassword, out DataSet dsUser, out string sErrMessage)
+        public bool LogIn(string sUserName, string sPassword, out DataSet dsUser, out string sErrMessage)
         {
             try
             {
@@ -782,6 +829,102 @@ namespace SoftBottinWS
                 return false;
             }
         }
+
+        /// <summary>
+        /// Daniel Romero 28 de Mayo de 2016
+        /// Metodo que se crea para crear un nuevo usuario
+        /// </summary>
+        /// <param name="sFirstName"></param>
+        /// <param name="sLastName"></param>
+        /// <param name="sEmail"></param>
+        /// <param name="sPassword"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool SignIn(string sFirstName, string sLastName, string sEmail, string sPassword, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                SoftBottinBD.User niUser = new SoftBottinBD.User
+                {
+                    FirstName = sFirstName,
+                    LastName = sLastName,
+                    Email = sEmail
+
+                };
+
+                dbConection.Users.InsertOnSubmit(niUser);
+                dbConection.SubmitChanges();
+
+
+                SoftBottinBD.UserAccount niUserAccount = new SoftBottinBD.UserAccount
+                {
+                    UserName = sEmail,
+                    Password = sPassword,
+                    UserId = niUser.Id,
+                    RoleId = 2
+                };
+
+                dbConection.UserAccounts.InsertOnSubmit(niUserAccount);
+                dbConection.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Daniel Romero 26 de Junio de 2016
+        /// Metodo que se crea para verificar que no se repitan los correos electronicos
+        /// </summary>
+        /// <param name="sEmail"></param>
+        /// <param name="dsUser"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool CheckEmail(string sEmail, out DataSet dsUser, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var userSigIn = from user in dbConection.UserAccounts
+                                where user.UserName.Equals(sEmail)
+                                select user;
+
+                if (userSigIn.ToList().Count > 0)
+                {
+                    dsUser = cUtilities.ToDataSet(userSigIn.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsUser = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                dsUser = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+
 
         #endregion
 

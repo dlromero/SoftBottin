@@ -23,13 +23,15 @@
 </style>
 
 
+
+
 <section class="app-tipos-zapatos">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <h1 class="display-4">Administración de zapatos:</h1>
-
+                    <img src="@ViewBag.imgSrc" />
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app-tipos-zapatos-botones">
                         @Html.ActionLink("Crear Zapato", "CrearZapato", "Shoes", new { }, new { @class = "btn btn-primary btn-lg btn-block" })
                     </div>
@@ -37,6 +39,16 @@
                     <br />
                     <br />
                     @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes, "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+                         style="width: 0%">
+                        45% completado
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,14 +61,44 @@
 
 <script type="text/javascript">
 
-    $("#lsShoesTypes").change(function () {
 
+    
+
+    $(document).ajaxStart(function () {
+        $('.progress-bar').css('width', '0%').attr('aria-valuenow', '0');
+        $('.progress-bar').html('0% completado');
+        $('.progress-bar').css('width', '10%').attr('aria-valuenow', '10');
+        $('.progress-bar').html('10% completado');
+        $('.progress-bar').css('width', '20%').attr('aria-valuenow', '20');
+        $('.progress-bar').html('20% completado');
+        $('.progress-bar').css('width', '30%').attr('aria-valuenow', '30');
+        $('.progress-bar').html('30% completado');
+        $('.progress-bar').css('width', '40%').attr('aria-valuenow', '40');
+        $('.progress-bar').html('40% completado');
+        $('.progress-bar').css('width', '50%').attr('aria-valuenow', '50');
+        $('.progress-bar').html('50% completado');
+        $('.progress-bar').css('width', '60%').attr('aria-valuenow', '60');
+        $('.progress-bar').html('60% completado');       
+
+    });
+
+    $(document).ajaxStop(function () {
+        $('.progress-bar').css('width', '100%').attr('aria-valuenow', '100');
+        $('.progress-bar').html('100% completado');
+    });
+
+    $("#lsShoesTypes").change(function () {
+        $("#containerShoes").html('');
+        $('.progress-bar').css('width', '0%').attr('aria-valuenow', '0');
+        $('.progress-bar').html('0% completado');
         $.ajax({
             url: window.rootUrl + 'Shoes/AjaxHandlerZapatos',
             type: 'GET',
             data: { iIdShoeType: +$("#lsShoesTypes").val() },
             contentType: 'application/json',
             success: function (data) {
+                $('.progress-bar').css('width', '50%').attr('aria-valuenow', '50');
+                $('.progress-bar').html('50% completado');
                 if (data != null) {
                     var json = $.parseJSON(data);
 
@@ -70,31 +112,41 @@
                                '<div class="card">' +
                                '<div class="card-header">' +
                                'Foto' +
-                               '</div>' +
-                               '<img class="card-img-top img-responsive" src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG">' +
-                               '<div class="card-block">' +
-                               '<h4 class="card-title">Talla: ' + val.sSize + '</h4>' +
-                               '<h6 class="card-subtitle text-muted">Color: ' + val.sColorDescription + '</h6>' +
-                               '<p class="card-text">' + val.sDescriptionProduct + '</p>' +
-                               '<ul class="list-group list-group-flush">' +
-                               '<li class="list-group-item">En existencia: ' + val.sQuantity + '</li>' +
-                               '<li class="list-group-item">Vendidos: ' + val.sQuantitySold + '</li>' +
-                               '<li class="list-group-item">Precio: ' + val.sSalePrice + '</li>' +
-                               '</ul>' +
-                               '</div>' +
-                                '<div class="card-block">' +
-                                '<a href="#" class="btn btn-primary btn-block">Editar</a>' +
-                                '<a href="#" class="btn btn-danger btn-block">Dar de baja</a>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>';
+                               '</div>';
+                        if (val.sImageBase64 == "") {
+                            htmlFinal = htmlFinal + '<a href="#" class="thumbnail"> <img data-src="holder.js/100%x180" alt="100%x180" style="width: 340px;height: 255px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTU1NmIwMzFlY2YgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTU2YjAzMWVjZiI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI2MC41IiB5PSI5NC44Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true" ></a>';
+                        } else {
+                            htmlFinal = htmlFinal + '<a href="#" class="thumbnail"> <img class="card-img-top img-responsive" style="width: 340px;height: 255px;" src="' + val.sImageBase64 + '"></a>';
+                        }
+
+
+                        htmlFinal = htmlFinal + '<div class="card-block">' +
+                            '<h4 class="card-title">Talla: ' + val.sSize + '</h4>' +
+                            '<h6 class="card-subtitle text-muted">Color: ' + val.sColorDescription + '</h6>' +
+                            '<p class="card-text">' + val.sDescriptionProduct + '</p>' +
+                            '<ul class="list-group list-group-flush">' +
+                            '<li class="list-group-item">En existencia: ' + val.sQuantity + '</li>' +
+                            '<li class="list-group-item">Vendidos: ' + val.sQuantitySold + '</li>' +
+                            '<li class="list-group-item">Precio: ' + val.sSalePrice + '</li>' +
+                            '</ul>' +
+                            '</div>' +
+                             '<div class="card-block">' +
+                             '<a href="#" class="btn btn-primary btn-block">Editar</a>' +
+                             '<a href="#" class="btn btn-danger btn-block">Dar de baja</a>' +
+                             '</div>' +
+                             '</div>' +
+                             '</div>' +
+                             '</div>';
+                        $('.progress-bar').css('width', '70%').attr('aria-valuenow', '70');
+                        $('.progress-bar').html('70% completado');
                     });
+
                     if (htmlFinal == "") {
                         htmlFinal = "Sin datos";
                     }
                     $("#containerShoes").html(htmlFinal);
-
+                    $('.progress-bar').css('width', '100%').attr('aria-valuenow', '100');
+                    $('.progress-bar').html('100% completado');
                 }
             },
             error: function (dataError) {

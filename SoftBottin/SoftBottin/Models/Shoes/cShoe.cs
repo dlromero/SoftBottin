@@ -83,7 +83,36 @@ namespace SoftBottin.Models.Shoes
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                return niWsSoftBottin.GetShoesByType(iIdType, out dsShoes, out sErrMessage);
+                niWsSoftBottin.GetShoesByType(iIdType, out dsShoes, out sErrMessage);
+
+                DataTable workTable = dsShoes.Tables[0];
+                DataColumn workCol = workTable.Columns.Add("Imagebase64", typeof(string));
+
+                for (int iShoes = 0; iShoes < dsShoes.Tables[0].Rows.Count; iShoes++)
+                {
+                    if (!string.IsNullOrEmpty(dsShoes.Tables[0].Rows[iShoes]["ImageShoe"].ToString()))
+                    {
+                        byte[] bytes = (byte[])dsShoes.Tables[0].Rows[iShoes]["ImageShoe"];
+                        var base64 = Convert.ToBase64String(bytes);
+                        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                        dsShoes.Tables[0].Rows[iShoes]["Imagebase64"] = imgSrc;
+                    }
+                }
+
+                //DataSet dsImges = new DataSet();
+                //cShoe nicShoe = new cShoe();
+                //nicShoe.GetShoeImages(0, out dsImges, out sErrMessage);
+
+
+                //byte[] bytes = (byte[])dsImges.Tables[0].Rows[0][5];
+
+                //var base64 = Convert.ToBase64String(bytes);
+                //var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+                //ViewBag.imgSrc = imgSrc;
+
+                return true;
+
             }
             catch (Exception ex)
             {
@@ -110,11 +139,14 @@ namespace SoftBottin.Models.Shoes
         public bool AddShoe(string sName, string sDescription, string sRef,
                             int iQuantityExisting, int iQuantitySold, int iPurchasePrice,
                             int iSalePrice, int iShoeType, List<cShoeDetail> lsColorDetail,
+                            List<cShoeImage> lsShoeImage,
                             out int iIdInsert,
+                            out int iIdDetailInsert,
                             out string sErrMessage)
         {
             try
             {
+                iIdDetailInsert = -1;
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
                 iIdInsert = 0;
@@ -131,13 +163,19 @@ namespace SoftBottin.Models.Shoes
                                                      lsColorDetail[iColor].iQuantity,
                                                      lsColorDetail[iColor].iQuantityExisting,
                                                      lsColorDetail[iColor].iQuantitySold,
+                                                     out iIdDetailInsert,
                                                      out sErrMessage);
+                        foreach (cShoeImage item in lsShoeImage)
+                        {
+                            AddImageShoe(iIdDetailInsert, item.sFileName, item.sContentType, item.bArrayImage, out sErrMessage);
+                        }
                     }
 
                     return true;
                 }
                 else
                 {
+                    iIdDetailInsert = -1;
                     return false;
                 }
             }
@@ -146,11 +184,21 @@ namespace SoftBottin.Models.Shoes
                 cUtilities.WriteLog(ex.Message, out sErrMessage);
                 sErrMessage = ex.Message;
                 iIdInsert = -1;
+                iIdDetailInsert = -1;
                 return false;
             }
         }
 
-
+        /// <summary>
+        /// Daniel Romero 19 de Junio de 2016
+        /// Metodo que se crea para agregar una imagen de un zapato
+        /// </summary>
+        /// <param name="iIdShoe"></param>
+        /// <param name="sName"></param>
+        /// <param name="sType"></param>
+        /// <param name="btFileByte"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
         public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, out string sErrMessage)
         {
             try
@@ -158,7 +206,7 @@ namespace SoftBottin.Models.Shoes
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
                 if (niWsSoftBottin.AddImageShoe(iIdShoe, sName, sType, btFileByte, out sErrMessage))
-                {                   
+                {
                     return true;
                 }
                 else
@@ -173,6 +221,32 @@ namespace SoftBottin.Models.Shoes
                 return false;
             }
         }
+
+        /// <summary>
+        /// Daniel Romero 19 de Junio de 2016
+        /// Metodo que se crea para obtener una imagen de un zapato
+        /// </summary>
+        /// <param name="iIdShoe"></param>
+        /// <param name="dsShoes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool GetShoeImages(int iIdShoe, out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.GetShoeImages(iIdShoe, out dsShoes, out sErrMessage);
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                dsShoes = new DataSet();
+                return false;
+            }
+        }
+
 
         #endregion
     }
@@ -253,6 +327,8 @@ namespace SoftBottin.Models.Shoes
         {
             get; set;
         }
+
+        public string sImageBase64 { get; set; }
     }
 
     public partial class cShoeDetail
@@ -279,6 +355,26 @@ namespace SoftBottin.Models.Shoes
         }
 
         public int iQuantitySold
+        {
+            get; set;
+        }
+    }
+
+
+    public partial class cShoeImage
+    {
+
+        public byte[] bArrayImage
+        {
+            get; set;
+        }
+
+        public string sFileName
+        {
+            get; set;
+        }
+
+        public string sContentType
         {
             get; set;
         }

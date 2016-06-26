@@ -74,9 +74,9 @@ $(document).ready(function () {
     });
 
 
-    $("#btnSigIn").on("click", function () {
-        if ($("#formSigIn")[0].checkValidity()) {
-            sigIn($("#tbEmailLogIn").val(), $("#tbPasswordLogIn").val());
+    $("#btnLogIn").on("click", function () {
+        if ($("#formLogIn")[0].checkValidity()) {
+            LogIn($("#tbEmailLogIn").val(), $("#tbPasswordLogIn").val());
             return false;
         } else {
             if ($("#tbEmailLogIn").val() == "") {
@@ -98,88 +98,245 @@ $(document).ready(function () {
     /*Fin de LogIn */
 
 
-    /*Inici de SigIn */
+    /*Inicii de SignIn */
 
-    $("#tbFirstName").on("input", function () {
-        if ($("#tbFirstName").val() != "") {
-            ChangeFormControlColor("formFirstName", "success");
-            ChangeGlyphiconColor("spGlyphiconFirstName", "ok");
-            ChangeDivMessage("dvMessageFirstName", "¡Tu nombre, es correcto!");
+    $("#tbFirstNameSignIn").on("input", function () {
+        if ($("#tbFirstNameSignIn").val() != "") {
+            ChangeFormControlColor("formFirstNameSignIn", "success");
+            ChangeGlyphiconColor("spGlyphiconFirstNameSignIn", "ok");
+            ChangeDivMessageShow("dvMessageFirstNameSignIn", "¡Tu nombre, es correcto!");
         } else {
-            ChangeFormControlColor("formFirstName", "warning");
-            ChangeGlyphiconColor("spGlyphiconFirstName", "warning-sign");
-            ChangeDivMessageHide("dvMessageFirstName");
+            ChangeFormControlColor("formFirstNameSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconFirstNameSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessageFirstNameSignIn");
         }
     });
 
-    $("#tbLastName").on("input", function () {
-        if ($("#tbLastName").val() != "") {
-            ChangeFormControlColor("fromLastName", "success");
-            ChangeGlyphiconColor("spGlyphiconLastName", "ok");
-            ChangeDivMessage("dvMessageLastName", "¡Tu apellido, es correcto!");
+    $("#tbLastNameSignIn").on("input", function () {
+        if ($("#tbLastNameSignIn").val() != "") {
+            ChangeFormControlColor("fromLastNameSignIn", "success");
+            ChangeGlyphiconColor("spGlyphiconLastNameSignIn", "ok");
+            ChangeDivMessageShow("dvMessageLastNameSignIn", "¡Tu apellido, es correcto!");
         } else {
-            ChangeFormControlColor("fromLastName", "warning");
-            ChangeGlyphiconColor("spGlyphiconLastName", "warning-sign");
-            ChangeDivMessageHide("dvMessageLastName");
+            ChangeFormControlColor("fromLastNameSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconLastNameSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessageLastNameSignIn");
         }
     });
 
 
-    $("#tbEmailSigIn").on("input", function () {
-        if ($("#tbEmailSigIn").val() != "") {
-            if (isValidEmailAddress($("#tbEmailSigIn").val())) {
-                ChangeFormControlColor("formEmailSigIn", "success");
-                ChangeGlyphiconColor("spGlyphiconEmailSigIn", "ok");
-                ChangeDivMessage("dvMessageEmailSigIn", "¡Tu apellido, es correcto!");
+    $("#tbEmailSignIn").on("input", function () {
+        if ($("#tbEmailSignIn").val() != "") {
+
+            if (isValidEmailAddress($("#tbEmailSignIn").val())) {
+                ChangeFormControlColor("formEmailSignIn", "success");
+                ChangeGlyphiconColor("spGlyphiconEmailSignIn", "ok");
+                ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo electrónico, es correcto!");
             } else {
-                ChangeFormControlColor("formEmailSigIn", "error");
-                ChangeGlyphiconColor("spGlyphiconEmailSigIn", "remove");
-                ChangeDivMessageShow("dvMessageEmailSigIn", "¡Tu correo electrónico, no es correcto!");
+                ChangeFormControlColor("formEmailSignIn", "error");
+                ChangeGlyphiconColor("spGlyphiconEmailSignIn", "remove");
+                ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo electrónico, no es correcto!");
             }
         } else {
-            ChangeFormControlColor("fromEmailSigIn", "warning");
-            ChangeGlyphiconColor("spGlyphiconEmailSigIn", "warning-sign");
-            ChangeDivMessageHide("dvMessageEmailSigIn");
+            ChangeFormControlColor("fromEmailSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconEmailSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessageEmailSignIn");
         }
     });
 
 
-    $("#tbPasswordSigIn").on("input", function () {
-        if ($("#tbPasswordSigIn").val() != "") {
-            if ($("#tbPasswordSigIn").val().length >= 8 && $("#tbPasswordSigIn").val().length <= 50) {
-                if (isValidPassword($("#tbPasswordSigIn").val())) {
-                    ChangeFormControlColor("formPasswordSigIn", "success");
-                    ChangeGlyphiconColor("spGlyphiconPasswordSigIn", "ok");
-                    ChangeDivMessageShow("dvMessagePasswordSigIn", "¡Tu contraseña, es correcta!");
+    $("#tbEmailSignIn").on("blur", function () {
+        if ($("#tbEmailSignIn").val() != "") {
+            $.ajax({
+                url: window.rootUrl + 'Security/CheckEmail',
+                type: 'POST',
+                data: "{'sEmail':'" + $("#tbEmailSignIn").val() + "'}",
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data) {
+                        ChangeFormControlColor("formEmailSignIn", "success");
+                        ChangeGlyphiconColor("spGlyphiconEmailSignIn", "ok");
+                        ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo electrónico, es correcto!");
+                    } else {
+                        ChangeFormControlColor("formEmailSignIn", "error");
+                        ChangeGlyphiconColor("spGlyphiconEmailSignIn", "remove");
+                        ChangeDivMessageShow("dvMessageEmailSignIn", "¡Ya existe una cuenta asociada a este correo, intenta con uno diferente!");
+                        $("#tbEmailSignIn").focus();
+                    }
+
+                },
+                error: function (dataError) {
+                    alert(dataError);
+                }
+            });
+
+        } else {
+            ChangeFormControlColor("fromEmailSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconEmailSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessageEmailSignIn");
+        }
+    });
+
+
+
+
+
+    $("#tbPasswordSignIn").on("input", function () {
+        if ($("#tbPasswordSignIn").val() != "") {
+            if ($("#tbPasswordSignIn").val().length >= 8 && $("#tbPasswordSignIn").val().length <= 50) {
+                if (isValidPassword($("#tbPasswordSignIn").val())) {
+                    ChangeFormControlColor("formPasswordSignIn", "success");
+                    ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "ok");
+                    ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, es correcta!");
                 } else {
-                    ChangeFormControlColor("formPasswordSigIn", "error");
-                    ChangeGlyphiconColor("spGlyphiconPasswordSigIn", "remove");
-                    ChangeDivMessageShow("dvMessagePasswordSigIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
+                    ChangeFormControlColor("formPasswordSignIn", "error");
+                    ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "remove");
+                    ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
                 }
             } else {
-                ChangeFormControlColor("formPasswordSigIn", "error");
-                ChangeGlyphiconColor("spGlyphiconPasswordSigIn", "remove");
-                ChangeDivMessageShow("dvMessagePasswordSigIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
+                ChangeFormControlColor("formPasswordSignIn", "error");
+                ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "remove");
+                ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
             }
         } else {
-            ChangeFormControlColor("formPasswordSigIn", "warning");
-            ChangeGlyphiconColor("spGlyphiconPasswordSigIn", "warning-sign");
-            ChangeDivMessageHide("dvMessagePasswordSigIn");
+            ChangeFormControlColor("formPasswordSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessagePasswordSignIn");
         }
     });
 
-    $("#tbPasswordConfirmSigIn").on("input", function () {
-        if ($("#tbPasswordConfirmSigIn").val() != "") {
-            ChangeFormControlColor("formPasswordConfirmSigIn", "success");
-            ChangeGlyphiconColor("spGlyphiconPasswordConfirmSigIn", "ok");
-            ChangeDivMessage("dvMessagePasswordConfirmSigIn", "¡Tu apellido, es correcto!");
+    $("#tbPasswordConfirmSignIn").on("input", function () {
+        if ($("#tbPasswordConfirmSignIn").val() != "") {
+            if ($("#tbPasswordConfirmSignIn").val() == $("#tbPasswordSignIn").val()) {
+                ChangeFormControlColor("formPasswordConfirmSignIn", "success");
+                ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "ok");
+                ChangeDivMessageShow("dvMessagePasswordConfirmSignIn", "¡Confimación de contraseña correcta!");
+            } else {
+                ChangeFormControlColor("formPasswordConfirmSignIn", "error");
+                ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "remove");
+                ChangeDivMessageShow("dvMessagePasswordConfirmSignIn", "¡La contraseña no coincide con la anterior!");
+            }
+
         } else {
-            ChangeFormControlColor("formPasswordConfirmSigIn", "warning");
-            ChangeGlyphiconColor("spGlyphiconPasswordConfirmSigIn", "warning-sign");
-            ChangeDivMessageHide("dvMessagePasswordConfirmSigIn");
+            ChangeFormControlColor("formPasswordConfirmSignIn", "warning");
+            ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "warning-sign");
+            ChangeDivMessageHide("dvMessagePasswordConfirmSignIn");
         }
     });
 
+
+
+    $("#btnSignIn").on("click", function () {
+        if ($("#formSignIn")[0].checkValidity()) {
+            SignIn($("#tbFirstNameSignIn").val(), $("#tbLastNameSignIn").val(),
+                   $("#tbEmailSignIn").val(), $("#tbPasswordSignIn").val());
+            return false;
+        } else {
+
+            if ($("#tbFirstNameSignIn").val() == "") {
+                $("#tbFirstNameSignIn").focus();
+                ChangeFormControlColor("formFirstNameSignIn", "error");
+                ChangeGlyphiconColor("spGlyphiconFirstNameSignIn", "remove");
+                ChangeDivMessageShow("dvMessageFirstNameSignIn", "¡Tu nombre es requerido!");
+                return false;
+            } else
+                if ($("#tbLastNameSignIn").val() == "") {
+                    $("#tbLastNameSignIn").focus();
+                    ChangeFormControlColor("fromLastNameSignIn", "error");
+                    ChangeGlyphiconColor("spGlyphiconLastNameSignIn", "remove");
+                    ChangeDivMessageShow("dvMessageLastNameSignIn", "¡Tu apellido es requerido!");
+                    return false;
+                } else
+                    if ($("#tbEmailSignIn").val() == "") {
+                        $("#tbEmailSignIn").focus();
+                        ChangeFormControlColor("formEmailSignIn", "error");
+                        ChangeGlyphiconColor("spGlyphiconEmailSignIn", "remove");
+                        ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo es requerido!");
+                        return false;
+                    } else
+                        if ($("#tbEmailSignIn").val() != "") {
+                            if (!isValidEmailAddress($("#tbEmailSignIn").val())) {
+                                ChangeFormControlColor("formEmailSignIn", "error");
+                                ChangeGlyphiconColor("spGlyphiconEmailSignIn", "remove");
+                                ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo electrónico, no es correcto!");
+
+                                $.ajax({
+                                    url: window.rootUrl + 'Security/CheckEmail',
+                                    type: 'POST',
+                                    data: "{'sEmail':'" + $("#tbEmailSignIn").val() + "'}",
+                                    contentType: 'application/json',
+                                    success: function (data) {
+                                        if (data) {
+                                            ChangeFormControlColor("formEmailSignIn", "success");
+                                            ChangeGlyphiconColor("spGlyphiconEmailSignIn", "ok");
+                                            ChangeDivMessageShow("dvMessageEmailSignIn", "¡Tu correo electrónico, es correcto!");
+                                        } else {
+                                            ChangeFormControlColor("formEmailSignIn", "error");
+                                            ChangeGlyphiconColor("spGlyphiconEmailSignIn", "remove");
+                                            ChangeDivMessageShow("dvMessageEmailSignIn", "¡Ya existe una cuenta asociada a este correo, intenta con uno diferente!");
+                                            $("#tbEmailSignIn").focus();
+                                            return false;
+                                        }
+                                    },
+                                    error: function (dataError) {
+                                        alert(dataError);
+                                    }
+                                });
+                            }
+                        } else
+                            if ($("#tbPasswordSignIn").val() == "") {
+                                $("#tbPasswordSignIn").focus();
+                                ChangeFormControlColor("formPasswordSignIn", "error");
+                                ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "remove");
+                                ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña es requerido!");
+                                return false;
+                            } else
+
+                                if ($("#tbPasswordSignIn").val() != "") {
+                                    if ($("#tbPasswordSignIn").val().length >= 8 && $("#tbPasswordSignIn").val().length <= 50) {
+                                        if (isValidPassword($("#tbPasswordSignIn").val())) {
+                                            ChangeFormControlColor("formPasswordSignIn", "success");
+                                            ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "ok");
+                                            ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, es correcta!");
+                                        } else {
+                                            ChangeFormControlColor("formPasswordSignIn", "error");
+                                            ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "remove");
+                                            ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
+                                            $("#tbPasswordSignIn").focus();
+                                            return false;
+                                        }
+                                    } else {
+                                        ChangeFormControlColor("formPasswordSignIn", "error");
+                                        ChangeGlyphiconColor("spGlyphiconPasswordSignIn", "remove");
+                                        ChangeDivMessageShow("dvMessagePasswordSignIn", "¡Tu contraseña, debe tener minimo 8 caracteres, 1 letra mayuscula y un número!");
+                                        $("#tbPasswordSignIn").focus();
+                                        return false;
+                                    }
+                                } else
+                                    if ($("#tbPasswordConfirmSignIn").val() == "") {
+                                        $("#tbPasswordConfirmSignIn").focus();
+                                        ChangeFormControlColor("formPasswordConfirmSignIn", "error");
+                                        ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "remove");
+                                        ChangeDivMessageShow("dvMessagePasswordConfirmSignIn", "¡Tu contraseña es requerido!");
+                                    } else
+                                        if ($("#tbPasswordConfirmSignIn").val() != "") {
+                                            if ($("#tbPasswordConfirmSignIn").val() == $("#tbPasswordSignIn").val()) {
+                                                ChangeFormControlColor("formPasswordConfirmSignIn", "success");
+                                                ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "ok");
+                                                ChangeDivMessageShow("dvMessagePasswordConfirmSignIn", "¡Confimación de contraseña correcta!");
+                                            } else {
+                                                ChangeFormControlColor("formPasswordConfirmSignIn", "error");
+                                                ChangeGlyphiconColor("spGlyphiconPasswordConfirmSignIn", "remove");
+                                                ChangeDivMessageShow("dvMessagePasswordConfirmSignIn", "¡La contraseña no coincide con la anterior!");
+                                                $("#tbPasswordConfirmSignIn").focus();
+                                                return false;
+                                            }
+
+                                        }
+
+            return false;
+        }
+    });
 
     /*Fin de SigIn */
 
@@ -278,83 +435,6 @@ $(document).ready(function () {
 
 
 
-    //Inicio API Facebook
-
-
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            testAPI();
-        } else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Please log ' +
-              'into this app.';
-        } else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Please log ' +
-              'into Facebook.';
-        }
-    }
-
-    // This function is called when someone finishes with the Login
-    // Button.  See the onlogin handler attached to it in the sample
-    // code below.
-    function checkLoginState() {
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
-        });
-    }
-
-
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '994758580598409',
-            xfbml: true,
-            version: 'v2.5'
-        });
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/es_CO/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
-    function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me',
-               { fields: "name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
-                   console.log(response);
-                   console.log('Successful login for: ' + response.name);
-                   console.log('Successful email for: ' + response.email);
-                   console.log('Successful birthday for: ' + response.birthday);
-                   console.log('Successful currency for: ' + response.currency);
-                   console.log('Successful first_name for: ' + response.first_name);
-                   console.log('Successful last_name for: ' + response.last_name);
-                   console.log('Successful gender for: ' + response.gender);
-                   console.log('Successful languages for: ' + response.languages);
-                   console.log('Successful location for: ' + response.location);
-                   console.log('Successful timezone for: ' + response.timezone);
-                   document.getElementById('status').innerHTML =
-                     'Thanks for logging in, ' + response.name + '!';
-               });
-    }
-
-    //Fin API Facebook
-
-
     $("#myCarousel").carousel({
         interval: 5000
     });
@@ -432,12 +512,12 @@ function goPurchasingSummary() {
     location.href = url;
 }
 
-function sigIn(piUserName, piPassword) {
+function LogIn(piUserName, piPassword) {
 
     var user = { sUserName: piUserName, sPassword: piPassword };
 
     $.ajax({
-        url: window.rootUrl + 'Security/sigIn',
+        url: window.rootUrl + 'Security/LogIn',
         type: 'POST',
         data: "{'objUser':'" + JSON.stringify(user) + "'}",
         contentType: 'application/json',
@@ -449,10 +529,43 @@ function sigIn(piUserName, piPassword) {
                 ChangeFormControlColor("formErorMessageLogIn", "error");
                 ChangeGlyphiconColor("spGlyphiconErrorSigIn", "remove");
                 ChangeDivMessageShow("dvMessageErrorLogIn", "¡Tu usuario o contraseña son incorrectos!");
-                $("#altErrorSigIn").show();
-                
+                $("#altErrorLogIn").show();
+
             }
-            
+
+        },
+        error: function (dataError) {
+            alert(dataError);
+        }
+    });
+}
+
+function SignIn(piFirstName, piLastName, piEmail, piPassword) {
+
+    var user = {
+        sFirstName: piFirstName,
+        sLastName: piLastName,
+        sEmail: piEmail,
+        sPassword: piPassword
+    };
+
+    $.ajax({
+        url: window.rootUrl + 'Security/SignIn',
+        type: 'POST',
+        data: "{'objUser':'" + JSON.stringify(user) + "'}",
+        contentType: 'application/json',
+        success: function (data) {
+            if (data) {
+                window.location = window.rootUrl + "Security/Principal";
+            } else {
+                //spGlyphiconErrorSigIn
+                ChangeFormControlColor("formErorMessageLogIn", "error");
+                ChangeGlyphiconColor("spGlyphiconErrorSigIn", "remove");
+                ChangeDivMessageShow("dvMessageErrorLogIn", "¡Tu usuario o contraseña son incorrectos!");
+                $("#altErrorLogIn").show();
+
+            }
+
         },
         error: function (dataError) {
             alert(dataError);

@@ -203,6 +203,41 @@ Actualización Vistas		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.11
+		       Autor: Daniel Romero
+			   Fecha: 26 de Junio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Content\Boostrap\main.css	Edit
+
+
+Actualización Controlador	:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\PurchasingController.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\SecurityController.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Controllers\UtilitiesController.cs	Add
+
+
+Actualización Modelo		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\Shoes\cShoe.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Models\cmSecurity.cs	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottinWS\SoftBottin.asmx.cs	Edit
+
+
+
+Actualización Script		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Scripts\Security\Principal.js	Edit, Rename
+
+
+
+Actualización Vistas		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml	Edit
+								D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml	Edit
+
+	
+
+
+
+
 
 
 

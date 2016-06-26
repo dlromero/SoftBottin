@@ -38,6 +38,8 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback AddImageShoeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetShoeImagesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddShoeTypeOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetShoesTypesOperationCompleted;
@@ -64,7 +66,11 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback AddEmailNewUserOperationCompleted;
         
-        private System.Threading.SendOrPostCallback SigInOperationCompleted;
+        private System.Threading.SendOrPostCallback LogInOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SignInOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckEmailOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -117,6 +123,9 @@ namespace SoftBottin.wsSoftBottin {
         public event AddImageShoeCompletedEventHandler AddImageShoeCompleted;
         
         /// <remarks/>
+        public event GetShoeImagesCompletedEventHandler GetShoeImagesCompleted;
+        
+        /// <remarks/>
         public event AddShoeTypeCompletedEventHandler AddShoeTypeCompleted;
         
         /// <remarks/>
@@ -156,7 +165,13 @@ namespace SoftBottin.wsSoftBottin {
         public event AddEmailNewUserCompletedEventHandler AddEmailNewUserCompleted;
         
         /// <remarks/>
-        public event SigInCompletedEventHandler SigInCompleted;
+        public event LogInCompletedEventHandler LogInCompleted;
+        
+        /// <remarks/>
+        public event SignInCompletedEventHandler SignInCompleted;
+        
+        /// <remarks/>
+        public event CheckEmailCompletedEventHandler CheckEmailCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetShoesByType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -236,7 +251,7 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddShoeDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, int iQuantityExisting, int iQuantitySold, out string sErrMessage) {
+        public bool AddShoeDetail(int iIdShoe, int iIdColor, int iSize, int iQuantity, int iQuantityExisting, int iQuantitySold, out int iIdDetailInsert, out string sErrMessage) {
             object[] results = this.Invoke("AddShoeDetail", new object[] {
                         iIdShoe,
                         iIdColor,
@@ -244,7 +259,8 @@ namespace SoftBottin.wsSoftBottin {
                         iQuantity,
                         iQuantityExisting,
                         iQuantitySold});
-            sErrMessage = ((string)(results[1]));
+            iIdDetailInsert = ((int)(results[1]));
+            sErrMessage = ((string)(results[2]));
             return ((bool)(results[0]));
         }
         
@@ -307,6 +323,37 @@ namespace SoftBottin.wsSoftBottin {
             if ((this.AddImageShoeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddImageShoeCompleted(this, new AddImageShoeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetShoeImages", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool GetShoeImages(int iShoeID, out System.Data.DataSet dsShoes, out string sErrMessage) {
+            object[] results = this.Invoke("GetShoeImages", new object[] {
+                        iShoeID});
+            dsShoes = ((System.Data.DataSet)(results[1]));
+            sErrMessage = ((string)(results[2]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetShoeImagesAsync(int iShoeID) {
+            this.GetShoeImagesAsync(iShoeID, null);
+        }
+        
+        /// <remarks/>
+        public void GetShoeImagesAsync(int iShoeID, object userState) {
+            if ((this.GetShoeImagesOperationCompleted == null)) {
+                this.GetShoeImagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetShoeImagesOperationCompleted);
+            }
+            this.InvokeAsync("GetShoeImages", new object[] {
+                        iShoeID}, this.GetShoeImagesOperationCompleted, userState);
+        }
+        
+        private void OnGetShoeImagesOperationCompleted(object arg) {
+            if ((this.GetShoeImagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetShoeImagesCompleted(this, new GetShoeImagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -713,9 +760,9 @@ namespace SoftBottin.wsSoftBottin {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SigIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool SigIn(string sUserName, string sPassword, out System.Data.DataSet dsUser, out string sErrMessage) {
-            object[] results = this.Invoke("SigIn", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LogIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool LogIn(string sUserName, string sPassword, out System.Data.DataSet dsUser, out string sErrMessage) {
+            object[] results = this.Invoke("LogIn", new object[] {
                         sUserName,
                         sPassword});
             dsUser = ((System.Data.DataSet)(results[1]));
@@ -724,24 +771,91 @@ namespace SoftBottin.wsSoftBottin {
         }
         
         /// <remarks/>
-        public void SigInAsync(string sUserName, string sPassword) {
-            this.SigInAsync(sUserName, sPassword, null);
+        public void LogInAsync(string sUserName, string sPassword) {
+            this.LogInAsync(sUserName, sPassword, null);
         }
         
         /// <remarks/>
-        public void SigInAsync(string sUserName, string sPassword, object userState) {
-            if ((this.SigInOperationCompleted == null)) {
-                this.SigInOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSigInOperationCompleted);
+        public void LogInAsync(string sUserName, string sPassword, object userState) {
+            if ((this.LogInOperationCompleted == null)) {
+                this.LogInOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLogInOperationCompleted);
             }
-            this.InvokeAsync("SigIn", new object[] {
+            this.InvokeAsync("LogIn", new object[] {
                         sUserName,
-                        sPassword}, this.SigInOperationCompleted, userState);
+                        sPassword}, this.LogInOperationCompleted, userState);
         }
         
-        private void OnSigInOperationCompleted(object arg) {
-            if ((this.SigInCompleted != null)) {
+        private void OnLogInOperationCompleted(object arg) {
+            if ((this.LogInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SigInCompleted(this, new SigInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.LogInCompleted(this, new LogInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SignIn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SignIn(string sFirstName, string sLastName, string sEmail, string sPassword, out string sErrMessage) {
+            object[] results = this.Invoke("SignIn", new object[] {
+                        sFirstName,
+                        sLastName,
+                        sEmail,
+                        sPassword});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SignInAsync(string sFirstName, string sLastName, string sEmail, string sPassword) {
+            this.SignInAsync(sFirstName, sLastName, sEmail, sPassword, null);
+        }
+        
+        /// <remarks/>
+        public void SignInAsync(string sFirstName, string sLastName, string sEmail, string sPassword, object userState) {
+            if ((this.SignInOperationCompleted == null)) {
+                this.SignInOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSignInOperationCompleted);
+            }
+            this.InvokeAsync("SignIn", new object[] {
+                        sFirstName,
+                        sLastName,
+                        sEmail,
+                        sPassword}, this.SignInOperationCompleted, userState);
+        }
+        
+        private void OnSignInOperationCompleted(object arg) {
+            if ((this.SignInCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SignInCompleted(this, new SignInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CheckEmail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool CheckEmail(string sEmail, out System.Data.DataSet dsUser, out string sErrMessage) {
+            object[] results = this.Invoke("CheckEmail", new object[] {
+                        sEmail});
+            dsUser = ((System.Data.DataSet)(results[1]));
+            sErrMessage = ((string)(results[2]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckEmailAsync(string sEmail) {
+            this.CheckEmailAsync(sEmail, null);
+        }
+        
+        /// <remarks/>
+        public void CheckEmailAsync(string sEmail, object userState) {
+            if ((this.CheckEmailOperationCompleted == null)) {
+                this.CheckEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckEmailOperationCompleted);
+            }
+            this.InvokeAsync("CheckEmail", new object[] {
+                        sEmail}, this.CheckEmailOperationCompleted, userState);
+        }
+        
+        private void OnCheckEmailOperationCompleted(object arg) {
+            if ((this.CheckEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckEmailCompleted(this, new CheckEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -874,10 +988,18 @@ namespace SoftBottin.wsSoftBottin {
         }
         
         /// <remarks/>
+        public int iIdDetailInsert {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
         public string sErrMessage {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[1]));
+                return ((string)(this.results[2]));
             }
         }
     }
@@ -912,6 +1034,48 @@ namespace SoftBottin.wsSoftBottin {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void GetShoeImagesCompletedEventHandler(object sender, GetShoeImagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetShoeImagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetShoeImagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet dsShoes {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
             }
         }
     }
@@ -1376,17 +1540,93 @@ namespace SoftBottin.wsSoftBottin {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void SigInCompletedEventHandler(object sender, SigInCompletedEventArgs e);
+    public delegate void LogInCompletedEventHandler(object sender, LogInCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SigInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class LogInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal SigInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal LogInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet dsUser {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void SignInCompletedEventHandler(object sender, SignInCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SignInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SignInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void CheckEmailCompletedEventHandler(object sender, CheckEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
