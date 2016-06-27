@@ -1,6 +1,8 @@
 ﻿using SoftBottinWS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -18,49 +20,72 @@ namespace SoftBottin.Models.Shoes
 
         #region Properties
 
+        [Required(ErrorMessage = "El nombre es requerido")]
+        [DisplayName("Name")]
         public string sName
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "La descripción es requerida")]
+        [DisplayName("Descripción")]
         public string sDescription
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "La referencia es requerida")]
+        [DisplayName("Referencia")]
         public string sRef
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "El costo es requerido")]
+        [DisplayName("Costo")]
         public int iCost
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "El precio es requerido")]
+        [DisplayName("Precio")]
         public int iPrice
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "El tipo de zapato es requerido")]
+        [DisplayName("Tipo de Zapato")]
         public int iShoeType
         {
-            get; set;
+            get;
+            set;
         }
 
+        [Required(ErrorMessage = "El color es requerido")]
+        [DisplayName("Color")]
         public int iColor
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sColorDetail
         {
-            get; set;
+            get;
+            set;
         }
 
         public List<cColor> lsColors
         {
-            get; set;
+            get;
+            set;
         }
 
 
@@ -150,6 +175,7 @@ namespace SoftBottin.Models.Shoes
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
                 iIdInsert = 0;
+                int iCount = 0;
                 if (niWsSoftBottin.AddShoe(sName, sDescription, sRef, iQuantityExisting,
                                       iQuantitySold, iPurchasePrice, iSalePrice, iShoeType,
                                       out iIdInsert, out sErrMessage))
@@ -167,8 +193,10 @@ namespace SoftBottin.Models.Shoes
                                                      out sErrMessage);
                         foreach (cShoeImage item in lsShoeImage)
                         {
-                            AddImageShoe(iIdDetailInsert, item.sFileName, item.sContentType, item.bArrayImage, out sErrMessage);
+                            AddImageShoe(iIdDetailInsert, item.sFileName, item.sContentType, item.bArrayImage, iIdInsert, (iCount == 0 ? true : false), out sErrMessage);
+                            iCount++;
                         }
+                        
                     }
 
                     return true;
@@ -199,13 +227,13 @@ namespace SoftBottin.Models.Shoes
         /// <param name="btFileByte"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
-        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, out string sErrMessage)
+        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                if (niWsSoftBottin.AddImageShoe(iIdShoe, sName, sType, btFileByte, out sErrMessage))
+                if (niWsSoftBottin.AddImageShoe(iIdShoe, sName, sType, btFileByte, iProductId, bIsPrincipal, out sErrMessage))
                 {
                     return true;
                 }
@@ -248,6 +276,95 @@ namespace SoftBottin.Models.Shoes
         }
 
 
+        /// <summary>
+        /// 27 de Julio de 2016 Daniel Romero
+        /// Metodo que permite consultar los zapatos
+        /// </summary>
+        /// <param name="dsColors"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool GetShoes(out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                niWsSoftBottin.GetShoes(out dsShoes, out sErrMessage);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                dsShoes = new DataSet();
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 27 de Julio de 2016 Daniel Romero
+        /// Metodo que permite consultar los zapatos
+        /// </summary>
+        /// <param name="dsColors"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool GetShoes(DataSet dsShoesTypes, DataSet dsShoes, out List<cShoesByType> poShoesByType, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                poShoesByType = new List<cShoesByType>();
+
+                for (int iShoesTypes = 0; iShoesTypes < dsShoesTypes.Tables[0].Rows.Count; iShoesTypes++)
+                {
+                    EnumerableRowCollection<DataRow> query = from rsl in dsShoes.Tables[0].AsEnumerable()
+                                                             where rsl.Field<Int32>("ShoeType").Equals(Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString()))
+                                                             select rsl;
+
+                    DataView view = query.AsDataView();
+
+                    for (int iShoe = 0; iShoe < view.Count; iShoe++)
+                    {
+                        cShoesByType nicShoesByType = new cShoesByType();
+                        nicShoesByType.iId = Convert.ToInt32(view[iShoe]["Id"].ToString());
+                        nicShoesByType.sName = view[iShoe]["Name"].ToString();
+                        nicShoesByType.sDescription = view[iShoe]["Description"].ToString();
+                        nicShoesByType.iQuantityExisting = Convert.ToInt32(view[iShoe]["QuantityExisting"].ToString());
+                        nicShoesByType.iQuantitySold = Convert.ToInt32(view[iShoe]["QuantitySold"].ToString());
+                        nicShoesByType.fPurchasePrice = Convert.ToSingle(view[iShoe]["PurchasePrice"].ToString());
+                        nicShoesByType.fSalePrice = Convert.ToSingle(view[iShoe]["SalePrice"].ToString());
+                        nicShoesByType.iType = Convert.ToInt32(view[iShoe]["ShoeType"].ToString());
+
+                        if (!string.IsNullOrEmpty(view[iShoe]["ShoeImage"].ToString()))
+                        {
+                            byte[] bytes = (byte[])view[iShoe]["ShoeImage"];
+                            var base64 = Convert.ToBase64String(bytes);
+                            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                            nicShoesByType.simgSrc = imgSrc;
+                        }
+                        poShoesByType.Add(nicShoesByType);
+                    }
+
+                }
+
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
+                poShoesByType = new List<cShoesByType>();
+                return false;
+            }
+        }
+
+
+
         #endregion
     }
 
@@ -255,77 +372,92 @@ namespace SoftBottin.Models.Shoes
     {
         public string sIdProduct
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sNameProduct
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sQuantityExisting
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sQuantitySold
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sPurchasePrice
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sSalePrice
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sIdType
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sIdProductDetail
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sSize
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sQuantity
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sIdColor
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sColorDescription
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sRGB
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sTypeDescription
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sDescriptionProduct
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sImageBase64 { get; set; }
@@ -336,27 +468,32 @@ namespace SoftBottin.Models.Shoes
 
         public int iIdColor
         {
-            get; set;
+            get;
+            set;
         }
 
         public int iSize
         {
-            get; set;
+            get;
+            set;
         }
 
         public int iQuantity
         {
-            get; set;
+            get;
+            set;
         }
 
         public int iQuantityExisting
         {
-            get; set;
+            get;
+            set;
         }
 
         public int iQuantitySold
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -366,18 +503,42 @@ namespace SoftBottin.Models.Shoes
 
         public byte[] bArrayImage
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sFileName
         {
-            get; set;
+            get;
+            set;
         }
 
         public string sContentType
         {
-            get; set;
+            get;
+            set;
         }
+    }
+
+    public partial class cShoesByType
+    {
+        public int iId { get; set; }
+
+        public string sName { get; set; }
+
+        public string sDescription { get; set; }
+
+        public int iQuantityExisting { get; set; }
+
+        public int iQuantitySold { get; set; }
+
+        public float fPurchasePrice { get; set; }
+
+        public float fSalePrice { get; set; }
+
+        public int iType { get; set; }
+
+        public string simgSrc { get; set; }
     }
 
 }

@@ -264,6 +264,17 @@ Actualización Script		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Scripts\Sec
 Actualización Vistas		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml	Edit
 
 
+
+
+******************************************************************************************************************************
+		     Version: 1.0.0.13
+		       Autor: Daniel Romero
+			   Fecha: 27 de Junio de 2016
+  		 Descripcion:			
+
+
+Upgrade
+
 	
 
 

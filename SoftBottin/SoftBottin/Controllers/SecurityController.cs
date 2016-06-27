@@ -1,4 +1,5 @@
 ﻿using SoftBottin.Models;
+using SoftBottin.Models.Shoes;
 using SoftBottinWS;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,29 @@ namespace SoftBottin.Controllers
         // GET: Security
         public ActionResult Principal()
         {
-            return View();
+
+            try
+            {
+                cShoeType niShoeType = new cShoeType();
+                cShoe niShoe = new cShoe();
+                DataSet dsShoesTypes = new DataSet();
+                DataSet dsShoe = new DataSet();
+                string sErrMessage = "";
+                niShoeType.GetShoesTypes(out dsShoesTypes, out sErrMessage);
+                niShoe.GetShoes(out dsShoe, out sErrMessage);
+                List<cShoesByType> poShoesByType = new List<cShoesByType>();
+                niShoe.GetShoes(dsShoesTypes, dsShoe, out poShoesByType, out sErrMessage);
+
+                ViewBag.ShoesByType = poShoesByType;
+                ViewBag.ShoeTypes = dsShoesTypes;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+
         }
 
         // GET: Security/Details/5
@@ -276,6 +299,18 @@ namespace SoftBottin.Controllers
             try
             {
                 Session.RemoveAll();
+                cShoeType niShoeType = new cShoeType();
+                cShoe niShoe = new cShoe();
+                DataSet dsShoesTypes = new DataSet();
+                DataSet dsShoe = new DataSet();
+                string sErrMessage = "";
+                niShoeType.GetShoesTypes(out dsShoesTypes, out sErrMessage);
+                niShoe.GetShoes(out dsShoe, out sErrMessage);
+                List<cShoesByType> poShoesByType = new List<cShoesByType>();
+                niShoe.GetShoes(dsShoesTypes, dsShoe, out poShoesByType, out sErrMessage);
+
+                ViewBag.ShoesByType = poShoesByType;
+                ViewBag.ShoeTypes = dsShoesTypes;
                 return View("Principal");
             }
             catch (Exception)

@@ -55,11 +55,12 @@ namespace SoftBottin.Controllers
         /// </summary>
         /// <param name="iIdShoeType"></param>
         /// <returns></returns>
-        public ActionResult AjaxHandlerZapatos(int iIdShoeType)
+        [CompressFilter]
+        public JsonResult AjaxHandlerZapatos(int iIdShoeType)
         {
             if (!CheckSession())
             {
-                return View("../Security/Principal");
+                return new JsonResult() { };
             }
 
             cShoe niShoe = new cShoe();

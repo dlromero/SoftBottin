@@ -1,402 +1,117 @@
 ﻿@model  SoftBottin.Models.cmProductDetail
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="">
-<!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Principal</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap.min.css")" rel="stylesheet" />
-
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />
-    <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
-    <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
-</head>
-<body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
 
-    <header class="app-header">
-        <nav class="navbar app-navbar navbar-fixed-top">
-            <div class="container ">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                        <span class="icon-bar app-icon"></span>
-                        <span class="icon-bar app-icon"></span>
-                        <span class="icon-bar app-icon"></span>
-                    </button>
-                    @Html.ActionLink("Bottini Calzado Accesorios", "Principal", new { }, new { @class = "navbar-brand app-link" })
+
+<style>
+    /*set a border on the images to prevent shifting*/
+    #gallery_01 img {
+        border: 2px solid white;
+    }
+    /*Change the colour*/
+
+    .active img {
+        border: 2px solid #333 !important;
+    }
+</style>
+
+<div class="container" style="margin-top:5%">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h1>
+                @Model.sProductName
+            </h1>
+            @{
+                string sPathImages = Url.Content("~/Content/Images/");
+            }
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img id="zoom_03" class="img-responsive img-thumbnail" src='@sPathImages@Model.sPathImageSmall1' data-zoom-image='@sPathImages@Model.sPathImageLarge1' />
+            </div>
+            <div id="gallery_01">
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <a href="#" data-image='@sPathImages@Model.sPathImageSmall1' data-zoom-image='@sPathImages@Model.sPathImageLarge1'>
+                        <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall1" />
+                    </a>
                 </div>
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="nav navbar-nav navbar-right app-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Ultimas Colecciones 2016<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Tacones Abril 2016</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Botas Abril 2016</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Estilo Militar Abril 2016</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="modal" data-target="#mdlogIn">
-                                Ingresa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" data-toggle="modal" data-target="#mdSignIn">
-                                Registrate
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <a href="#" data-image='@sPathImages@Model.sPathImageSmall2' data-zoom-image='@sPathImages@Model.sPathImageLarge2'>
+                        <img class="img-responsive img-thumbnail" id="img_01" src='@sPathImages@Model.sPathImageSmall2' />
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <a href="#" data-image="@sPathImages@Model.sPathImageSmall3" data-zoom-image="@sPathImages@Model.sPathImageSmall3">
+                        <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall3" />
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <a href="#" data-image="@sPathImages@Model.sPathImageSmall4" data-zoom-image="@sPathImages@Model.sPathImageSmall4">
+                        <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall4" />
+                    </a>
                 </div>
             </div>
-        </nav>
-        <div class="navbar-fixed-top  app-shopping-cart-container">
-            <div class="row " id="divShoppingCard">
-                <div class="col-md-1 col-md-offset-11" id="divShoppingCardSee">
-                    <div class="well pull-right">
-                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon4" style="margin-top:1%" id="numberShoesPick">0</span>
-                        <br />
-                        <h4 class="app-letra">Detalle</h4>
-                    </div>
-                </div>
-                <div class="col-md-5 col-md-offset-7" style="display:none" id="divShoppingCardDetail">
-                    <div class="well pull-right">
-                        <button type="button" class="close" id="btCloseShoppingCard">&times;</button>
-                        <table class="table table-bordered" id="tbShoppingCardDetail">
-                            <thead>
-                                <tr>
-                                    <th class="hidden-xs"></th>
-                                    <th class="hidden-xs">Foto</th>
-                                    <th>Nombre</th>
-                                    <th class="hidden-xs">Cantidad</th>
-                                    <th>Precio</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <td>Total</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>$0.0</td>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @*<tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <img src="@Url.Content("~/Content/Images/Militar/Zapato10.jpg")" class="img-circle img-responsive" width="25" height="25" />
-                                        </td>
-                                        <td>
-                                            Militar 15
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            $120.000
-                                        </td>
 
-                                    </tr>*@
-                            </tbody>
-                        </table>
+            @*<img id="zoom_09" src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg" />
+                <select id="select">
+                    <option value="1">Front</option>
+                    <option value="2">Back</option>
+                    <option value="3">Scenery</option>
+                    <option value="4">Side</option>
+                </select>*@
 
-                    </div>
-                </div>
-            </div>
+            @*<img id="zoom_01" src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg" />*@
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center navbar-fixed-top" style="margin-top: 4.5%">
-                <div class="alert alert-success " style="display:none;" role="alert" id="altSuccess">
-                    @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>*@
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                </div>
-            </div>
-        </div>
-
-    </header>
-
-    <div id="mdlogIn" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Iniciar sesión</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-5">
-                            <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                            </fb:login-button>
-                            <div id="status">
-                            </div>
-                        </div>
-                    </div>
-
-                    <form role="form" id="formSigIn">
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailLogIn">
-                            <label for="EmailLogIn">¡Tu correo electrónico!</label>
-                            <input type="email" class="form-control" id="tbEmailLogIn" placeholder="Escribe tu correo electrónico" required>
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailLogIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageEmailLogIn" class="help-block hidden">¡ Tu correo electrónico !</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordLogIn">
-                            <label for="pwdLogIn">¡Tu contraseña!</label>
-                            <input type="password" class="form-control" id="tbPasswordLogIn" placeholder="Escribe tu contraseña" required>
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordLogIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordLogIn" class="help-block hidden">¡Tu contraseña!</div>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Recuerdame</label>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-block" id="btnSigIn">Ingresa</button>
-                    </form>
-                    <br />
-                    <button type="button" class="btn btn-warning btn-block" id="bt_mdSignIn">¿No tienes cuenta? Registrate.</button>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="mdSignIn" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registrate</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-5">
-                            <label class="app-form-group-input">Con Facebook:</label>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                            </fb:login-button>
-                            <div id="status">
-                            </div>
-                        </div>
-                    </div>
-                    <form role="form">
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formFirstName">
-                            <label for="FirstName">¡Tu nombre!</label>
-                            <input type="text" class="form-control" id="tbFirstName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconFirstName">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageFirstName" class="help-block hidden">¡Tu nombre!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="fromLastName">
-                            <label for="LastName">¡Tu apellido!</label>
-                            <input type="text" class="form-control" id="tbLastName">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconLastName">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageLastName" class="help-block hidden">¡Tu apellido!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formEmailSigIn">
-                            <label for="EmailSigIn">¡Tu correo electrónico!</label>
-                            <input type="email" class="form-control" id="tbEmailSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconEmailSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessageEmailSigIn" class="help-block hidden">¡Tu correo electrónico!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordSigIn">
-                            <label for="PasswordSigIn">¡Tu contraseña!</label>
-                            <input type="password" class="form-control" id="tbPasswordSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordSigIn" class="help-block hidden">¡Tu contraseña!</div>
-                        </div>
-                        <div class="form-group has-warning has-feedback app-form-group-input" id="formPasswordConfirmSigIn">
-                            <label for="PasswordConfirmSigIn">¡Confirma tu contraseña, por seguridad!</label>
-                            <input type="password" class="form-control" id="tbPasswordConfirmSigIn">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback app-input-glyphicon" id="spGlyphiconPasswordConfirmSigIn">
-                            </span>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div id="dvMessagePasswordConfirmSigIn" class="help-block hidden">¡Confirma tu contraseña, por seguridad!</div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-block">Registrate</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <style>
-        /*set a border on the images to prevent shifting*/
-        #gallery_01 img {
-            border: 2px solid white;
-        }
-        /*Change the colour*/
-
-        .active img {
-            border: 2px solid #333 !important;
-        }
-    </style>
-
-    <div class="container" style="margin-top:5%">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <h1>
-                    @Model.sProductName
-                </h1>
-                @{
-                    string sPathImages = Url.Content("~/Content/Images/");
-                }
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <img id="zoom_03" class="img-responsive img-thumbnail" src='@sPathImages@Model.sPathImageSmall1' data-zoom-image='@sPathImages@Model.sPathImageLarge1' />
-                </div>
-                <div id="gallery_01">
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <a href="#" data-image='@sPathImages@Model.sPathImageSmall1' data-zoom-image='@sPathImages@Model.sPathImageLarge1'>
-                            <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall1" />
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <a href="#" data-image='@sPathImages@Model.sPathImageSmall2' data-zoom-image='@sPathImages@Model.sPathImageLarge2'>
-                            <img class="img-responsive img-thumbnail" id="img_01" src='@sPathImages@Model.sPathImageSmall2' />
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <a href="#" data-image="@sPathImages@Model.sPathImageSmall3" data-zoom-image="@sPathImages@Model.sPathImageSmall3">
-                            <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall3" />
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <a href="#" data-image="@sPathImages@Model.sPathImageSmall4" data-zoom-image="@sPathImages@Model.sPathImageSmall4">
-                            <img class="img-responsive img-thumbnail" id="img_01" src="@sPathImages@Model.sPathImageSmall4" />
-                        </a>
-                    </div>
-                </div>
-
-                @*<img id="zoom_09" src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg" />
-                    <select id="select">
-                        <option value="1">Front</option>
-                        <option value="2">Back</option>
-                        <option value="3">Scenery</option>
-                        <option value="4">Side</option>
-                    </select>*@
-
-                @*<img id="zoom_01" src="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png" data-zoom-image="http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg" />*@
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                <h1>
-                    Descripción
-                </h1>
+            <h1>
+                Descripción
+            </h1>
+            <p>
+                @Model.sDescription
+            </p>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                 <p>
-                    @Model.sDescription
+                    Color:
                 </p>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <p>
-                        Color:
-                    </p>
-                    <p>
-                        @Html.DropDownListFor(x => x.sColorSelect, Model.slColors)
-                    </p>
-                </div>
+                <p>
+                    @Html.DropDownListFor(x => x.sColorSelect, Model.slColors)
+                </p>
+            </div>
 
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <p>
-                        Talla:
-                    </p>
-                    <p>
-                        @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes)
-                    </p>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <p>
+                    Talla:
+                </p>
+                <p>
+                    @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes)
+                </p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1>
-                        Precio:  $@Model.fPrice
-                    </h1>
-                    <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
-                        Agregar
-                    </span>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>
+                    Precio:  $@Model.fPrice
+                </h1>
+                <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
+                    Agregar
+                </span>
 
-                    <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
-                        Comprar
-                    </span>
-                </div>
-
+                <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
+                    Comprar
+                </span>
             </div>
 
         </div>
+
     </div>
-
-
-
-
-    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
-    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>
-    <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
-    <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
-    <script src="@Url.Content("~/Scripts/Zoom/jquery.elevateZoom-3.0.8.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/Security/ProductDetail.js")"></script>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        (function (b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
-            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
-            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
-            e.src = '//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e, r)
-        }(window, document, 'script', 'ga'));
-        ga('create', 'UA-34048295-4', 'auto'); ga('send', 'pageview');
-    </script>
-    <script>
-        window.rootUrl = '@Url.Content("~/")';
-    </script>
-</body>
-</html>
+</div>

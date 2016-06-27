@@ -242,3 +242,11 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/SoftBottin/SoftBottin/bin
+/SoftBottin/SoftBottin/obj
+/SoftBottin/SoftBottin.Tests/bin
+/SoftBottin/SoftBottin.Tests/obj
+/SoftBottin/SoftBottinBD/obj
+/SoftBottin/SoftBottinBD/bin
+/SoftBottin/SoftBottinWS/obj
+/SoftBottin/SoftBottinWS/bin

@@ -6,546 +6,702 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlHoupNRwCEiiJ4PJt0LDjQAAAAACAAAAAAAQZgAAAAEAACAAAABPGvtfKyXB83v3fX19oCF3vy0Sg0dLQzWNkx+o5qfLEQAAAAAOgAAAAAIAACAAAACPyy18QqJ45TnPhsps1Zmtwh9UjAU9ZjxOnN08qQr05SAAAACj0Iz0pxmMbJRBgrj3okgCLCh6zay66x9t3MG2q0RYDEAAAACd84HnB5Yrkwlu/MOzhJdsxbtFi1iaXQBE01FQ7scP6wyimwj+lxspa3WV+KCy2+mWKC9r/XPItwe+2wIALIpI</EncryptedPassword>
-    <_PublishTargetUrl>ftp://192.168.1.11/bottini</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqJ4E1XEsaky1YMwCkKOtlgAAAAACAAAAAAAQZgAAAAEAACAAAABBp2vX0xzXUJYTc9mjdbI2EtsF76/suZSRoOVXbCV2iwAAAAAOgAAAAAIAACAAAADP6xB/CCgZwtks3jaEpRVFvO5nj2Zfm/Dt6up9r8KDISAAAADwbpd4lzgfYIeI8eMEpNTaGuMp2rLom9dskLV/imwlJUAAAAC4a1wtwLzcBFHhY23OtremJVkl1LXfTB8DgPsIHwwfM6TJ5NbmYTDXYfTe7Ssj/z+cAW0GA0PGuKPMb1AyivHH</EncryptedPassword>
+    <_PublishTargetUrl>ftp://192.168.0.101/bottini</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Google.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/Owin.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/SoftBottin.dll">
-      <publishTime>05/23/2016 21:16:03</publishTime>
+      <publishTime>06/27/2016 21:41:28</publishTime>
     </File>
     <File Include="bin/SoftBottin.XmlSerializers.dll">
-      <publishTime>05/23/2016 21:16:04</publishTime>
+      <publishTime>06/27/2016 21:41:28</publishTime>
     </File>
     <File Include="bin/SoftBottinBD.dll">
-      <publishTime>05/23/2016 21:16:02</publishTime>
+      <publishTime>06/27/2016 21:36:24</publishTime>
     </File>
     <File Include="bin/SoftBottinWS.dll">
-      <publishTime>05/23/2016 21:16:03</publishTime>
+      <publishTime>06/27/2016 21:36:24</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:59</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap-theme.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap-theme.css.map">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap-theme.min.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap.css.map">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/bootstrap.min.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Boostrap/main.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>06/27/2016 20:23:45</publishTime>
+    </File>
+    <File Include="Content/FileInput/css/fileinput.css">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/css/fileinput.min.css">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/img/loading-sm.gif">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/img/loading.gif">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/fileinput.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/fileinput.min.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/ar.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/bg.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/ca.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/cr.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/cz.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/da.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/de.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/el.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/es.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/fa.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/fi.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/fr.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/hu.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/id.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/it.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/ja.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/LANG.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/nl.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/pl.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/pt-BR.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/pt.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/ro.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/ru.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/sk.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/th.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/tr.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/uk.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/zh-TW.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/locales/zh.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/canvas-to-blob.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/canvas-to-blob.min.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/purify.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/purify.min.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/sortable.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
+    </File>
+    <File Include="Content/FileInput/js/plugins/sortable.min.js">
+      <publishTime>06/23/2016 14:11:30</publishTime>
     </File>
     <File Include="Content/Fonts/glyphicons-halflings-regular.eot">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/glyphicons-halflings-regular.svg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/glyphicons-halflings-regular.woff">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/icomoon.eot">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/icomoon.svg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/icomoon.ttf">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Fonts/icomoon.woff">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/demo-files/demo.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/demo-files/demo.js">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/demo.html">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/Read Me.txt">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/selection.json">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Icomoon/style.css">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio1.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio10.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio2.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio3.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio4.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio5.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio6.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio7.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio8.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Accesorios/Accesorio9.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background-new-2.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background-new.jpg">
-      <publishTime>05/23/2016 19:18:18</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background4.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background5.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/background6.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/background7.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/HTTPS_icon.png">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/imagen1.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/imagen2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/imagen3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato1.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato10.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato11.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato12.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato13.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato14.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato15.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato16.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato17.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato18.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato19.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato20.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato21.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato22.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato23.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato24.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato25.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato4.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato5.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato6.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato7.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato8.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Militar/Zapato9.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/paisaje1.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/paisaje2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/payu%402x.png">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Content/Images/S_vueltiao.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato10.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato11.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato12.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato13.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato14.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato15.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato16.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato17.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato18.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato19.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_Perfil_2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_Perfil_2_Small.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_Perfil_3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_Perfil_3_Small.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_Small.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato1_w.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato20.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato21.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato22.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato23.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato24.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato25.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato26.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato27.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato28.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato29.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato2_w.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato30.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato31.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato32.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato33.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato4.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato5.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato6.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato7.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato8.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Tacones/Zapato9.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato1.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato1AR.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato1AR.png">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato2.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato2AR.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato2AR.png">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato3.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato3AR.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato4AR.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Images/Zapato5AR.jpg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:57</publishTime>
     </File>
     <File Include="Content/Videos/video.mp4">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:32:31</publishTime>
     </File>
     <File Include="Scripts/Boostrap/main.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/plugins.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/bootstrap.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/bootstrap.min.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/jquery-1.11.2.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/jquery-1.11.2.min.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Boostrap/Vendor/npm.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Security/Principal.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:32:57</publishTime>
     </File>
     <File Include="Scripts/Security/ProductDetail.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
     </File>
     <File Include="Scripts/Zoom/jquery.elevateZoom-3.0.8.min.js">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>05/26/2016 19:06:58</publishTime>
+    </File>
+    <File Include="Versioning.txt">
+      <publishTime>06/27/2016 20:32:57</publishTime>
     </File>
     <File Include="Views/NotFund/404.html">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:24:39</publishTime>
     </File>
     <File Include="Views/Purchasing/PurchaseSummary.cshtml">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:24:40</publishTime>
     </File>
     <File Include="Views/Security/Principal.cshtml">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:45:09</publishTime>
     </File>
     <File Include="Views/Security/ProductDetail.cshtml">
-      <publishTime>05/23/2016 20:20:03</publishTime>
+      <publishTime>06/27/2016 20:24:40</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>06/27/2016 20:24:41</publishTime>
+    </File>
+    <File Include="Views/Shoes/Colores.cshtml">
+      <publishTime>06/27/2016 20:24:41</publishTime>
+    </File>
+    <File Include="Views/Shoes/CrearColor.cshtml">
+      <publishTime>06/27/2016 20:24:41</publishTime>
+    </File>
+    <File Include="Views/Shoes/CrearTipoZapato.cshtml">
+      <publishTime>06/27/2016 20:24:42</publishTime>
+    </File>
+    <File Include="Views/Shoes/CrearZapato.cshtml">
+      <publishTime>06/27/2016 20:24:42</publishTime>
+    </File>
+    <File Include="Views/Shoes/EditarColor.cshtml">
+      <publishTime>06/27/2016 20:24:42</publishTime>
+    </File>
+    <File Include="Views/Shoes/EditarTipoZapato.cshtml">
+      <publishTime>06/27/2016 20:24:43</publishTime>
+    </File>
+    <File Include="Views/Shoes/Imagenes.cshtml">
+      <publishTime>06/27/2016 20:24:43</publishTime>
+    </File>
+    <File Include="Views/Shoes/TiposZapatos.cshtml">
+      <publishTime>06/27/2016 20:24:43</publishTime>
+    </File>
+    <File Include="Views/Shoes/Zapatos.cshtml">
+      <publishTime>06/27/2016 20:24:44</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>05/23/2016 19:18:19</publishTime>
+      <publishTime>06/27/2016 20:24:39</publishTime>
     </File>
     <File Include="Web References/wsSoftBottin/Reference.map">
       <publishTime>05/23/2016 19:37:29</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/23/2016 21:16:11</publishTime>
+      <publishTime>06/27/2016 21:36:26</publishTime>
     </File>
   </ItemGroup>
 </Project>

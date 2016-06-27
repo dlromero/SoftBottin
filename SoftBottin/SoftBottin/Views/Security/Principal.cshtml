@@ -1,5 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    System.Data.DataSet dsResult = (System.Data.DataSet)ViewBag.ShoeTypes;
+    List<SoftBottin.Models.Shoes.cShoesByType> poShoesByType = (List<SoftBottin.Models.Shoes.cShoesByType>)ViewBag.ShoesByType;
 }
 
 <section class="app-seccion2">
@@ -28,7 +31,7 @@
                 </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-1"></div>
-            <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
                 <h2 class="app-titulo2">
                     <span class="glyphicon glyphicon-send app-glyphicon3"></span>
                     Paso 2
@@ -52,7 +55,7 @@
                 </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-1"></div>
-            <div class="col-xs-12 col-sm-12 col-md-3 app-borde-pasos">
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
                 <h2 class="app-titulo2">
                     <span class="glyphicon glyphicon-check app-glyphicon3"></span>
                     Paso 3
@@ -75,12 +78,12 @@
             </div>
 
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h1 class="app-titulo">Puedes ver los pasos en <span class="app-resaltar">video</span>:</h1>
-                @*<video controls poster="@Url.Content("~/Content/Images/Zapato3.jpg")" class="img-responsive app-video">
-                    <source src="@Url.Content("~/Content/videos/video.mp4")"></source>
-                </video>*@
-            </div>
+            @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="app-titulo">Puedes ver los pasos en <span class="app-resaltar">video</span>:</h1>
+                    <video controls poster="@Url.Content("~/Content/Images/Zapato3.jpg")" class="img-responsive app-video">
+                        <source src="@Url.Content("~/Content/videos/video.mp4")"></source>
+                    </video>
+                </div>*@
         </div>
     </div>
 </section>
@@ -214,195 +217,75 @@
 <section class="app-seccion5" id="lastCollection">
     <div class="container">
         <div class="row">
-            <h1 class="app-titulo"><span class="app-resaltar">Nueva colección (Tacónes)</span> Abril de 2016 </h1>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                    <h2 class="app-titulo2">
-                        Tacón Charol Beige
-                    </h2>
-                    <p class="app-separador"></p>
-                    <img src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG" alt="" class="img-responsive">
+            @foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
+            {
 
-                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
-                        Ver Detalle
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 1
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 2
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        80.000
-                    </div>
-                    <br />
-                    <br />
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045','Tacón Charol Beige', '80000', 'red', '40')">
-                            Agregar
-                        </span>
 
-                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                            Comprar
-                        </span>
-                    </div>
-                </div>
+                {
+                    List<SoftBottin.Models.Shoes.cShoesByType>
+                                query = (from rsl in poShoesByType.ToList()
+                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
+                                         select rsl).ToList();
 
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                    <h2 class="app-titulo2">
-                        Tacón Charol Rosa
-                    </h2>
-                    <p class="app-separador"></p>
-                    <img src="http://www.zapatoria.com/es/img2/2011/11/pb077546-13855.JPG" alt="" class="img-responsive">
-                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5235")"'>
-                        Ver Detalle
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        150.000
-                    </div>
-                    <br />
-                    <br />
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                        <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553046', 'Tacón Charol Rosa', '150000', 'black', '35')">
-                            Agregar
-                        </span>
+                    if (query.ToList().Count > 0)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                            Comprar
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
-                    <h2 class="app-titulo2">
-                        Tacón Escarchado
-                    </h2>
-                    <p class="app-separador">
-                    </p>
-                    <img src="http://es.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bot%C3%ADn-skylight-zapatos--A9SQ1FSU02_PM2_Front%20view.jpg" alt="" class="img-responsive">
-                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5285")"'>
-                        Ver Detalle
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        150.000
-                    </div>
-                    <br />
-                    <br />
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                        <span class=" glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553047', 'Tacón Escarchado', '150000', 'black', '36')">
-                            Agregar
-                        </span>
+                            <h1 class="app-titul-o"><span class="app-resaltar">&#128561; @item["Name"].ToString().ToUpper() &#128525;</span></h1>
+                        </div>
+                    }
 
-                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
-                            Comprar
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <h2 class="app-titulo2">
-                        Tacón Azul Gamusa
-                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553048', '150.000', 'pink', '35')"></span>
-                    </h2>
-                    <p class="app-separador"></p>
-                    <img src="http://es.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bot%C3%ADn-skylight-zapatos--A9SQ1FSU02_PM2_Front%20view.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        150.000
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                    <h2 class="app-titulo2">
-                        Tacón Grueso Verde
-                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553049', '150.000', 'black', '38')"></span>
-                    </h2>
-                    <p class="app-separador"></p>
-                    <img src="http://www.zapatoria.com/es/img2/2011/11/pb097850-14126.JPG" alt="" class="img-responsive">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        150.000
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                <div class="col-xs-12 col-sm-12 col-md-12 app-margen-inferior-catalogo">
-                    <h2 class="app-titulo2">
-                        Tacón Rojo Rosa
-                        <span class="pull-right glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553050', '150.000', 'black', '39')"></span>
-                    </h2>
-                    <p class="app-separador"></p>
-                    <img src="http://es.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bot%C3%ADn-skylight-zapatos--A9SQ1FSU02_PM2_Front%20view.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-ok"></span>
-                        Existentes: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-adjust"></span>
-                        Colores: 3
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
-                        <span class="pull-left glyphicon glyphicon-usd"></span>
-                        150.000
-                    </div>
-                </div>
-            </div>
+                    foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
+                    {
+                        <text>
+                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 app-hover-detail">
+                                    <h2 class="app-titulo2">
+                                        @itShoe.sName
+                                    </h2>
+                                    <p class="app-separador"></p>
+                                    <a href="#" class="thumbnail">
+                                        <img src="@itShoe.simgSrc" alt="" class="img-responsive" style="width: 340px;height: 255px;">
+                                    </a>
+
+                                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
+                                        Ver Detalle
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
+                                        <span class="pull-left glyphicon glyphicon-ok"></span>
+                                        Existentes: 1
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
+                                        <span class="pull-left glyphicon glyphicon-adjust"></span>
+                                        Colores: 2
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
+                                        <span class="pull-left glyphicon glyphicon-usd"></span>
+                                        @itShoe.fSalePrice
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
+                                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045','Tacón Charol Beige', '80000', 'red', '40')">
+                                            Agregar
+                                        </span>
+
+                                        <span class=" glyphicon glyphicon-gift app-glyphicon2" onclick="goPurchasingSummary()">
+                                            Comprar
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </text>
+                    }
+                }
+
+
+            }
+
 
         </div>
     </div>
@@ -454,5 +337,5 @@
     </div>
 </section>
 
-@Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"));
+@Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"))
 

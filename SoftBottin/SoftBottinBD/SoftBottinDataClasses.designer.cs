@@ -33,9 +33,9 @@ namespace SoftBottinBD
     partial void InsertColor(Color instance);
     partial void UpdateColor(Color instance);
     partial void DeleteColor(Color instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertUserAccount(UserAccount instance);
+    partial void UpdateUserAccount(UserAccount instance);
+    partial void DeleteUserAccount(UserAccount instance);
     partial void InsertImage(Image instance);
     partial void UpdateImage(Image instance);
     partial void DeleteImage(Image instance);
@@ -54,9 +54,9 @@ namespace SoftBottinBD
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
-    partial void InsertUserAccount(UserAccount instance);
-    partial void UpdateUserAccount(UserAccount instance);
-    partial void DeleteUserAccount(UserAccount instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public SoftBottinDataClassesDataContext() : 
@@ -97,11 +97,11 @@ namespace SoftBottinBD
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<UserAccount> UserAccounts
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<UserAccount>();
 			}
 		}
 		
@@ -153,11 +153,11 @@ namespace SoftBottinBD
 			}
 		}
 		
-		public System.Data.Linq.Table<UserAccount> UserAccounts
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<UserAccount>();
+				return this.GetTable<User>();
 			}
 		}
 	}
@@ -300,39 +300,25 @@ namespace SoftBottinBD
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserAccount")]
+	public partial class UserAccount : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private string _FirstName;
+		private int _UserId;
 		
-		private string _LastName;
+		private string _Password;
 		
-		private string _Email;
+		private string _UserName;
 		
-		private string _Phone1;
+		private int _RoleId;
 		
-		private string _Phone2;
+		private EntityRef<Role> _Role;
 		
-		private string _AccountFacebook;
-		
-		private string _AccountTwitter;
-		
-		private string _AccountGooglePlus;
-		
-		private string _Address1;
-		
-		private string _Address2;
-		
-		private string _Genre;
-		
-		private EntitySet<Invoice> _Invoices;
-		
-		private EntitySet<UserAccount> _UserAccounts;
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -340,34 +326,20 @@ namespace SoftBottinBD
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPhone1Changing(string value);
-    partial void OnPhone1Changed();
-    partial void OnPhone2Changing(string value);
-    partial void OnPhone2Changed();
-    partial void OnAccountFacebookChanging(string value);
-    partial void OnAccountFacebookChanged();
-    partial void OnAccountTwitterChanging(string value);
-    partial void OnAccountTwitterChanged();
-    partial void OnAccountGooglePlusChanging(string value);
-    partial void OnAccountGooglePlusChanged();
-    partial void OnAddress1Changing(string value);
-    partial void OnAddress1Changed();
-    partial void OnAddress2Changing(string value);
-    partial void OnAddress2Changed();
-    partial void OnGenreChanging(string value);
-    partial void OnGenreChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
     #endregion
 		
-		public User()
+		public UserAccount()
 		{
-			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
-			this._UserAccounts = new EntitySet<UserAccount>(new Action<UserAccount>(this.attach_UserAccounts), new Action<UserAccount>(this.detach_UserAccounts));
+			this._Role = default(EntityRef<Role>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -391,249 +363,159 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(100)")]
-		public string FirstName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
 		{
 			get
 			{
-				return this._FirstName;
+				return this._UserId;
 			}
 			set
 			{
-				if ((this._FirstName != value))
+				if ((this._UserId != value))
 				{
-					this.OnFirstNameChanging(value);
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
 					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(100)")]
-		public string LastName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Password
 		{
 			get
 			{
-				return this._LastName;
+				return this._Password;
 			}
 			set
 			{
-				if ((this._LastName != value))
+				if ((this._Password != value))
 				{
-					this.OnLastNameChanging(value);
+					this.OnPasswordChanging(value);
 					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Email
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
 		{
 			get
 			{
-				return this._Email;
+				return this._UserName;
 			}
 			set
 			{
-				if ((this._Email != value))
+				if ((this._UserName != value))
 				{
-					this.OnEmailChanging(value);
+					this.OnUserNameChanging(value);
 					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone1", DbType="NVarChar(50)")]
-		public string Phone1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
+		public int RoleId
 		{
 			get
 			{
-				return this._Phone1;
+				return this._RoleId;
 			}
 			set
 			{
-				if ((this._Phone1 != value))
+				if ((this._RoleId != value))
 				{
-					this.OnPhone1Changing(value);
+					if (this._Role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRoleIdChanging(value);
 					this.SendPropertyChanging();
-					this._Phone1 = value;
-					this.SendPropertyChanged("Phone1");
-					this.OnPhone1Changed();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone2", DbType="NVarChar(50)")]
-		public string Phone2
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserAccount", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
+		public Role Role
 		{
 			get
 			{
-				return this._Phone2;
+				return this._Role.Entity;
 			}
 			set
 			{
-				if ((this._Phone2 != value))
+				Role previousValue = this._Role.Entity;
+				if (((previousValue != value) 
+							|| (this._Role.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnPhone2Changing(value);
 					this.SendPropertyChanging();
-					this._Phone2 = value;
-					this.SendPropertyChanged("Phone2");
-					this.OnPhone2Changed();
+					if ((previousValue != null))
+					{
+						this._Role.Entity = null;
+						previousValue.UserAccounts.Remove(this);
+					}
+					this._Role.Entity = value;
+					if ((value != null))
+					{
+						value.UserAccounts.Add(this);
+						this._RoleId = value.Id;
+					}
+					else
+					{
+						this._RoleId = default(int);
+					}
+					this.SendPropertyChanged("Role");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountFacebook", DbType="NVarChar(50)")]
-		public string AccountFacebook
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAccount", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._AccountFacebook;
+				return this._User.Entity;
 			}
 			set
 			{
-				if ((this._AccountFacebook != value))
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnAccountFacebookChanging(value);
 					this.SendPropertyChanging();
-					this._AccountFacebook = value;
-					this.SendPropertyChanged("AccountFacebook");
-					this.OnAccountFacebookChanged();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.UserAccounts.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.UserAccounts.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountTwitter", DbType="NVarChar(50)")]
-		public string AccountTwitter
-		{
-			get
-			{
-				return this._AccountTwitter;
-			}
-			set
-			{
-				if ((this._AccountTwitter != value))
-				{
-					this.OnAccountTwitterChanging(value);
-					this.SendPropertyChanging();
-					this._AccountTwitter = value;
-					this.SendPropertyChanged("AccountTwitter");
-					this.OnAccountTwitterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountGooglePlus", DbType="NVarChar(50)")]
-		public string AccountGooglePlus
-		{
-			get
-			{
-				return this._AccountGooglePlus;
-			}
-			set
-			{
-				if ((this._AccountGooglePlus != value))
-				{
-					this.OnAccountGooglePlusChanging(value);
-					this.SendPropertyChanging();
-					this._AccountGooglePlus = value;
-					this.SendPropertyChanged("AccountGooglePlus");
-					this.OnAccountGooglePlusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address1", DbType="NVarChar(50)")]
-		public string Address1
-		{
-			get
-			{
-				return this._Address1;
-			}
-			set
-			{
-				if ((this._Address1 != value))
-				{
-					this.OnAddress1Changing(value);
-					this.SendPropertyChanging();
-					this._Address1 = value;
-					this.SendPropertyChanged("Address1");
-					this.OnAddress1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address2", DbType="NVarChar(50)")]
-		public string Address2
-		{
-			get
-			{
-				return this._Address2;
-			}
-			set
-			{
-				if ((this._Address2 != value))
-				{
-					this.OnAddress2Changing(value);
-					this.SendPropertyChanging();
-					this._Address2 = value;
-					this.SendPropertyChanged("Address2");
-					this.OnAddress2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="NVarChar(50)")]
-		public string Genre
-		{
-			get
-			{
-				return this._Genre;
-			}
-			set
-			{
-				if ((this._Genre != value))
-				{
-					this.OnGenreChanging(value);
-					this.SendPropertyChanging();
-					this._Genre = value;
-					this.SendPropertyChanged("Genre");
-					this.OnGenreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_Invoices", ThisKey="Id", OtherKey="IdUser")]
-		public EntitySet<Invoice> Invoices
-		{
-			get
-			{
-				return this._Invoices;
-			}
-			set
-			{
-				this._Invoices.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAccount", Storage="_UserAccounts", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<UserAccount> UserAccounts
-		{
-			get
-			{
-				return this._UserAccounts;
-			}
-			set
-			{
-				this._UserAccounts.Assign(value);
 			}
 		}
 		
@@ -656,30 +538,6 @@ namespace SoftBottinBD
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserAccounts(UserAccount entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserAccounts(UserAccount entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Images")]
@@ -700,6 +558,12 @@ namespace SoftBottinBD
 		
 		private byte[] _Image1;
 		
+		private int _IdProduct;
+		
+		private bool _isPrincipal;
+		
+		private EntityRef<Product> _Product;
+		
 		private EntityRef<ProductDetail> _ProductDetail;
 		
     #region Extensibility Method Definitions
@@ -718,10 +582,15 @@ namespace SoftBottinBD
     partial void OnTypeChanged();
     partial void OnImage1Changing(byte[] value);
     partial void OnImage1Changed();
+    partial void OnIdProductChanging(int value);
+    partial void OnIdProductChanged();
+    partial void OnisPrincipalChanging(bool value);
+    partial void OnisPrincipalChanged();
     #endregion
 		
 		public Image()
 		{
+			this._Product = default(EntityRef<Product>);
 			this._ProductDetail = default(EntityRef<ProductDetail>);
 			OnCreated();
 		}
@@ -850,6 +719,84 @@ namespace SoftBottinBD
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProduct", DbType="Int NOT NULL")]
+		public int IdProduct
+		{
+			get
+			{
+				return this._IdProduct;
+			}
+			set
+			{
+				if ((this._IdProduct != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdProductChanging(value);
+					this.SendPropertyChanging();
+					this._IdProduct = value;
+					this.SendPropertyChanged("IdProduct");
+					this.OnIdProductChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isPrincipal", DbType="Bit NOT NULL")]
+		public bool isPrincipal
+		{
+			get
+			{
+				return this._isPrincipal;
+			}
+			set
+			{
+				if ((this._isPrincipal != value))
+				{
+					this.OnisPrincipalChanging(value);
+					this.SendPropertyChanging();
+					this._isPrincipal = value;
+					this.SendPropertyChanged("isPrincipal");
+					this.OnisPrincipalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Image", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.Images.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.Images.Add(this);
+						this._IdProduct = value.Id;
+					}
+					else
+					{
+						this._IdProduct = default(int);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Image", Storage="_ProductDetail", ThisKey="IdDetail", OtherKey="Id", IsForeignKey=true)]
 		public ProductDetail ProductDetail
 		{
@@ -925,9 +872,9 @@ namespace SoftBottinBD
 		
 		private int _QuantityPurchasedTotal;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<ProductDetail> _ProductDetail;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -951,8 +898,8 @@ namespace SoftBottinBD
 		
 		public Invoice()
 		{
-			this._User = default(EntityRef<User>);
 			this._ProductDetail = default(EntityRef<ProductDetail>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -1104,40 +1051,6 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_User", ThisKey="IdUser", OtherKey="Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Invoices.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Invoices.Add(this);
-						this._IdUser = value.Id;
-					}
-					else
-					{
-						this._IdUser = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Invoice", Storage="_ProductDetail", ThisKey="IdProductDetail", OtherKey="Id", IsForeignKey=true)]
 		public ProductDetail ProductDetail
 		{
@@ -1168,6 +1081,40 @@ namespace SoftBottinBD
 						this._IdProductDetail = default(int);
 					}
 					this.SendPropertyChanged("ProductDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_User", ThisKey="IdUser", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Invoices.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Invoices.Add(this);
+						this._IdUser = value.Id;
+					}
+					else
+					{
+						this._IdUser = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -1215,6 +1162,8 @@ namespace SoftBottinBD
 		
 		private int _Type;
 		
+		private EntitySet<Image> _Images;
+		
 		private EntitySet<ProductDetail> _ProductDetails;
 		
 		private EntityRef<ProductType> _ProductType;
@@ -1243,6 +1192,7 @@ namespace SoftBottinBD
 		
 		public Product()
 		{
+			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
 			this._ProductDetails = new EntitySet<ProductDetail>(new Action<ProductDetail>(this.attach_ProductDetails), new Action<ProductDetail>(this.detach_ProductDetails));
 			this._ProductType = default(EntityRef<ProductType>);
 			OnCreated();
@@ -1412,6 +1362,19 @@ namespace SoftBottinBD
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Image", Storage="_Images", ThisKey="Id", OtherKey="IdProduct")]
+		public EntitySet<Image> Images
+		{
+			get
+			{
+				return this._Images;
+			}
+			set
+			{
+				this._Images.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDetail", Storage="_ProductDetails", ThisKey="Id", OtherKey="IdProduct")]
 		public EntitySet<ProductDetail> ProductDetails
 		{
@@ -1477,6 +1440,18 @@ namespace SoftBottinBD
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Images(Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_Images(Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
 		}
 		
 		private void attach_ProductDetails(ProductDetail entity)
@@ -2112,25 +2087,39 @@ namespace SoftBottinBD
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserAccount")]
-	public partial class UserAccount : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private int _UserId;
+		private string _FirstName;
 		
-		private string _Password;
+		private string _LastName;
 		
-		private string _UserName;
+		private string _Email;
 		
-		private int _RoleId;
+		private string _Phone1;
 		
-		private EntityRef<Role> _Role;
+		private string _Phone2;
 		
-		private EntityRef<User> _User;
+		private string _AccountFacebook;
+		
+		private string _AccountTwitter;
+		
+		private string _AccountGooglePlus;
+		
+		private string _Address1;
+		
+		private string _Address2;
+		
+		private string _Genre;
+		
+		private EntitySet<UserAccount> _UserAccounts;
+		
+		private EntitySet<Invoice> _Invoices;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2138,20 +2127,34 @@ namespace SoftBottinBD
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPhone1Changing(string value);
+    partial void OnPhone1Changed();
+    partial void OnPhone2Changing(string value);
+    partial void OnPhone2Changed();
+    partial void OnAccountFacebookChanging(string value);
+    partial void OnAccountFacebookChanged();
+    partial void OnAccountTwitterChanging(string value);
+    partial void OnAccountTwitterChanged();
+    partial void OnAccountGooglePlusChanging(string value);
+    partial void OnAccountGooglePlusChanged();
+    partial void OnAddress1Changing(string value);
+    partial void OnAddress1Changed();
+    partial void OnAddress2Changing(string value);
+    partial void OnAddress2Changed();
+    partial void OnGenreChanging(string value);
+    partial void OnGenreChanged();
     #endregion
 		
-		public UserAccount()
+		public User()
 		{
-			this._Role = default(EntityRef<Role>);
-			this._User = default(EntityRef<User>);
+			this._UserAccounts = new EntitySet<UserAccount>(new Action<UserAccount>(this.attach_UserAccounts), new Action<UserAccount>(this.detach_UserAccounts));
+			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
 			OnCreated();
 		}
 		
@@ -2175,159 +2178,249 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
-		public int UserId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(100)")]
+		public string FirstName
 		{
 			get
 			{
-				return this._UserId;
+				return this._FirstName;
 			}
 			set
 			{
-				if ((this._UserId != value))
+				if ((this._FirstName != value))
 				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
+					this.OnFirstNameChanging(value);
 					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(100)")]
+		public string LastName
 		{
 			get
 			{
-				return this._Password;
+				return this._LastName;
 			}
 			set
 			{
-				if ((this._Password != value))
+				if ((this._LastName != value))
 				{
-					this.OnPasswordChanging(value);
+					this.OnLastNameChanging(value);
 					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string UserName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Email
 		{
 			get
 			{
-				return this._UserName;
+				return this._Email;
 			}
 			set
 			{
-				if ((this._UserName != value))
+				if ((this._Email != value))
 				{
-					this.OnUserNameChanging(value);
+					this.OnEmailChanging(value);
 					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
-		public int RoleId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone1", DbType="NVarChar(50)")]
+		public string Phone1
 		{
 			get
 			{
-				return this._RoleId;
+				return this._Phone1;
 			}
 			set
 			{
-				if ((this._RoleId != value))
+				if ((this._Phone1 != value))
 				{
-					if (this._Role.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRoleIdChanging(value);
+					this.OnPhone1Changing(value);
 					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
+					this._Phone1 = value;
+					this.SendPropertyChanged("Phone1");
+					this.OnPhone1Changed();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserAccount", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
-		public Role Role
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone2", DbType="NVarChar(50)")]
+		public string Phone2
 		{
 			get
 			{
-				return this._Role.Entity;
+				return this._Phone2;
 			}
 			set
 			{
-				Role previousValue = this._Role.Entity;
-				if (((previousValue != value) 
-							|| (this._Role.HasLoadedOrAssignedValue == false)))
+				if ((this._Phone2 != value))
 				{
+					this.OnPhone2Changing(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Role.Entity = null;
-						previousValue.UserAccounts.Remove(this);
-					}
-					this._Role.Entity = value;
-					if ((value != null))
-					{
-						value.UserAccounts.Add(this);
-						this._RoleId = value.Id;
-					}
-					else
-					{
-						this._RoleId = default(int);
-					}
-					this.SendPropertyChanged("Role");
+					this._Phone2 = value;
+					this.SendPropertyChanged("Phone2");
+					this.OnPhone2Changed();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAccount", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
-		public User User
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountFacebook", DbType="NVarChar(50)")]
+		public string AccountFacebook
 		{
 			get
 			{
-				return this._User.Entity;
+				return this._AccountFacebook;
 			}
 			set
 			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
+				if ((this._AccountFacebook != value))
 				{
+					this.OnAccountFacebookChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.UserAccounts.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.UserAccounts.Add(this);
-						this._UserId = value.Id;
-					}
-					else
-					{
-						this._UserId = default(int);
-					}
-					this.SendPropertyChanged("User");
+					this._AccountFacebook = value;
+					this.SendPropertyChanged("AccountFacebook");
+					this.OnAccountFacebookChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountTwitter", DbType="NVarChar(50)")]
+		public string AccountTwitter
+		{
+			get
+			{
+				return this._AccountTwitter;
+			}
+			set
+			{
+				if ((this._AccountTwitter != value))
+				{
+					this.OnAccountTwitterChanging(value);
+					this.SendPropertyChanging();
+					this._AccountTwitter = value;
+					this.SendPropertyChanged("AccountTwitter");
+					this.OnAccountTwitterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountGooglePlus", DbType="NVarChar(50)")]
+		public string AccountGooglePlus
+		{
+			get
+			{
+				return this._AccountGooglePlus;
+			}
+			set
+			{
+				if ((this._AccountGooglePlus != value))
+				{
+					this.OnAccountGooglePlusChanging(value);
+					this.SendPropertyChanging();
+					this._AccountGooglePlus = value;
+					this.SendPropertyChanged("AccountGooglePlus");
+					this.OnAccountGooglePlusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address1", DbType="NVarChar(50)")]
+		public string Address1
+		{
+			get
+			{
+				return this._Address1;
+			}
+			set
+			{
+				if ((this._Address1 != value))
+				{
+					this.OnAddress1Changing(value);
+					this.SendPropertyChanging();
+					this._Address1 = value;
+					this.SendPropertyChanged("Address1");
+					this.OnAddress1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address2", DbType="NVarChar(50)")]
+		public string Address2
+		{
+			get
+			{
+				return this._Address2;
+			}
+			set
+			{
+				if ((this._Address2 != value))
+				{
+					this.OnAddress2Changing(value);
+					this.SendPropertyChanging();
+					this._Address2 = value;
+					this.SendPropertyChanged("Address2");
+					this.OnAddress2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="NVarChar(50)")]
+		public string Genre
+		{
+			get
+			{
+				return this._Genre;
+			}
+			set
+			{
+				if ((this._Genre != value))
+				{
+					this.OnGenreChanging(value);
+					this.SendPropertyChanging();
+					this._Genre = value;
+					this.SendPropertyChanged("Genre");
+					this.OnGenreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAccount", Storage="_UserAccounts", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<UserAccount> UserAccounts
+		{
+			get
+			{
+				return this._UserAccounts;
+			}
+			set
+			{
+				this._UserAccounts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_Invoices", ThisKey="Id", OtherKey="IdUser")]
+		public EntitySet<Invoice> Invoices
+		{
+			get
+			{
+				return this._Invoices;
+			}
+			set
+			{
+				this._Invoices.Assign(value);
 			}
 		}
 		
@@ -2349,6 +2442,30 @@ namespace SoftBottinBD
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_UserAccounts(UserAccount entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserAccounts(UserAccount entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }

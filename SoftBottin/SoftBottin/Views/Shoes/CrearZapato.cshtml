@@ -17,10 +17,11 @@
 
 
 <section class="app-tipos-zapatos">
-    <h2>Crear Zapato</h2>    
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>Crear Zapato</h2>
                 @using (Html.BeginForm("CrearZapato", "Shoes", FormMethod.Post, new { onsubmit = "return preSave();" }))
                 {
                     @Html.ValidationSummary(true)
@@ -65,12 +66,12 @@
                         <p class="help-block">Ingrese la referencia del zapato.</p>
                     </div>
                     <div class="form-group">
-                        <label for="ref">Costo</label>
+                        <label for="iCost">Costo</label>
                         @Html.TextBoxFor(dina => dina.iCost,
                                          new
                                          {
                                              @class = "form-control",
-                                             id = "ref",
+                                             id = "iCost",
                                              placeholder = "Ingrese Costos",
                                              maxlength = "100"
                                          })
@@ -79,12 +80,12 @@
                         <p class="help-block">Ingrese el costo.</p>
                     </div>
                     <div class="form-group">
-                        <label for="ref">Precio</label>
+                        <label for="iPrice">Precio</label>
                         @Html.TextBoxFor(dina => dina.iPrice,
                                          new
                                          {
                                              @class = "form-control",
-                                             id = "ref",
+                                             id = "iPrice",
                                              placeholder = "Ingrese Precio",
                                              maxlength = "100"
                                          })
@@ -94,8 +95,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ref">Tipo de zapato</label>
-                        @Html.DropDownListFor(mdl => mdl.iShoeType, lsShoesTypes, "Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                        <label for="lsShoesTypes">Tipo de zapato</label>
+                        @Html.DropDownListFor(mdl => mdl.iShoeType, lsShoesTypes.OrderBy(rsl => rsl.Text), "Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
                         <p class="help-block">Seleccione un tipo de zapato.</p>
                     </div>
 
@@ -106,8 +107,8 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <label for="ref">Seleccione un color</label>
-                                    @Html.DropDownListFor(mdl => mdl.iColor, lsColors, "Color", new { @class = "form-control", id = "lsColors" })
+                                    <label for="lsColors">Seleccione un color</label>
+                                    @Html.DropDownListFor(mdl => mdl.iColor, lsColors.OrderBy(rsl => rsl.Text), "Color", new { @class = "form-control", id = "lsColors" })
                                     @Html.ValidationMessageFor(model => model.iColor)
 
                                     <p class="help-block">Seleccione un color.</p>
@@ -139,7 +140,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="ref">Seleccione las tallas</label>
+                                    <label for="lsSize">Seleccione las tallas</label>
 
                                     <select class="selectpicker form-control app-tallas" multiple data-selected-text-format="count > 3" id="lsSize">
                                         <option>34</option>
@@ -163,6 +164,14 @@
 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="alert alert-danger" style="display:none" role="alert" id="altError">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Bienvenido!</strong> accediste con éxito.
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="container">
 
@@ -182,8 +191,49 @@
 
                         function preSave() {
 
+
+
+                            if ($("#input-1").fileinput().data().fileinput.ajaxRequests.length == 0) {
+                                var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
+                                           '<strong>Cuidado!</strong> Es necesario que suba la foto frontal.';
+                                $("#altError").html(result);
+                                $("#altError").show();
+                                return false;
+                            } else
+                                if ($("#input-2").fileinput().data().fileinput.ajaxRequests.length == 0) {
+                                    var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
+                                           '<strong>Cuidado!</strong> Es necesario que suba la foto lateral.';
+                                    $("#altError").html(result);
+                                    $("#altError").show();
+                                    return false;
+                                } else
+                                    if ($("#input-3").fileinput().data().fileinput.ajaxRequests.length == 0) {
+                                        var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
+                                           '<strong>Cuidado!</strong> Es necesario que suba la foto trasera.';
+                                        $("#altError").html(result);
+                                        $("#altError").show();
+                                        return false;
+                                    } else {
+                                        $("#altError").hide();
+                                    }
+
+                            if ($("#lsSize").val() == null) {
+                                var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
+                                             '<strong>Cuidado!</strong> Es necesario que selecciones al menos 1 talla.';
+                                $("#altError").html(result);
+                                $("#altError").show();
+                                return false;
+                            } else {
+                                $("#altError").hide();
+                            }
+
+                           
+
                             var childrenInput = $("#Sizes").children('*').children(".panel-body").children(".form-group").children("input");
                             var valueSelect = $("#lsSize").val();
+
+
+
 
                             jQuery.each(childrenInput, function (i, val) {
                                 var myObject = {
@@ -202,29 +252,35 @@
                         }
 
                         $("#lsSize").change(function () {
+
+                            $("#Sizes").html("");
                             var htmlFinal = "";
 
                             var valueSelect = $("#lsSize").val();
 
-                            htmlFinal = htmlFinal +
+                            $.each(valueSelect, function (index, value) {
+                                htmlFinal = htmlFinal +
                                         '<div class="panel panel-default panel-info">' +
                                         '<div class="panel-heading ">' +
-                                        'Cantidad existente para la talla: <span class="badge">' + valueSelect[valueSelect.length - 1] + '</span>' +
+                                        'Cantidad existente para la talla: <span class="badge">' + value + '</span>' +
                                         '</div>' +
                                         '<div class="panel-body">' +
                                         '<div class="form-group">' +
-                                        '<label for="ref">Ingrese la cantidad existente por talla</label>' +
-                                        '<input class="form-control" id="Quantity" maxlength="100" name="Quantity" placeholder="Ingrese Cantidad" type="text" value="">' +
+                                        '<label for="Quantity-' + index + '">Ingrese la cantidad existente por talla</label>' +
+                                        '<input class="form-control" id="Quantity-' + index + '" maxlength="100" name="Quantity-' + index + '" placeholder="Ingrese Cantidad" type="text" value="" required>' +
                                          '<p class="help-block">Ingrese la cantidad existente por talla.</p>' +
                                          '</div>' +
                                          '</div>' +
                                         '</div>';
+                            });
+
+
                             $("#Sizes").append(htmlFinal);
                         });
 
                     </script>
 
-                }                                
+                }
             </div>
         </div>
     </div>

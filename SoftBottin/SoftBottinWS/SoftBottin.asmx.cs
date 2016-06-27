@@ -205,7 +205,7 @@ namespace SoftBottinWS
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, out string sErrMessage)
+        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
         {
             try
             {
@@ -217,7 +217,9 @@ namespace SoftBottinWS
                     Description = sName,
                     Name = sName,
                     Type = sType,
-                    Image1 = btFileByte
+                    Image1 = btFileByte,
+                    IdProduct = iProductId,
+                    isPrincipal = bIsPrincipal
                 };
 
                 dbConection.Images.InsertOnSubmit(niImage);
@@ -253,6 +255,58 @@ namespace SoftBottinWS
                 if (imag.ToList().Count > 0)
                 {
                     dsShoes = cUtilities.ToDataSet(imag.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dsShoes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetShoes(out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var products = from rsl in dbConection.Products
+                               join img in dbConection.Images
+                                 on rsl.Id equals img.IdProduct
+                               where img.isPrincipal.Equals(true)
+                               select new
+                               {
+                                   Id = rsl.Id,
+                                   Name = rsl.Name,
+                                   Description = rsl.Description,
+                                   QuantityExisting = rsl.QuantityExisting,
+                                   QuantitySold = rsl.QuantitySold,
+                                   PurchasePrice = rsl.PurchasePrice,
+                                   SalePrice = rsl.SalePrice,
+                                   ShoeType = rsl.Type,
+                                   ShoeImage = img.Image1
+                               };
+
+                if (products.ToList().Count > 0)
+                {
+                    dsShoes = cUtilities.ToDataSet(products.ToList());
                     sErrMessage = "";
                     return true;
                 }

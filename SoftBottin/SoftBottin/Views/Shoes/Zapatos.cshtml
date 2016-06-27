@@ -38,7 +38,7 @@
                     <br />
                     <br />
                     <br />
-                    @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes, "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
+                    @Html.DropDownListFor(mdl => mdl.iId, lsShoesTypes.OrderBy(rsl => rsl.Text), "Seleccione un Tipo de Zapato", new { @class = "form-control", id = "lsShoesTypes" })
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -62,7 +62,7 @@
 <script type="text/javascript">
 
 
-    
+
 
     $(document).ajaxStart(function () {
         $('.progress-bar').css('width', '0%').attr('aria-valuenow', '0');
@@ -78,7 +78,7 @@
         $('.progress-bar').css('width', '50%').attr('aria-valuenow', '50');
         $('.progress-bar').html('50% completado');
         $('.progress-bar').css('width', '60%').attr('aria-valuenow', '60');
-        $('.progress-bar').html('60% completado');       
+        $('.progress-bar').html('60% completado');
 
     });
 

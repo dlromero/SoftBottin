@@ -158,7 +158,9 @@
     }
 
 .app-seccion2 {
-    margin: 61px 0;
+    /*margin: 61px 0;*/
+    padding-top: 61px;
+    padding-bottom: 20px;
     background: #f7f8fa;
 }
 
@@ -353,12 +355,14 @@
 }
 
 .app-hover-detail:hover {
-    border: 1px solid rgba(0, 0, 255, 0.4);
-    padding: 1em;
+    border: 1px solid rgba(236, 64, 122, 0.68);
+    /*padding: 1em;*/
     /*background-color: rgb(0, 128, 214);*/
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: black;
     cursor: pointer;
+    padding-bottom: 1em;
+    padding-top: 1em;
 }
 
     .app-hover-detail:hover > .app-detalle {
@@ -397,8 +401,8 @@ td, th {
 }
 
 .app-detalle {
-    display: none;
-    background-color: orange;
+    display: block;
+    background-color: rgba(236, 64, 122, 0.68);
     color: white;
     text-align: center;
     padding: 10px;
