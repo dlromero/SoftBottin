@@ -251,7 +251,10 @@ namespace SoftBottin.Controllers
                 DataSet dsUser = new DataSet();
                 bool bAccess = niSecurity.SignIn(user.sFirstName, user.sLastName, user.sEmail, user.sPassword, out sErrMsj);
 
-                TempData["SignIn"] = true;
+                if (bAccess)
+                {
+                    TempData["SignIn"] = true;
+                }
 
                 return new JsonResult()
                 {

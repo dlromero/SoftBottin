@@ -698,7 +698,7 @@ namespace SoftBottinBD
 		
 		private string _Type;
 		
-		private System.Data.Linq.Binary _Image1;
+		private byte[] _Image1;
 		
 		private EntityRef<ProductDetail> _ProductDetail;
 		
@@ -716,7 +716,7 @@ namespace SoftBottinBD
     partial void OnDescriptionChanged();
     partial void OnTypeChanging(string value);
     partial void OnTypeChanged();
-    partial void OnImage1Changing(System.Data.Linq.Binary value);
+    partial void OnImage1Changing(byte[] value);
     partial void OnImage1Changed();
     #endregion
 		
@@ -831,7 +831,7 @@ namespace SoftBottinBD
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Image", Storage="_Image1", DbType="Image NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Image1
+		public byte[] Image1
 		{
 			get
 			{

@@ -250,6 +250,9 @@
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div id="dvMessagePasswordConfirmSignIn" class="help-block hidden">¡Confirma tu contraseña, por seguridad!</div>
                         </div>
+                        <div class="alert alert-danger" style="display:none;" role="alert" id="altErrorSignIn">
+                            <strong>Usuario ya esta registrado!</strong>
+                        </div>
                         <button type="submit" class="btn btn-success btn-block" id="btnSignIn">Registrate</button>
                     </form>
                 </div>
@@ -264,7 +267,7 @@
         @if (TempData["userName"] != null)
         {
             <div class="row">
-                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4em;">
+                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4.5em;">
                     <div class="alert alert-success " role="alert" id="altSuccess">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Bienvenido!</strong> accediste con éxito.
@@ -276,7 +279,7 @@
         @if (TempData["SignIn"] != null)
         {
             <div class="row">
-                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4em;">
+                <div class="col-md-12 text-center navbar-fixed-top" style="margin-top: 4.5em;">
                     <div class="alert alert-success " role="alert" id="altSuccess">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Quedaste registrado con éxtio!</strong> por favor accede.

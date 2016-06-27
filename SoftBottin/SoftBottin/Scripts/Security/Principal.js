@@ -562,7 +562,7 @@ function SignIn(piFirstName, piLastName, piEmail, piPassword) {
                 ChangeFormControlColor("formErorMessageLogIn", "error");
                 ChangeGlyphiconColor("spGlyphiconErrorSigIn", "remove");
                 ChangeDivMessageShow("dvMessageErrorLogIn", "¡Tu usuario o contraseña son incorrectos!");
-                $("#altErrorLogIn").show();
+                $("#altErrorSignIn").show();
 
             }
 
