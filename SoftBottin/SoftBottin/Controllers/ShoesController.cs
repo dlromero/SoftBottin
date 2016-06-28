@@ -108,10 +108,13 @@ namespace SoftBottin.Controllers
         {
             try
             {
+
                 if (!CheckSession())
                 {
                    return View("../Security/Principal");
                 }
+
+                Session.Remove("lsFilesFinal");
 
                 cShoeType niShoeType = new cShoeType();
                 DataSet dsShoesTypes = new DataSet();

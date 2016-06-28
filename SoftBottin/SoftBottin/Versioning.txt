@@ -275,6 +275,26 @@ Actualización Vistas		:	D:\ZAW\Zapatos\GitHub\SoftBottin\SoftBottin\Views\Share
 
 Upgrade
 
+
+
+
+
+******************************************************************************************************************************
+		     Version: 1.0.0.14
+		       Autor: Daniel Romero
+			   Fecha: 28 de Junio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Views\Security\Principal.cshtml	Edit
+								D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Views\Shoes\CrearZapato.cshtml	Edit
+
+
+
+
+Actualización Controlador	:	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
+
+
 	
 
 

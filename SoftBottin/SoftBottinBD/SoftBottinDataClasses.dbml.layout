@@ -56,7 +56,7 @@
         <elementListCompartment Id="6b416683-3965-46b1-a4fa-2bec1f76ba66" absoluteBounds="6.265, 7.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 3.65625); (9 : 3.65625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 3.65625); (8.54166666666667 : 3.65625 : JumpStart); (8.70833333333333 : 3.65625 : JumpEnd); (9 : 3.65625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SoftBottinDataClassesDataContext/Product/Product_Image" />
       <nodes>
         <classShapeMoniker Id="bbf4c979-7564-43ec-b029-c30303ae2553" />

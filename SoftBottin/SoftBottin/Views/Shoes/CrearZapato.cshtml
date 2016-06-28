@@ -217,7 +217,7 @@
                                         $("#altError").hide();
                                     }
 
-                            if ($("#lsSize").val() == null) {
+                            if ($("#lsSize").val() == null || $("#lsSize").val() == "") {
                                 var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
                                              '<strong>Cuidado!</strong> Es necesario que selecciones al menos 1 talla.';
                                 $("#altError").html(result);
@@ -227,7 +227,18 @@
                                 $("#altError").hide();
                             }
 
-                           
+
+                            if ($("#lsColors").val() == null || $("#lsColors").val() == "") {
+                                var result = '<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>' +
+                                             '<strong>Cuidado!</strong> Es necesario que selecciones un color.';
+                                $("#altError").html(result);
+                                $("#altError").show();
+                                return false;
+                            } else {
+                                $("#altError").hide();
+                            }
+
+
 
                             var childrenInput = $("#Sizes").children('*').children(".panel-body").children(".form-group").children("input");
                             var valueSelect = $("#lsSize").val();
