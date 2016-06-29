@@ -5,6 +5,8 @@
     List<SoftBottin.Models.Shoes.cShoesByType> poShoesByType = (List<SoftBottin.Models.Shoes.cShoesByType>)ViewBag.ShoesByType;
 }
 
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js' ></script>
+
 <section class="app-seccion2">
     <div class="container">
         <div class="row">
@@ -257,11 +259,11 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 ">
                                     <div class="col-xs-4 col-sm-4 col-md-5 app-info-purchase">
                                         <span class="pull-left glyphicon glyphicon-ok"></span>
-                                        Existentes: 1
+    Existentes: 1
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4 app-info-purchase">
                                         <span class="pull-left glyphicon glyphicon-adjust"></span>
-                                        Colores: 2
+    Colores: 2
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-3 app-info-purchase">
                                         <span class="pull-left glyphicon glyphicon-usd"></span>
@@ -270,7 +272,7 @@
                                     <br />
                                     <br />
                                     <div class="col-xs-11 col-sm-11 col-md-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
-                                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045','Tacón Charol Beige', '80000', 'red', '40')">
+                                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon2" onclick="addProductToShoppingCart('553045', 'Tacón Charol Beige', '80000', 'red', '40', 'this')">
                                             Agregar
                                         </span>
 
@@ -338,5 +340,5 @@
     </div>
 </section>
 
-@Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"))
+    @Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"))
 

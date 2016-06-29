@@ -295,6 +295,31 @@ Actualización Vista			:	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\View
 Actualización Controlador	:	D:\ZAW\SoftBottin\SoftBottin\SoftBottin\SoftBottin\Controllers\ShoesController.cs	Edit
 
 
+
+
+******************************************************************************************************************************
+		     Version: 1.0.0.15
+		       Autor: Daniel Romero
+			   Fecha: 29 de Junio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Security\Principal.js
+
+
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\ShoesController.cs
+
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+
+
 	
 
 

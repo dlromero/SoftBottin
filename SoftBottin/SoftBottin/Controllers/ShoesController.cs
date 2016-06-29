@@ -17,6 +17,7 @@ namespace SoftBottin.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        [CompressFilter]
         public ActionResult Zapatos()
         {
             try
@@ -111,7 +112,7 @@ namespace SoftBottin.Controllers
 
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
 
                 Session.Remove("lsFilesFinal");
@@ -170,7 +171,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
 
                 if (ModelState.IsValid)
@@ -229,7 +230,7 @@ namespace SoftBottin.Controllers
         {
             if (!CheckSession())
             {
-               return View("../Security/Principal");
+                return View("../Security/Principal");
             }
             return PartialView();
         }
@@ -319,7 +320,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
 
                 return View();
@@ -339,7 +340,7 @@ namespace SoftBottin.Controllers
         {
             if (!CheckSession())
             {
-               return View("../Security/Principal");
+                return View("../Security/Principal");
             }
 
             cShoeType niShoeType = new cShoeType();
@@ -375,7 +376,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 return View();
             }
@@ -397,7 +398,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {
@@ -425,7 +426,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
 
                 cShoeType niShoeType = new cShoeType();
@@ -487,7 +488,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {
@@ -516,7 +517,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {
@@ -547,7 +548,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 return View();
             }
@@ -565,7 +566,7 @@ namespace SoftBottin.Controllers
         {
             if (!CheckSession())
             {
-               return View("../Security/Principal");
+                return View("../Security/Principal");
             }
             cColor niColores = new cColor();
             DataSet dsColors = new DataSet();
@@ -601,7 +602,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 return View();
             }
@@ -622,7 +623,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {
@@ -650,7 +651,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 cColor niColor = new cColor();
                 DataSet dsColors = new DataSet();
@@ -686,7 +687,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {
@@ -740,7 +741,7 @@ namespace SoftBottin.Controllers
             {
                 if (!CheckSession())
                 {
-                   return View("../Security/Principal");
+                    return View("../Security/Principal");
                 }
                 if (ModelState.IsValid)
                 {

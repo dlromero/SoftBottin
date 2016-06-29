@@ -444,7 +444,7 @@ $(document).ready(function () {
 
 
 // Adicionar Producto al carrito de compras
-function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor, showSize) {
+function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor, showSize, thisImage) {
 
     var shoe = { reference: shoeReference, price: shoePrice, color: shoeColor, size: showSize };
 
@@ -455,13 +455,54 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
         contentType: 'application/json',
         success: function (data) {
             $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
-            $("#altSuccess").show();
-            $("#altSuccess").html('<strong>Agregado al carrito con éxito!</strong>');
-            $("#altSuccess").fadeTo(2000, 500).slideUp(500, function () {
+            //$("#altSuccess").show();
+            //$("#altSuccess").html('<strong>Agregado al carrito con éxito!</strong>');
+            //$("#altSuccess").fadeTo(2000, 500).slideUp(500, function () {
 
-                $("#altSuccess").hide();
-            });
+            //    $("#altSuccess").hide();
+            //});
 
+
+
+
+            var cart = $('.app-shopping');
+            var imgtodrag = $(".img-responsive").eq(4);
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '100'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                    }, 1000, 'easeInOutExpo');
+
+                setTimeout(function () {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+            }
+
+            //$("#numberShoesPick").slideUp(300).delay(800).fadeIn(400);
 
             //var trAdd = '<tr>' +
             //           '<td class="hidden-xs remCF" scope="row">' +
