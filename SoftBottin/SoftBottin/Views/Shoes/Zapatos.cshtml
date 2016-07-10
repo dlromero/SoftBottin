@@ -125,14 +125,14 @@
                             '<h6 class="card-subtitle text-muted">Color: ' + val.sColorDescription + '</h6>' +
                             '<p class="card-text">' + val.sDescriptionProduct + '</p>' +
                             '<ul class="list-group list-group-flush">' +
-                            '<li class="list-group-item">En existencia: ' + val.sQuantity + '</li>' +
+                            '<li class="list-group-item">En existencia: ' + val.sQuantityExisting + '</li>' +
                             '<li class="list-group-item">Vendidos: ' + val.sQuantitySold + '</li>' +
                             '<li class="list-group-item">Precio: ' + val.sSalePrice + '</li>' +
                             '</ul>' +
                             '</div>' +
                              '<div class="card-block">' +
                              '<a href="#" class="btn btn-primary btn-block">Editar</a>' +
-                             '<a href="#" class="btn btn-danger btn-block">Dar de baja</a>' +
+                             '<a href="#" class="btn btn-danger btn-block" onclick="ShoeOut(' + val.sIdProductDetail + ',this)">Dar de baja</a>' +
                              '</div>' +
                              '</div>' +
                              '</div>' +
@@ -157,5 +157,30 @@
 
         $("#editShoeType").show();
     });
+
+
+    function ShoeOut(piShoeId, fieldThis) {
+        $.ajax({
+            url: window.rootUrl + 'Shoes/ShoeOut',
+            type: 'GET',
+            data: { iShoeId: piShoeId },
+            contentType: 'application/json',
+            success: function (data) {
+                if (data) {
+                    $("#altSuccess").show();
+                    $("#altSuccess").html('<strong>¡Se dio de baja al zapato con éxito!</strong>');
+                    $("#altSuccess").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#altSuccess").hide();
+                    });
+                } else {
+
+                }
+            },
+            error: function (dataError) {
+                alert(dataError);
+            }
+        });
+    }
+
 
 </script>

@@ -22,6 +22,7 @@ namespace SoftBottin.Controllers
 
 
         // GET: Security
+        [CompressFilter]
         public ActionResult Principal()
         {
 

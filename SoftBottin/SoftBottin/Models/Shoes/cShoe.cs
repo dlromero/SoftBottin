@@ -196,7 +196,7 @@ namespace SoftBottin.Models.Shoes
                             AddImageShoe(iIdDetailInsert, item.sFileName, item.sContentType, item.bArrayImage, iIdInsert, (iCount == 0 ? true : false), out sErrMessage);
                             iCount++;
                         }
-                        
+
                     }
 
                     return true;
@@ -322,7 +322,23 @@ namespace SoftBottin.Models.Shoes
                 {
                     EnumerableRowCollection<DataRow> query = from rsl in dsShoes.Tables[0].AsEnumerable()
                                                              where rsl.Field<Int32>("ShoeType").Equals(Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString()))
-                                                             select rsl;
+                                                             select
+                                                             rsl;
+                    //var query2 = from rsl in dsShoes.Tables[0].AsEnumerable()
+                    //             where rsl.Field<Int32>("ShoeType").Equals(Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString()))
+                    //             select new
+                    //             {
+                    //                 Id = rsl["Id"],
+                    //                 Name = rsl["Name"],
+                    //                 Description = rsl["Description"],
+                    //                 QuantityExisting = rsl["QuantityExisting"],
+                    //                 QuantitySold = rsl["QuantitySold"],
+                    //                 PurchasePrice = rsl["PurchasePrice"],
+                    //                 SalePrice = rsl["SalePrice"],
+                    //                 ShoeType = rsl["ShoeType"],
+                    //                 ShoeImage = rsl["ShoeImage"],
+                    //                 TotalQuantityExisting = rsl["TotalQuantityExisting"]
+                    //             };
 
                     DataView view = query.AsDataView();
 
@@ -337,6 +353,7 @@ namespace SoftBottin.Models.Shoes
                         nicShoesByType.fPurchasePrice = Convert.ToSingle(view[iShoe]["PurchasePrice"].ToString());
                         nicShoesByType.fSalePrice = Convert.ToSingle(view[iShoe]["SalePrice"].ToString());
                         nicShoesByType.iType = Convert.ToInt32(view[iShoe]["ShoeType"].ToString());
+                        nicShoesByType.iTotalQuantityExisting = Convert.ToInt32(view[iShoe]["TotalQuantityExisting"].ToString());
 
                         if (!string.IsNullOrEmpty(view[iShoe]["ShoeImage"].ToString()))
                         {
@@ -359,6 +376,30 @@ namespace SoftBottin.Models.Shoes
                 cUtilities.WriteLog(ex.Message, out sErrMessage);
                 sErrMessage = ex.Message;
                 poShoesByType = new List<cShoesByType>();
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        ///4  de Julio de 2016 Daniel Romero
+        /// Metodo que permite dar de baja un zapato
+        /// </summary>
+        /// <param name="iShoeId"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        public bool ShoeOut(int iShoeId, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                niWsSoftBottin = new wsSoftBottin.SoftBottin();
+                return niWsSoftBottin.ProductOut(iShoeId, out sErrMessage);
+            }
+            catch (Exception ex)
+            {
+                cUtilities.WriteLog(ex.Message, out sErrMessage);
+                sErrMessage = ex.Message;
                 return false;
             }
         }
@@ -539,6 +580,9 @@ namespace SoftBottin.Models.Shoes
         public int iType { get; set; }
 
         public string simgSrc { get; set; }
+
+        public int iTotalQuantityExisting { get; set; }
+
     }
 
 }

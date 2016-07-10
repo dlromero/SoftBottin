@@ -441,6 +441,16 @@ td, th {
 }
 
 
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 @media(max-width: 406px) {
     .navbar-brand {
         height: 76px;

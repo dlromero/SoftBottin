@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
 </head>
 <body>
-    <header class="app-header">
+    <header class="app-header" id="caja-flotante">
         <nav class="navbar app-navbar navbar-fixed-top">
             <div class="container">
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -466,6 +466,17 @@
         //Fin API Facebook
 
 
+
+        var lastScrollTop = 0;
+        $(window).scroll(function (event) {
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop) {
+                $("#caja-flotante").fadeOut();
+            } else {
+                $("#caja-flotante").fadeIn();
+            }
+            lastScrollTop = st;
+        });
 
 
     </script>

@@ -61,8 +61,8 @@ namespace SoftBottinWS
                                     IdProduct = pds.Id,
                                     NameProduct = pds.Name,
                                     DescriptionProduct = pds.Description,
-                                    QuantityExisting = pds.QuantityExisting,
-                                    QuantitySold = pds.QuantitySold,
+                                    QuantityExisting = prd.QuantityExisting,
+                                    QuantitySold = prd.QuantitySold,
                                     PurchasePrice = pds.PurchasePrice,
                                     SalePrice = pds.SalePrice,
                                     IdType = pds.Type,
@@ -276,7 +276,8 @@ namespace SoftBottinWS
 
 
         /// <summary>
-        /// 
+        /// Daniel Romero 19 de Junio de 2016
+        /// Metodo que se crea para obtener los zapatos
         /// </summary>
         /// <param name="dsShoes"></param>
         /// <param name="sErrMessage"></param>
@@ -301,7 +302,10 @@ namespace SoftBottinWS
                                    PurchasePrice = rsl.PurchasePrice,
                                    SalePrice = rsl.SalePrice,
                                    ShoeType = rsl.Type,
-                                   ShoeImage = img.Image1
+                                   ShoeImage = img.Image1,
+                                   TotalQuantityExisting = (from rsl2 in dbConection.ProductDetails
+                                                            where rsl2.IdProduct.Equals(rsl.Id)
+                                                            select rsl2).Sum(rsl3 => rsl3.QuantityExisting)
                                };
 
                 if (products.ToList().Count > 0)
@@ -320,6 +324,42 @@ namespace SoftBottinWS
             catch (Exception ex)
             {
                 dsShoes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Daniel Romero 4 de Julio de 2016
+        /// Metodo que se crea para dar de baja un zapato
+        /// </summary>
+        /// <param name="iShoeId"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool ProductOut(int iShoeId, out string sErrMessage)
+        {
+            try
+            {
+                sErrMessage = "";
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+
+                var products = from rsl in dbConection.ProductDetails
+                               where rsl.Id.Equals(iShoeId)
+                               select rsl;
+
+                foreach (SoftBottinBD.ProductDetail item in products)
+                {
+                    item.QuantityExisting = 0;
+                    dbConection.SubmitChanges();
+                }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
                 cUtilities.WriteLog(ex.Message, out sErrMsj);
                 sErrMessage = ex.Message;
                 return false;

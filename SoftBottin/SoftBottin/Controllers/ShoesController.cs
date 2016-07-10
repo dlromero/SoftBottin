@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SoftBottin.Models.Shoes;
+using SoftBottinWS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -533,6 +534,30 @@ namespace SoftBottin.Controllers
             {
                 return View();
             }
+        }
+
+        /// <summary>
+        ///4  de Julio de 2016 Daniel Romero
+        /// Metodo que permite dar de baja un zapato
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ShoeOut(int iShoeId)
+        {
+            try
+            {
+                string sErrMsj = "";
+                cShoe nicShoe = new cShoe();
+                bool bResult = nicShoe.ShoeOut(iShoeId, out sErrMsj);
+                return Json(bResult ? "ok" : sErrMsj, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                string sErrMsj = "";
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+
+
         }
 
         #endregion

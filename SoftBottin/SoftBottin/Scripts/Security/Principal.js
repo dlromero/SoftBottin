@@ -466,7 +466,9 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
 
 
             var cart = $('.app-shopping');
-            var imgtodrag = $(".img-responsive").eq(4);
+            //var imgtodrag = $(".img-responsive").eq(4);
+            var imgtodrag = $(thisImage.parentElement.parentElement.parentElement.parentElement).find("img").eq(0);
+
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                     .offset({

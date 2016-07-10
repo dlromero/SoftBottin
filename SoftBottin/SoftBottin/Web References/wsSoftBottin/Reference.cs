@@ -42,6 +42,8 @@ namespace SoftBottin.wsSoftBottin {
         
         private System.Threading.SendOrPostCallback GetShoesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ProductOutOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddShoeTypeOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetShoesTypesOperationCompleted;
@@ -129,6 +131,9 @@ namespace SoftBottin.wsSoftBottin {
         
         /// <remarks/>
         public event GetShoesCompletedEventHandler GetShoesCompleted;
+        
+        /// <remarks/>
+        public event ProductOutCompletedEventHandler ProductOutCompleted;
         
         /// <remarks/>
         public event AddShoeTypeCompletedEventHandler AddShoeTypeCompleted;
@@ -392,6 +397,36 @@ namespace SoftBottin.wsSoftBottin {
             if ((this.GetShoesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetShoesCompleted(this, new GetShoesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ProductOut", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ProductOut(int iShoeId, out string sErrMessage) {
+            object[] results = this.Invoke("ProductOut", new object[] {
+                        iShoeId});
+            sErrMessage = ((string)(results[1]));
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ProductOutAsync(int iShoeId) {
+            this.ProductOutAsync(iShoeId, null);
+        }
+        
+        /// <remarks/>
+        public void ProductOutAsync(int iShoeId, object userState) {
+            if ((this.ProductOutOperationCompleted == null)) {
+                this.ProductOutOperationCompleted = new System.Threading.SendOrPostCallback(this.OnProductOutOperationCompleted);
+            }
+            this.InvokeAsync("ProductOut", new object[] {
+                        iShoeId}, this.ProductOutOperationCompleted, userState);
+        }
+        
+        private void OnProductOutOperationCompleted(object arg) {
+            if ((this.ProductOutCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ProductOutCompleted(this, new ProductOutCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1156,6 +1191,40 @@ namespace SoftBottin.wsSoftBottin {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void ProductOutCompletedEventHandler(object sender, ProductOutCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ProductOutCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ProductOutCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string sErrMessage {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
             }
         }
     }

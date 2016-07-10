@@ -131,6 +131,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ProductOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iShoeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductOutResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sErrMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddShoeType">
         <s:complexType>
           <s:sequence>
@@ -455,6 +470,12 @@
   <wsdl:message name="GetShoesSoapOut">
     <wsdl:part name="parameters" element="tns:GetShoesResponse" />
   </wsdl:message>
+  <wsdl:message name="ProductOutSoapIn">
+    <wsdl:part name="parameters" element="tns:ProductOut" />
+  </wsdl:message>
+  <wsdl:message name="ProductOutSoapOut">
+    <wsdl:part name="parameters" element="tns:ProductOutResponse" />
+  </wsdl:message>
   <wsdl:message name="AddShoeTypeSoapIn">
     <wsdl:part name="parameters" element="tns:AddShoeType" />
   </wsdl:message>
@@ -576,6 +597,10 @@
       <wsdl:input message="tns:GetShoesSoapIn" />
       <wsdl:output message="tns:GetShoesSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ProductOut">
+      <wsdl:input message="tns:ProductOutSoapIn" />
+      <wsdl:output message="tns:ProductOutSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AddShoeType">
       <wsdl:input message="tns:AddShoeTypeSoapIn" />
       <wsdl:output message="tns:AddShoeTypeSoapOut" />
@@ -690,6 +715,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetShoes">
       <soap:operation soapAction="http://tempuri.org/GetShoes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductOut">
+      <soap:operation soapAction="http://tempuri.org/ProductOut" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -898,6 +932,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ProductOut">
+      <soap12:operation soapAction="http://tempuri.org/ProductOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddShoeType">
       <soap12:operation soapAction="http://tempuri.org/AddShoeType" style="document" />
       <wsdl:input>
@@ -1045,10 +1088,10 @@
   </wsdl:binding>
   <wsdl:service name="SoftBottin">
     <wsdl:port name="SoftBottinSoap" binding="tns:SoftBottinSoap">
-      <soap:address location="http://localhost:19961/SoftBottin.asmx" />
+      <soap:address location="http://localhost/SoftBottinWS/SoftBottin.asmx" />
     </wsdl:port>
     <wsdl:port name="SoftBottinSoap12" binding="tns:SoftBottinSoap12">
-      <soap12:address location="http://localhost:19961/SoftBottin.asmx" />
+      <soap12:address location="http://localhost/SoftBottinWS/SoftBottin.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

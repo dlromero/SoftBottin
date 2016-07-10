@@ -320,6 +320,42 @@ Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.16
+		       Autor: Daniel Romero
+			   Fecha: 7 de Julio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+								SoftBottin\SoftBottin\Views\Shoes\Zapatos.cshtml
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Security\Principal.js
+
+
+
+Actualización clase			:	SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml
+								SoftBottin\SoftBottinBD\SoftBottinDataClasses.dbml.layout
+								SoftBottin\SoftBottinBD\SoftBottinDataClasses.designer.cs
+								SoftBottin\SoftBottinBD\app.config
+								SoftBottin\SoftBottinWS\SoftBottin.asmx.cs
+
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\SecurityController.cs
+							    SoftBottin\SoftBottin\Controllers\ShoesController.cs
+
+
+Actualización Modelo		:	SoftBottin\SoftBottin\Models\Shoes\cShoe.cs
+
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+
+
+
 	
 
 
