@@ -354,6 +354,26 @@ Actualización Modelo		:	SoftBottin\SoftBottin\Models\Shoes\cShoe.cs
 Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.17
+		       Autor: Daniel Romero
+			   Fecha: 11 de Julio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Security\Principal.js
+
+Adición de Script			:	SoftBottin\SoftBottin\Scripts\Angular\app.js
+								SoftBottin\SoftBottin\Scripts\Angular\controllers.js
+
+
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
 
 
 	

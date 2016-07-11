@@ -1,11 +1,112 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     System.Data.DataSet dsResult = (System.Data.DataSet)ViewBag.ShoeTypes;
     List<SoftBottin.Models.Shoes.cShoesByType> poShoesByType = (List<SoftBottin.Models.Shoes.cShoesByType>)ViewBag.ShoesByType;
 }
 
+
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
+
+<section class="app-seccion5" id="lastCollection">
+    <div class="container">
+        <div class="row">
+
+            @foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
+            {
+
+
+                {
+                    List<SoftBottin.Models.Shoes.cShoesByType>
+                                query = (from rsl in poShoesByType.ToList()
+                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
+                                         select rsl).ToList();
+
+                    if (query.ToList().Count > 0)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <h1 class="app-titulo"><span class="app-resaltar">&#128561; @item["Name"].ToString().ToUpper() &#128525;</span></h1>
+                        </div>
+                    }
+
+                    foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
+                    {
+                        <text>
+                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    @*<h2 class="app-titulo2">
+                                            @if (itShoe.iTotalQuantityExisting <= 0)
+                                            {
+                                                <strike>
+                                                    @itShoe.sName
+                                                </strike>
+                                            }
+                                            else
+                                            {
+                                                @itShoe.sName
+                                            }
+                                        </h2>*@
+                                    @*<p class="app-separador"></p>*@
+                                    <a href="#" class="thumbnail">
+                                        <img src="@itShoe.simgSrc" alt="" class="img-responsive" style="width: 340px;height: 255px;" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
+                                    </a>
+
+                                    @*<div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
+                                            Ver Detalle
+                                        </div>*@
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    <ul class="list-group list-group-flush">
+
+                                        @if (itShoe.iTotalQuantityExisting <= 0)
+                                        {
+                                            <li class="list-group-item" style="text-align:center">
+                                                ¡No disponible!
+                                            </li>
+                                            @*<li class="list-group-item" style="text-align:center">
+                                                    &#128534; Pero no te preocupes
+                                                </li>*@
+                                            <li class="list-group-item" style="text-align:center;padding: 1.4em;">
+                                                ¡Muy pronto estara disponible! &#128527;
+                                            </li>
+
+                                        }
+                                        else
+                                        {
+                                            @*<li class="list-group-item">
+                                                    Disponibles: @itShoe.iTotalQuantityExisting
+                                                </li>*@
+                                            <li class="list-group-item app-centrar">
+                                                @if (itShoe.iTotalQuantityExisting <= 0)
+                                                {
+                                                    <strike>
+                                                        @itShoe.sName
+                                                    </strike>
+                                                }
+                                                else
+                                                {
+                                                    @itShoe.sName
+                                                }
+                                            </li>
+                                            <li class="list-group-item app-centrar">
+                                                 $@itShoe.fSalePrice.ToString("N")
+                                            </li>                                           
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </text>
+                    }
+                }
+
+
+            }
+        </div>
+    </div>
+</section>
 
 
 <section class="app-seccion2">
@@ -79,118 +180,9 @@
                     </div>
                 </div>
             </div>
-
-
-            @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="app-titulo">Puedes ver los pasos en <span class="app-resaltar">video</span>:</h1>
-                    <video controls poster="@Url.Content("~/Content/Images/Zapato3.jpg")" class="img-responsive app-video">
-                        <source src="@Url.Content("~/Content/videos/video.mp4")"></source>
-                    </video>
-                </div>*@
         </div>
     </div>
 </section>
-
-<section class="app-seccion5" id="lastCollection">
-    <div class="container">
-        <div class="row">
-
-            @foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
-            {
-
-
-                {
-                    List<SoftBottin.Models.Shoes.cShoesByType>
-                                query = (from rsl in poShoesByType.ToList()
-                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
-                                         select rsl).ToList();
-
-                    if (query.ToList().Count > 0)
-                    {
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                            <h1 class="app-titulo"><span class="app-resaltar">&#128561; @item["Name"].ToString().ToUpper() &#128525;</span></h1>
-                        </div>
-                    }
-
-                    foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
-                    {
-                        <text>
-                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
-
-                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                    <h2 class="app-titulo2">
-                                        @if (itShoe.iTotalQuantityExisting <= 0)
-                                        {
-                                            <strike>
-                                                @itShoe.sName
-                                            </strike>
-                                        }
-                                        else
-                                        {
-                                            @itShoe.sName
-                                        }
-                                    </h2>
-                                    <p class="app-separador"></p>
-                                    <a href="#" class="thumbnail">
-                                        <img src="@itShoe.simgSrc" alt="" class="img-responsive" style="width: 340px;height: 255px;">
-                                    </a>
-
-                                    <div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
-                                        Ver Detalle
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                    <ul class="list-group list-group-flush">
-
-                                        @if (itShoe.iTotalQuantityExisting <= 0)
-                                        {
-                                            <li class="list-group-item" style="text-align:center">
-                                                ¡No disponible!
-                                            </li>
-                                            <li class="list-group-item" style="text-align:center">
-                                                &#128534; Pero no te preocupes
-                                            </li>
-                                            <li class="list-group-item" style="text-align:center;padding: 1.4em;">
-                                                ¡Muy pronto estara disponible! &#128527;
-                                            </li>
-
-                                        }
-                                        else
-                                        {
-                                            <li class="list-group-item">
-                                                Disponibles: @itShoe.iTotalQuantityExisting
-                                            </li>
-                                            @*<li class="list-group-item">
-                                                    Colores: @itShoe.iTotalQuantityExisting
-                                                </li>*@
-                                            <li class="list-group-item">
-                                                Valor: $@itShoe.fSalePrice.ToString("N")
-                                            </li>
-                                            <li class="list-group-item" style="text-align:center">
-                                                <span class="glyphicon glyphicon-shopping-cart app-glyphicon2 unselectable" onclick="addProductToShoppingCart('553045', 'Tacón Charol Beige', '80000', 'red', '40', this)">
-                                                    Agregar
-                                                </span>
-                                                <span class="glyphicon glyphicon-gift app-glyphicon2 unselectable" onclick="goPurchasingSummary()">
-                                                    Comprar
-                                                </span>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </text>
-                    }
-                }
-
-
-            }
-
-
-        </div>
-    </div>
-</section>
-
 
 <section class="app-seccion3">
     <div class="container">

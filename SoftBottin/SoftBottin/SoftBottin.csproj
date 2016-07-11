@@ -354,6 +354,8 @@
     <Content Include="Content\Fonts\icomoon.ttf" />
     <Content Include="Content\Fonts\icomoon.woff" />
     <Content Include="Content\Icomoon\selection.json" />
+    <Content Include="Scripts\Angular\app.js" />
+    <Content Include="Scripts\Angular\controllers.js" />
     <Content Include="Scripts\Boostrap\main.js" />
     <Content Include="Scripts\Boostrap\plugins.js" />
     <Content Include="Scripts\Boostrap\Vendor\bootstrap.js" />

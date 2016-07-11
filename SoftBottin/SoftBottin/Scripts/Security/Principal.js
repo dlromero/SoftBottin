@@ -454,15 +454,7 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
         data: "{'objShoe':'" + JSON.stringify(shoe) + "'}",
         contentType: 'application/json',
         success: function (data) {
-            $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
-            //$("#altSuccess").show();
-            //$("#altSuccess").html('<strong>Agregado al carrito con éxito!</strong>');
-            //$("#altSuccess").fadeTo(2000, 500).slideUp(500, function () {
-
-            //    $("#altSuccess").hide();
-            //});
-
-
+            
 
 
             var cart = $('.app-shopping');
@@ -472,7 +464,7 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                     .offset({
-                        top: imgtodrag.offset().top,
+                        top: imgtodrag.offset().top+200,
                         left: imgtodrag.offset().left
                     })
                     .css({
@@ -488,19 +480,20 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
                         'left': cart.offset().left + 10,
                         'width': 75,
                         'height': 75
-                    }, 1000, 'easeInOutExpo');
+                    }, 500, 'easeInOutExpo');
 
                 setTimeout(function () {
                     cart.effect("shake", {
                         times: 2
-                    }, 200);
-                }, 1500);
+                    }, 100);
+                }, 750);
 
                 imgclone.animate({
                     'width': 0,
                     'height': 0
                 }, function () {
-                    $(this).detach()
+                    $(this).detach();
+                    $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
                 });
             }
 

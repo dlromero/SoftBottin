@@ -20,10 +20,17 @@
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Security/Principal.js")"></script>
     <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
+    @*<script data-require="angular.js@1.3.0" data-semver="1.3.0" src="http://code.angularjs.org/1.3.0/angular.js"></script>
+    <script data-require="ng-route@1.2.0" data-semver="1.2.0" src="http://code.angularjs.org/1.2.0-rc.3/angular-route.js"></script>
+    <script src="~/Scripts/Angular/app.js"></script>
+    <script src="~/Scripts/Angular/controllers.js"></script>*@
 </head>
+
+
+
 <body>
     <header class="app-header" id="caja-flotante">
-        <nav class="navbar app-navbar navbar-fixed-top">
+        <nav class="navbar app-navbar ">
             <div class="container">
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="navbar-header" style="font-family:Juice ITC">
@@ -42,18 +49,18 @@
                     </div>
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="nav navbar-nav navbar-right app-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Ultimas Colecciones 2016<b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Tacones Abril 2016</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Botas Abril 2016</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Estilo Militar Abril 2016</a></li>
-                                </ul>
-                            </li>
+                            @*<li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        Ultimas Colecciones 2016<b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Tacones Abril 2016</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Botas Abril 2016</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Estilo Militar Abril 2016</a></li>
+                                    </ul>
+                                </li>*@
                             @if (Session["userName"] == null)
                             {
                                 <li>
@@ -260,7 +267,9 @@
         </div>
     </div>
 
-    <section id="main">
+
+
+    <section id="main">      
         @if (TempData["userName"] != null)
         {
             <div class="row">
@@ -284,7 +293,10 @@
                 </div>
             </div>
         }
+
+        
         @RenderBody()
+
     </section>
     <footer class="app-footer">
         <div class="app-empresa">
@@ -467,16 +479,16 @@
 
 
 
-        var lastScrollTop = 0;
-        $(window).scroll(function (event) {
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop) {
-                $("#caja-flotante").fadeOut();
-            } else {
-                $("#caja-flotante").fadeIn();
-            }
-            lastScrollTop = st;
-        });
+        //var lastScrollTop = 0;
+        //$(window).scroll(function (event) {
+        //    var st = $(this).scrollTop();
+        //    if (st > lastScrollTop) {
+        //        $("#caja-flotante").fadeOut();
+        //    } else {
+        //        $("#caja-flotante").fadeIn();
+        //    }
+        //    lastScrollTop = st;
+        //});
 
 
     </script>
