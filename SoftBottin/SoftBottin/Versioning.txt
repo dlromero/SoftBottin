@@ -376,6 +376,32 @@ Adición de Script			:	SoftBottin\SoftBottin\Scripts\Angular\app.js
 Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
 
 
+
+
+******************************************************************************************************************************
+		     Version: 1.0.0.18
+		       Autor: Daniel Romero
+			   Fecha: 13 de Julio de 2016
+  		 Descripcion:			
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Security\SubPrincipal.cshtml
+
+
+
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Security\Principal.js
+
+Adición de Script			:	SoftBottin\SoftBottin\Scripts\Angular\app.js
+								SoftBottin\SoftBottin\Scripts\Angular\controllers.js
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\SecurityController.cs
+
+
+
 	
 
 

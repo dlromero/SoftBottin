@@ -1,0 +1,356 @@
+﻿@{
+    System.Data.DataSet dsResult = (System.Data.DataSet)ViewBag.ShoeTypes;
+    List<SoftBottin.Models.Shoes.cShoesByType> poShoesByType = (List<SoftBottin.Models.Shoes.cShoesByType>)ViewBag.ShoesByType;
+    dsResult = dsResult != null && dsResult.Tables.Count > 0 ? dsResult : new System.Data.DataSet();
+
+}
+
+<section class="app-seccion5" id="lastCollection">
+    <div class="container">
+        <div class="row">
+            @if (dsResult.Tables.Count > 0)
+            {
+                foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
+                {
+
+                    List<SoftBottin.Models.Shoes.cShoesByType>
+                                query = (from rsl in poShoesByType.ToList()
+                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
+                                         select rsl).ToList();
+
+                    if (query.ToList().Count > 0)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <h1 class="app-titulo"><span class="app-resaltar">&#128561; @item["Name"].ToString().ToUpper() &#128525;</span></h1>
+                        </div>
+                    }
+
+                    foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
+                    {
+                        <text>
+                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    @*<h2 class="app-titulo2">
+                                            @if (itShoe.iTotalQuantityExisting <= 0)
+                                            {
+                                                <strike>
+                                                    @itShoe.sName
+                                                </strike>
+                                            }
+                                            else
+                                            {
+                                                @itShoe.sName
+                                            }
+                                        </h2>*@
+                                    @*<p class="app-separador"></p>*@
+                                    <a href="#ProductDetail/@itShoe.iId" class="thumbnail">
+                                        <img src="@itShoe.simgSrc" alt="" class="img-responsive" style="width: 340px;height: 255px;" />
+                                    </a>
+
+                                    @*<div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
+                                            Ver Detalle
+                                        </div>*@
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    <ul class="list-group list-group-flush">
+
+                                        @if (itShoe.iTotalQuantityExisting <= 0)
+                                        {
+                                            <li class="list-group-item" style="text-align:center">
+                                                ¡No disponible!
+                                            </li>
+                                            @*<li class="list-group-item" style="text-align:center">
+                                                    &#128534; Pero no te preocupes
+                                                </li>*@
+                                            <li class="list-group-item" style="text-align:center;padding: 1.4em;">
+                                                ¡Muy pronto estara disponible! &#128527;
+                                            </li>
+
+                                        }
+                                        else
+                                        {
+                                            @*<li class="list-group-item">
+                                                    Disponibles: @itShoe.iTotalQuantityExisting
+                                                </li>*@
+                                            <li class="list-group-item app-centrar">
+                                                @if (itShoe.iTotalQuantityExisting <= 0)
+                                                {
+                                                    <strike>
+                                                        @itShoe.sName
+                                                    </strike>
+                                                }
+                                                else
+                                                {
+                                                    @itShoe.sName
+                                                }
+                                            </li>
+                                            <li class="list-group-item app-centrar">
+                                                $@itShoe.fSalePrice.ToString("N")
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </text>
+                    }
+
+                }
+            }
+        </div>
+    </div>
+</section>
+
+
+<section class="app-seccion2">
+    <div class="container">
+        <div class="row">
+            <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-tag app-glyphicon3"></span>
+                    Paso 1
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿Qué zapatos quieres?
+                </p>
+                <div class="media app-media">
+
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Agrégalo al carrito de compras</h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-1"></div>
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-send app-glyphicon3"></span>
+                    Paso 2
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿A dónde lo llevamos?
+                </p>
+
+                <div class="media app-media">
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            Ingresa información de envío
+                        </h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-1"></div>
+            <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
+                <h2 class="app-titulo2">
+                    <span class="glyphicon glyphicon-check app-glyphicon3"></span>
+                    Paso 3
+                </h2>
+                <p class="app-separador"></p>
+                <p class="app-justificar app-negrilla">
+                    ¿Cómo lo quieres pagar?
+                </p>
+
+                <div class="media app-media">
+                    <div class="pull-left">
+                        <span class="pull-right glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Selecciona tu medio de pago</h4>
+                        <p class="app-justificar">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="app-seccion3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">Compra con la <span class="app-resaltar">tecnología  </span> y la <span class="app-resaltar">seguridad  </span>de <span> PayU </span></h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-eye-open app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Lo que dicen los usuarios de PayU
+                            </h4>
+                            <p class="app-justificar2">
+                                “Cada vez que veo el logo de PayU, estoy seguro de que mis datos están protegidos”.
+                                José Salcedo, Comprador PayU
+                                <br />
+                                Para ver má testomios ver: <a href="http://www.payu.com.co/compradores#benefits-testimonials"> Testimonios PayU</a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="media app-media">
+                        <img src="~/Content/Images/payu@2x.png" class="img-responsive img-center" alt="PayU">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">
+                    Este sitio usa
+                    <span class="app-resaltar">
+                        tecnología SSL
+                    </span>
+                </h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-lock app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Realiza tus compras con seguridad
+                            </h4>
+                            <p class="app-justificar2">
+                                Este sitio protege tu información.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="media app-media">
+                        <img src="~/Content/Images/HTTPS_icon.png" class="img-responsive img-center" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="app-seccion4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">
+                    <span class="app-resaltar">Calidad</span>
+                    <span class="app-resaltar3">100% </span>
+                    <span class="app-resaltar">Colombiana</span>
+                </h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-wrench app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Materiales Colombianos
+                            </h4>
+                            <p class="app-justificar2">
+                                Cada una de las piezas con las que se construye este zapato son colombianas, es decir calidad 100% colombiana.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Manos Colombianas
+                            </h4>
+                            <p class="app-justificar2">
+                                Las personas que hacen posible estos zapatos son nativos de Colombia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h1 class="app-titulo">Que dicen nuestros <span class="app-resaltar">clientes</span>:</h1>
+                <ul>
+                    <li>
+                        <span class="app-comentarios"> "La experiencia de comprar sin salir de casa no la cambio por nada" Carlos Ortega.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "La calidad de estos zapatos, hace que los recomiende"  Juliana Perez.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Me siento muy bien al apoyar el trabajo colombiano"  Hernan Avendaño.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Gracias por hacerme feliz"  Cristina Moreno.</span>
+                    </li>
+                    <li>
+                        <span class="app-comentarios"> "Recomendaría este sitio, me cambiaron el producto ya que no me quedaba"  Esperanza Subachoque.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="app-seccion2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12xol "></div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="app-titulo"><span class="app-resaltar">Acerca de Nostros</span> </h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-time app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Contáctanos
+                            </h4>
+                            <p class="app-justificar2">
+                                Llámanos o escríbenos, y tendrás respuesta en tiempo record.
+                                <span class="pull-right glyphicon glyphicon-time"></span>
+                                Tenemos a tú disposición: whatsapp, facebook, twitter, celular, correo electrónico.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="media app-media">
+                        <div class="pull-left">
+                            <span class="glyphicon glyphicon-refresh app-glyphicon1"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Entendemos que tú eres la mayor prioridad
+                            </h4>
+                            <p class="app-justificar2">
+                                Estaremos siempre dispuestos hasta que quedes satisfecho. Entendemos que tú eres la mayor prioridad.
+                                <span class="pull-right glyphicon glyphicon-thumbs-up"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"))
+
+
+

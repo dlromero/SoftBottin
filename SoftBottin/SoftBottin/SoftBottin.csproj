@@ -385,6 +385,7 @@
     <Content Include="Views\Shoes\CrearColor.cshtml" />
     <Content Include="Views\Shoes\EditarColor.cshtml" />
     <Content Include="Views\Shoes\Imagenes.cshtml" />
+    <Content Include="Views\Security\SubPrincipal.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

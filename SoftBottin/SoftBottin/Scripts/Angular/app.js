@@ -2,24 +2,17 @@
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider //add resolve function is pending.
-         .when('/TiposZapatos', {
-             templateUrl: '../Shoes/TiposZapatos',
-             controller: 'TiposZapatosCtrl',
-
-         })
-        .when('/Zapatos', {
-            templateUrl: '../Shoes/Zapatos',
-            controller: 'ZapatosCtrl',
-
+        .when('/', {
+            templateUrl: '../Security/SubPrincipal',
+            controller: 'PrincipalCtrl',
         })
-        //.when('/perfil', {
-        //    templateUrl: 'perfil.html',
-        //    controller: 'PerfilCtrl',
-        //})
-        //.when('/mensajes', {
-        //    templateUrl: 'mensajes.html',
-        //    controller: 'MensajesCtrl',
-        //})
+        .when('/ProductDetail/:sProductReference', {
+            templateUrl: function (stateParams){
+                return '../Security/ProductDetail?sProductReference=' + stateParams.sProductReference;
+            },
+                //'../Security/ProductDetail?sProductReference=01',
+            controller: 'carritoController',
+        })
         .otherwise({
             redirectTo: '/'
         });

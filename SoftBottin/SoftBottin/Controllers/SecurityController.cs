@@ -28,6 +28,34 @@ namespace SoftBottin.Controllers
 
             try
             {
+                //cShoeType niShoeType = new cShoeType();
+                //cShoe niShoe = new cShoe();
+                //DataSet dsShoesTypes = new DataSet();
+                //DataSet dsShoe = new DataSet();
+                //string sErrMessage = "";
+                //niShoeType.GetShoesTypes(out dsShoesTypes, out sErrMessage);
+                //niShoe.GetShoes(out dsShoe, out sErrMessage);
+                //List<cShoesByType> poShoesByType = new List<cShoesByType>();
+                //niShoe.GetShoes(dsShoesTypes, dsShoe, out poShoesByType, out sErrMessage);
+
+                //ViewBag.ShoesByType = poShoesByType;
+                //ViewBag.ShoeTypes = dsShoesTypes;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+
+        }
+
+        [CompressFilter]
+        public ActionResult SubPrincipal()
+        {
+
+            try
+            {
                 cShoeType niShoeType = new cShoeType();
                 cShoe niShoe = new cShoe();
                 DataSet dsShoesTypes = new DataSet();
