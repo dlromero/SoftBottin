@@ -190,13 +190,13 @@ namespace SoftBottin.Models.Shoes
                                                      lsColorDetail[iColor].iQuantityExisting,
                                                      lsColorDetail[iColor].iQuantitySold,
                                                      out iIdDetailInsert,
-                                                     out sErrMessage);
-                        foreach (cShoeImage item in lsShoeImage)
-                        {
-                            AddImageShoe(iIdDetailInsert, item.sFileName, item.sContentType, item.bArrayImage, iIdInsert, (iCount == 0 ? true : false), out sErrMessage);
-                            iCount++;
-                        }
+                                                     out sErrMessage);                       
+                    }
 
+                    foreach (cShoeImage item in lsShoeImage)
+                    {
+                        AddImageShoe(item.sFileName, item.sContentType, item.bArrayImage, iIdInsert, (iCount == 0 ? true : false), out sErrMessage);
+                        iCount++;
                     }
 
                     return true;
@@ -227,13 +227,13 @@ namespace SoftBottin.Models.Shoes
         /// <param name="btFileByte"></param>
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
-        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
+        public bool AddImageShoe(string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
         {
             try
             {
                 sErrMessage = "";
                 niWsSoftBottin = new wsSoftBottin.SoftBottin();
-                if (niWsSoftBottin.AddImageShoe(iIdShoe, sName, sType, btFileByte, iProductId, bIsPrincipal, out sErrMessage))
+                if (niWsSoftBottin.AddImageShoe(sName, sType, btFileByte, iProductId, bIsPrincipal, out sErrMessage))
                 {
                     return true;
                 }
@@ -324,21 +324,6 @@ namespace SoftBottin.Models.Shoes
                                                              where rsl.Field<Int32>("ShoeType").Equals(Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString()))
                                                              select
                                                              rsl;
-                    //var query2 = from rsl in dsShoes.Tables[0].AsEnumerable()
-                    //             where rsl.Field<Int32>("ShoeType").Equals(Convert.ToInt32(dsShoesTypes.Tables[0].Rows[iShoesTypes]["Id"].ToString()))
-                    //             select new
-                    //             {
-                    //                 Id = rsl["Id"],
-                    //                 Name = rsl["Name"],
-                    //                 Description = rsl["Description"],
-                    //                 QuantityExisting = rsl["QuantityExisting"],
-                    //                 QuantitySold = rsl["QuantitySold"],
-                    //                 PurchasePrice = rsl["PurchasePrice"],
-                    //                 SalePrice = rsl["SalePrice"],
-                    //                 ShoeType = rsl["ShoeType"],
-                    //                 ShoeImage = rsl["ShoeImage"],
-                    //                 TotalQuantityExisting = rsl["TotalQuantityExisting"]
-                    //             };
 
                     DataView view = query.AsDataView();
 

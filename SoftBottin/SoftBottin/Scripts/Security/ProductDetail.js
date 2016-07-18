@@ -1,56 +1,47 @@
 ﻿
-$(document).ready(function () {
 
-    //$("#zoom_09").elevateZoom({
-    //    gallery: "gallery_09",
-    //    galleryActiveClass: "active"
-    //}); $("#select").change(function (e) {
-    //    var currentValue = $("#select").val();
-    //    if (currentValue == 1) {
-    //        smallImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png';
-    //        largeImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg';
-    //    }
-    //    if (currentValue == 2) {
-    //        smallImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image2.png';
-    //        largeImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image2.jpg';
-    //    }
-    //    if (currentValue == 3) {
-    //        smallImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image3.png';
-    //        largeImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image3.jpg';
-    //    }
-    //    if (currentValue == 4) {
-    //        smallImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image4.png';
-    //        largeImage = 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image4.jpg';
-    //    }
-    //    // Example of using Active Gallery
-    //    $('#gallery_09 a').removeClass('active').eq(currentValue - 1).addClass('active');
-    //    var ez = $('#zoom_09').data('elevateZoom');
-    //    ez.swaptheimage(smallImage, largeImage);
-    //});
+// Adicionar Producto al carrito de compras
+function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor, showSize) {
 
-    //initiate the plugin and pass the id of the div containing gallery images 
+    var cart = $('.app-shopping');
+    //var imgtodrag = $(".img-responsive").eq(4);
+    var imgtodrag = $("#zoom_03").eq(0);;
 
-    $("#zoom_03").elevateZoom({
-        gallery: 'gallery_01',
-        zoomType: "inner",
-        cursor: "crosshair",
-        imageCrossfade: true,
-        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+    if (imgtodrag) {
+        var imgclone = imgtodrag.clone()
+            .offset({
+                top: imgtodrag.offset().top + 200,
+                left: imgtodrag.offset().left
+            })
+            .css({
+                'opacity': '0.5',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+            })
+            .appendTo($('body'))
+            .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 75
+            }, 500, 'easeInOutExpo');
 
-    });
+        setTimeout(function () {
+            cart.effect("shake", {
+                times: 2
+            }, 100);
+        }, 750);
 
-    //$("#zoom_03").elevateZoom({
-    //    gallery: 'gallery_01',
-    //    cursor: 'pointer',
-    //    galleryActiveClass: 'active',
-    //    imageCrossfade: true,
-    //    loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
-    //});
-    //pass the images to Fancybox 
-    $("#zoom_03").bind("click", function (e) {
-        var ez = $('#zoom_03').data('elevateZoom');
-        $.fancybox(ez.getGalleryList());
-        return false;
-    });
+        imgclone.animate({
+            'width': 0,
+            'height': 0
+        }, function () {
+            $(this).detach();
+            $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
+        });
+    }
+}
 
-});
+

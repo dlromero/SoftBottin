@@ -212,47 +212,11 @@ namespace SoftBottin.Controllers
         {
             try
             {
-
+                string sErrMessage = "";
                 cmProductDetail niProductDetailt = new cmProductDetail();
-                niProductDetailt.sProductName = "Tacon Rosa Noruego";
-                niProductDetailt.fPrice = 86000;
-                niProductDetailt.sDescription = "Zapato que es valorado por su gran color";
-                List<SelectListItem> lsColors = new List<SelectListItem>();
-                SelectListItem sliNew = new SelectListItem();
-                sliNew.Text = "Rosa";
-                sliNew.Value = "0";
-                lsColors.Add(sliNew);
-                SelectListItem sliNew2 = new SelectListItem();
-                sliNew2.Text = "Azul";
-                sliNew2.Value = "1";
-                lsColors.Add(sliNew2);
-
-
-                List<SelectListItem> lsSisez = new List<SelectListItem>();
-                SelectListItem sliNew3 = new SelectListItem();
-                sliNew3.Text = "35";
-                sliNew3.Value = "0";
-                lsSisez.Add(sliNew3);
-                SelectListItem sliNew24 = new SelectListItem();
-                sliNew24.Text = "36";
-                sliNew24.Value = "1";
-                lsSisez.Add(sliNew24);
-
-
-                niProductDetailt.slColors = lsColors;
-                niProductDetailt.slSizes = lsSisez;
-
-                niProductDetailt.sPathImageSmall1 = "Tacones/Zapato1_Small.jpg";
-                niProductDetailt.sPathImageLarge1 = "Tacones/Zapato1.jpg";
-                niProductDetailt.sPathImageSmall2 = "Tacones/Zapato1_Perfil_2_Small.jpg";
-                niProductDetailt.sPathImageLarge2 = "Tacones/Zapato1_Perfil_2.jpg";
-                niProductDetailt.sPathImageSmall3 = "Tacones/Zapato1_Perfil_3_Small.jpg";
-                niProductDetailt.sPathImageLarge3 = "Tacones/Zapato1_Perfil_3.jpg";
-                niProductDetailt.sPathImageSmall4 = "Tacones/Zapato1_Perfil_2_Small.jpg";
-                niProductDetailt.sPathImageLarge4 = "Tacones/Zapato1_Perfil_2.jpg";
-
-
-                return View(niProductDetailt);
+                cmProductDetail niProductDetailt2 = new cmProductDetail();
+                niProductDetailt.GetFeaturesByShoe(Convert.ToInt32(sProductReference), out niProductDetailt2, out sErrMessage);
+                return View(niProductDetailt2);
             }
             catch (Exception)
             {
@@ -389,6 +353,10 @@ namespace SoftBottin.Controllers
         }
 
 
+        public ActionResult ViewShoppingCart()
+        {
+            return View();
+        }
 
     }
 }

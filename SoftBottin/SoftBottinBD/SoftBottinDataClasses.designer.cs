@@ -690,8 +690,6 @@ namespace SoftBottinBD
 		
 		private int _Id;
 		
-		private int _IdDetail;
-		
 		private string _Name;
 		
 		private string _Description;
@@ -706,16 +704,12 @@ namespace SoftBottinBD
 		
 		private EntityRef<Product> _Product;
 		
-		private EntityRef<ProductDetail> _ProductDetail;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnIdDetailChanging(int value);
-    partial void OnIdDetailChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnDescriptionChanging(string value);
@@ -733,7 +727,6 @@ namespace SoftBottinBD
 		public Image()
 		{
 			this._Product = default(EntityRef<Product>);
-			this._ProductDetail = default(EntityRef<ProductDetail>);
 			OnCreated();
 		}
 		
@@ -757,31 +750,7 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDetail", DbType="Int NOT NULL")]
-		public int IdDetail
-		{
-			get
-			{
-				return this._IdDetail;
-			}
-			set
-			{
-				if ((this._IdDetail != value))
-				{
-					if (this._ProductDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdDetailChanging(value);
-					this.SendPropertyChanging();
-					this._IdDetail = value;
-					this.SendPropertyChanged("IdDetail");
-					this.OnIdDetailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -801,7 +770,7 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
 		public string Description
 		{
 			get
@@ -821,7 +790,7 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
 		public string Type
 		{
 			get
@@ -935,40 +904,6 @@ namespace SoftBottinBD
 						this._IdProduct = default(int);
 					}
 					this.SendPropertyChanged("Product");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Image", Storage="_ProductDetail", ThisKey="IdDetail", OtherKey="Id", IsForeignKey=true)]
-		public ProductDetail ProductDetail
-		{
-			get
-			{
-				return this._ProductDetail.Entity;
-			}
-			set
-			{
-				ProductDetail previousValue = this._ProductDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._ProductDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ProductDetail.Entity = null;
-						previousValue.Images.Remove(this);
-					}
-					this._ProductDetail.Entity = value;
-					if ((value != null))
-					{
-						value.Images.Add(this);
-						this._IdDetail = value.Id;
-					}
-					else
-					{
-						this._IdDetail = default(int);
-					}
-					this.SendPropertyChanged("ProductDetail");
 				}
 			}
 		}
@@ -1629,8 +1564,6 @@ namespace SoftBottinBD
 		
 		private System.Nullable<int> _QuantitySold;
 		
-		private EntitySet<Image> _Images;
-		
 		private EntitySet<Invoice> _Invoices;
 		
 		private EntityRef<Color> _Color;
@@ -1659,7 +1592,6 @@ namespace SoftBottinBD
 		
 		public ProductDetail()
 		{
-			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
 			this._Color = default(EntityRef<Color>);
 			this._Product = default(EntityRef<Product>);
@@ -1814,19 +1746,6 @@ namespace SoftBottinBD
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Image", Storage="_Images", ThisKey="Id", OtherKey="IdDetail")]
-		public EntitySet<Image> Images
-		{
-			get
-			{
-				return this._Images;
-			}
-			set
-			{
-				this._Images.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductDetail_Invoice", Storage="_Invoices", ThisKey="Id", OtherKey="IdProductDetail")]
 		public EntitySet<Invoice> Invoices
 		{
@@ -1926,18 +1845,6 @@ namespace SoftBottinBD
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = this;
-		}
-		
-		private void detach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.ProductDetail = null;
 		}
 		
 		private void attach_Invoices(Invoice entity)

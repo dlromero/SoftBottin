@@ -26,8 +26,8 @@ namespace SoftBottinBD.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DANIEL-PC;Initial Catalog=ZapaTake;User ID=dlromeroa;Password=Local12" +
-            "34567")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DANIEL-PC;Initial Catalog=ZapaTake;User ID=dlromeroa;Password=A101364" +
+            "3035*")]
         public string ZapaTakeConnectionString {
             get {
                 return ((string)(this["ZapaTakeConnectionString"]));

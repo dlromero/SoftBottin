@@ -53,7 +53,7 @@ namespace SoftBottinWS
                                 join clr in dbConection.Colors
                                 on prd.IdColor equals clr.Id
                                 join img in dbConection.Images
-                                on prd.Id equals img.IdDetail into imageGroup
+                                on pds.Id equals img.IdProduct into imageGroup
                                 from images in imageGroup.DefaultIfEmpty().Take(1)
                                 where pds.Type.Equals(iShoeType)
                                 select new
@@ -205,7 +205,7 @@ namespace SoftBottinWS
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool AddImageShoe(int iIdShoe, string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
+        public bool AddImageShoe(string sName, string sType, byte[] btFileByte, int iProductId, bool bIsPrincipal, out string sErrMessage)
         {
             try
             {
@@ -213,7 +213,6 @@ namespace SoftBottinWS
                 dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
                 SoftBottinBD.Image niImage = new SoftBottinBD.Image
                 {
-                    IdDetail = iIdShoe,
                     Description = sName,
                     Name = sName,
                     Type = sType,
@@ -243,13 +242,13 @@ namespace SoftBottinWS
         /// <param name="sErrMessage"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool GetShoeImages(int iShoeID, out DataSet dsShoes, out string sErrMessage)
+        public bool GetShoeImages(int iProductId, out DataSet dsShoes, out string sErrMessage)
         {
             try
             {
                 dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
                 var imag = (from img in dbConection.Images
-                            where img.IdDetail.Equals(iShoeID)
+                            where img.IdProduct.Equals(iProductId)
                             select img).Take(1);
 
                 if (imag.ToList().Count > 0)
@@ -365,6 +364,114 @@ namespace SoftBottinWS
                 return false;
             }
         }
+
+        /// <summary>
+        /// Daniel Romero 16 de Julio de 2016
+        /// Metodo que se crea para consultar las caracteristicas de un zapato
+        /// </summary>
+        /// <param name="iShoeId"></param>
+        /// <param name="dsShoes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetFeaturesByShoe(int iProductId, out DataSet dsShoes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var products = from rsl in dbConection.ProductDetails
+                               join rsl2 in dbConection.Products
+                                 on rsl.IdProduct equals rsl2.Id
+                               join rsl3 in dbConection.Images
+                                 on rsl.IdProduct equals rsl3.IdProduct
+                               where rsl2.Id.Equals(iProductId)
+                               select new
+                               {
+                                   ptId = rsl.Id,
+                                   ptIdProduct = rsl.IdProduct,
+                                   IdColor = rsl.Color,
+                                   Size = rsl.Size,
+                                   Quantity = rsl.Quantity,
+                                   ptQuantityExisting = rsl.QuantityExisting,
+                                   ptQuantitySold = rsl.QuantitySold,
+                                   pdPurchasePrice = rsl2.PurchasePrice,
+                                   pdSalePrice = rsl2.SalePrice,
+                                   pdType = rsl2.Type,
+                                   pdName = rsl2.Name,
+                                   pdDescription = rsl2.Description,
+                                   imgDescription = rsl3.Description,
+                                   imgImage = rsl3.Image1,
+                                   imgisPrincipal = rsl3.isPrincipal
+                               };
+
+                if (products.ToList().Count > 0)
+                {
+                    dsShoes = cUtilities.ToDataSet(products.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsShoes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsShoes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Daniel Romero 17 de Julio de 2016
+        /// Metodo que se crea para consultar las tallas de un zapato
+        /// </summary>
+        /// <param name="iProductId"></param>
+        /// <param name="dsShoes"></param>
+        /// <param name="sErrMessage"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public bool GetSizesByShoe(int iProductId, out DataSet dsSizes, out string sErrMessage)
+        {
+            try
+            {
+                dbConection = new SoftBottinBD.SoftBottinDataClassesDataContext();
+                var products = from rsl in dbConection.Products
+                               join rsl2 in dbConection.ProductDetails
+                                 on rsl.Id equals rsl2.IdProduct                              
+                               where rsl.Id.Equals(iProductId)
+                               select new
+                               {
+                                   ptId = rsl.Id,
+                                   Name = rsl.Name,
+                                   Size = rsl2.Size
+                               };
+
+                if (products.ToList().Count > 0)
+                {
+                    dsSizes = cUtilities.ToDataSet(products.ToList());
+                    sErrMessage = "";
+                    return true;
+                }
+                else
+                {
+                    dsSizes = new DataSet();
+                    sErrMessage = "Not Found";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dsSizes = new DataSet();
+                cUtilities.WriteLog(ex.Message, out sErrMsj);
+                sErrMessage = ex.Message;
+                return false;
+            }
+        }
+        
 
         #endregion
 

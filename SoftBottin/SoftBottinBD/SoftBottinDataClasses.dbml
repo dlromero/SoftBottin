@@ -29,15 +29,13 @@
   <Table Name="dbo.Images" Member="Images">
     <Type Name="Image">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdDetail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="Image" Member="Image1" Type="System.Byte[]" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isPrincipal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Product_Image" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
-      <Association Name="ProductDetail_Image" Member="ProductDetail" ThisKey="IdDetail" OtherKey="Id" Type="ProductDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Invoice" Member="Invoices">
@@ -77,7 +75,6 @@
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QuantityExisting" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="QuantitySold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ProductDetail_Image" Member="Images" ThisKey="Id" OtherKey="IdDetail" Type="Image" />
       <Association Name="ProductDetail_Invoice" Member="Invoices" ThisKey="Id" OtherKey="IdProductDetail" Type="Invoice" />
       <Association Name="Color_ProductDetail" Member="Color" ThisKey="IdColor" OtherKey="Id" Type="Color" IsForeignKey="true" />
       <Association Name="Product_ProductDetail" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />

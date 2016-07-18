@@ -356,6 +356,7 @@
     <Content Include="Content\Icomoon\selection.json" />
     <Content Include="Scripts\Angular\app.js" />
     <Content Include="Scripts\Angular\controllers.js" />
+    <Content Include="Scripts\Angular\LocalStorage\angular-local-storage.min.js" />
     <Content Include="Scripts\Boostrap\main.js" />
     <Content Include="Scripts\Boostrap\plugins.js" />
     <Content Include="Scripts\Boostrap\Vendor\bootstrap.js" />
@@ -366,6 +367,8 @@
     <Content Include="Scripts\Boostrap\Vendor\npm.js" />
     <Content Include="Scripts\Security\Principal.js" />
     <Content Include="Scripts\Security\ProductDetail.js" />
+    <Content Include="Scripts\Zoom\bootstrap-image-gallery.min.css" />
+    <Content Include="Scripts\Zoom\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\Zoom\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Versioning.txt" />
     <Content Include="Views\NotFund\404.html" />
@@ -386,6 +389,7 @@
     <Content Include="Views\Shoes\EditarColor.cshtml" />
     <Content Include="Views\Shoes\Imagenes.cshtml" />
     <Content Include="Views\Security\SubPrincipal.cshtml" />
+    <Content Include="Views\Security\ViewShoppingCart.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

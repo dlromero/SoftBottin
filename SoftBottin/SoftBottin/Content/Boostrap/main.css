@@ -197,12 +197,13 @@
 }
 
 .app-glyphicon2 {
-    background-color: #0080d6;
+    background-color: white;
     margin: 2px;
-    color: white;
+    color: black;
     font-size: 15px;
     padding: 10px;
     cursor: pointer;
+    border-style: solid;
 }
 
 .app-glyphicon3 {
@@ -453,6 +454,22 @@ td, th {
 
 .app-centrar {
     text-align: center;
+}
+
+.app-h1 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    margin: 0;
+}
+
+.app-tittle {
+    color: #202020;
+    font-weight: bold;
+}
+
+.app-price {
+    color: #757575;
 }
 
 @media(max-width: 406px) {
