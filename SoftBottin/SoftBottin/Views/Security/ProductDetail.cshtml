@@ -17,7 +17,7 @@
     }
 </style>
 
-<div class="container" ng-controller="ShoppingCartCtrl" ng-init="newActv.name='@Model.sProductName'; newActv.price='$@Model.fPrice.ToString("N")'; newActv.description = '@Model.sDescription' ">
+<div class="container" ng-controller="ShoppingCartCtrl" ng-init="newActv.name='@Model.sProductName'; newActv.price='@Model.fPrice.ToString()'; newActv.description = '@Model.sDescription' ">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a class="glyphicon glyphicon glyphicon-arrow-left app-link" style="padding: 2em;" href="#/">
@@ -91,19 +91,6 @@
             </div>
 
         </div>
-    </div>
-    <ul>
-        <li ng-repeat="actividad in shoe">
-
-
-            {{actividad.name}}
-            {{actividad.size}}
-            {{actividad.quantity}}
-            {{actividad.description}}
-            {{actividad.price}}
-
-
-        </li>
-    </ul>
+    </div>   
 </div>
 

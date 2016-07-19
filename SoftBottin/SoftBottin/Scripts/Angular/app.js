@@ -10,6 +10,10 @@
             templateUrl: rootURL + 'Security/ViewShoppingCart',
             controller: 'ShoppingCartCtrl',
         })
+        .when('/CheckOut', {
+            templateUrl: rootURL + 'Security/CheckOut',
+            controller: 'CheckOutCtrl',
+        })
         .when('/ProductDetail/:sProductReference', {
             templateUrl: function (stateParams) {
                 return rootURL + 'Security/ProductDetail?sProductReference=' + stateParams.sProductReference;
@@ -79,7 +83,13 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
         $scope.shoe = [];
     }
 
+    //$scope.shoe = [];
+    //localStorageService.cookie.set('angular-shopping-cart', $scope.shoe);
+    //localStorageService.remove('angular-shopping-cart');
+
     $scope.numberShoes = $scope.shoe.length;
+
+
 
     /*
      {
@@ -98,5 +108,25 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
         $scope.newActv = {};
         localStorageService.set("angular-shopping-cart", $scope.shoe);
     }
+
+    $scope.getTotal = function () {
+        var total = 0;
+        for (var i = 0; i < $scope.shoe.length; i++) {
+            var product = $scope.shoe[i];
+            total += (product.price * product.quantity);
+        }
+        return total;
+    }
+
+    $scope.getTotalShopping = function () {
+        var total = 0;
+        for (var i = 0; i < $scope.shoe.length; i++) {
+            var product = $scope.shoe[i];
+            total = (parseInt(total, 10) + parseInt(product.quantity, 10));
+        }
+        return total;
+    }
+
+
     $scope.message = "Perfil.";
 });

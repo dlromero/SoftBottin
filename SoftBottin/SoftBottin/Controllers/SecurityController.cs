@@ -208,6 +208,7 @@ namespace SoftBottin.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        [CompressFilter]
         public ActionResult ProductDetail(string sProductReference)
         {
             try
@@ -352,8 +353,14 @@ namespace SoftBottin.Controllers
             }
         }
 
-
+        [CompressFilter]
         public ActionResult ViewShoppingCart()
+        {
+            return View();
+        }
+
+        [CompressFilter]
+        public ActionResult CheckOut()
         {
             return View();
         }

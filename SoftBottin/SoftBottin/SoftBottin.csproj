@@ -390,6 +390,7 @@
     <Content Include="Views\Shoes\Imagenes.cshtml" />
     <Content Include="Views\Security\SubPrincipal.cshtml" />
     <Content Include="Views\Security\ViewShoppingCart.cshtml" />
+    <Content Include="Views\Security\CheckOut.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
