@@ -1,7 +1,7 @@
 ﻿
 <div ng-controller="ShoppingCartCtrl">
 
-    <div class="container" style="padding-top:3em;">
+    <div class="container" style="padding-top:5em;">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <table class="table table-responsive">
@@ -10,7 +10,6 @@
                             <th>Nombre</th>
                             <th>Talla</th>
                             <th>Cantidad</th>
-                            <th>Descripción</th>
                             <th>Precio</th>
                         </tr>
                     </thead>
@@ -18,15 +17,13 @@
                         <tr ng-repeat="actividad in shoe">
                             <td>{{actividad.name}}</td>
                             <td>{{actividad.size}}</td>
-                            <td>{{actividad.quantity}}</td>
-                            <td>{{actividad.description}}</td>
+                            <td>{{actividad.quantity}}</td>                            
                             <td>${{actividad.price | number:2}}</td>
                         </tr>
                         <tr>
                             <td>Total </td>
                             <td>&nbsp;</td>
-                            <td scope="row">{{getTotalShopping()}}</td>
-                            <td>&nbsp;</td>
+                            <td scope="row">{{getTotalShopping()}}</td>                            
                             <td scope="row">${{getTotal() | number:2}}</td>
                         </tr>
                     </tbody>

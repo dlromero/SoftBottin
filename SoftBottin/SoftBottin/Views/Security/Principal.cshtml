@@ -28,16 +28,21 @@
 
     #loading-image {
         position: absolute;
-        top: 40%;
-        left: 40%;
+        /*top: 50%;*/
+        /*left: 40%;*/
         z-index: 100;
+        /*text-align: center;*/
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
     }
 </style>
 
 <div id="loading" ng-hide="!layout.loading">
     <img id="loading-image" src="http://lp.optionweb.com/it/landing1/images/Loading.gif" width="100" />
 </div>
-<div ng-controller="carritoController">
+<div ng-controller="carritoController" ng-show="!layout.loading">
     <resolve-loader></resolve-loader>
     <div ng-view>
         @Html.Partial("SubPrincipal")
