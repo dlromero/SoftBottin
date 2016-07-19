@@ -39,7 +39,7 @@ function addProductToShoppingCart(shoeReference, shoeName, shoePrice, shoeColor,
             'height': 0
         }, function () {
             $(this).detach();
-            $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + 1));
+            $("#numberShoesPick").html((parseInt($("#sQuantitySelect").val()) + 1));
         });
     }
 }
