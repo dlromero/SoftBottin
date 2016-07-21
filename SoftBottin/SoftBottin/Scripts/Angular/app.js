@@ -1,4 +1,4 @@
-﻿var app = angular.module('SoftBottin', ['ngRoute', 'LocalStorageModule'])
+﻿var app = angular.module('SoftBottin', ['ngRoute', 'ngMessages', 'LocalStorageModule'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider //add resolve function is pending.
@@ -36,14 +36,14 @@ app.run(function ($rootScope, $location, $route, $timeout) {
     $rootScope.layout.loading = false;
 
     $rootScope.$on('$routeChangeStart', function () {
-        console.log('$routeChangeStart');
+        //console.log('$routeChangeStart');
         //show loading gif
         $timeout(function () {
             $rootScope.layout.loading = true;
         });
     });
     $rootScope.$on('$routeChangeSuccess', function () {
-        console.log('$routeChangeSuccess');
+        //console.log('$routeChangeSuccess');
         //hide loading gif
         $timeout(function () {
             $rootScope.layout.loading = false;
@@ -52,7 +52,7 @@ app.run(function ($rootScope, $location, $route, $timeout) {
     $rootScope.$on('$routeChangeError', function () {
 
         //hide loading gif
-        alert('wtff');
+        alert('Ocurrió algo inesperado, verifique su conexión a internet');
         $rootScope.layout.loading = false;
 
     });
@@ -68,6 +68,11 @@ app.controller('PrincipalCtrl', function ($scope) {
 });
 
 app.controller('carritoController', function ($scope) {
+    $scope.message = "Perfil.";
+    //Route1Controller
+});
+
+app.controller('CheckOutCtrl', function ($scope) {
     $scope.message = "Perfil.";
     //Route1Controller
 });
@@ -88,7 +93,7 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
     //localStorageService.remove('angular-shopping-cart');
 
     $scope.numberShoes = $scope.shoe.length;
-
+    $scope.totalShopping = 0;
 
 
     /*
@@ -107,6 +112,54 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
         $scope.shoe.push($scope.newActv);
         $scope.newActv = {};
         localStorageService.set("angular-shopping-cart", $scope.shoe);
+
+        var cart = $('.app-shopping');
+        //var imgtodrag = $(".img-responsive").eq(4);
+        var imgtodrag = $("#zoom_03").eq(0);;
+
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                    top: imgtodrag.offset().top + 200,
+                    left: imgtodrag.offset().left
+                })
+                .css({
+                    'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '100'
+                })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+                }, 500, 'easeInOutExpo');
+
+            setTimeout(function () {
+                cart.effect("shake", {
+                    times: 2
+                }, 100);
+            }, 750);
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                $(this).detach();
+                $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + parseInt($scope.shoe[$scope.shoe.length - 1].quantity, 10)));
+            });
+        }
+    }
+
+
+    $scope.removeActv = function (item) {
+        var index = $scope.shoe.indexOf(item);
+        $scope.shoe.splice(index, 1);
+        localStorageService.set("angular-shopping-cart", $scope.shoe);
+        $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) - parseInt(item.quantity, 10)));
     }
 
     $scope.getTotal = function () {
@@ -127,6 +180,5 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
         return total;
     }
 
-
-    $scope.message = "Perfil.";
 });
+

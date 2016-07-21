@@ -471,6 +471,31 @@ Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.22
+		       Autor: Daniel Romero
+			   Fecha: 20 de Julio de 2016
+  		 Descripcion:			
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Angular\app.js
+								SoftBottin\SoftBottin\Scripts\Security\ProductDetail.js
+								SoftBottin\SoftBottin\Scripts\Angular\Messages\messages.js
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\CheckOut.cshtml
+								SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Security\ViewShoppingCart.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+
+
+
 
 
 

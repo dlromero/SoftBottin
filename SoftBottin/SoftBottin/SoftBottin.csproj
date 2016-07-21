@@ -357,6 +357,7 @@
     <Content Include="Scripts\Angular\app.js" />
     <Content Include="Scripts\Angular\controllers.js" />
     <Content Include="Scripts\Angular\LocalStorage\angular-local-storage.min.js" />
+    <Content Include="Scripts\Angular\Messages\messages.js" />
     <Content Include="Scripts\Boostrap\main.js" />
     <Content Include="Scripts\Boostrap\plugins.js" />
     <Content Include="Scripts\Boostrap\Vendor\bootstrap.js" />

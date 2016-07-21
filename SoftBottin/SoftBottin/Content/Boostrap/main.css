@@ -203,7 +203,7 @@
     font-size: 15px;
     padding: 10px;
     cursor: pointer;
-    border-style: solid;
+    border-style: groove;
 }
 
 .app-glyphicon3 {
