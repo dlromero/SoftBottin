@@ -1,51 +1,47 @@
-﻿
-<div ng-controller="ShoppingCartCtrl">
-
-    <div class="container" style="padding-top:5em;">
+﻿<div ng-controller="ShoppingCartCtrl">
+    <div class="container" style="padding-top:6em;">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <a class="glyphicon glyphicon glyphicon-arrow-left app-link" style="padding: 1em;" href="#/">
-                    Volver
-                </a>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <strong>Tu carrito</strong><br>
+                <h5><small>{{getTotalShopping()}} (ZAPATOS)</small></h5>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <table class="table table-responsive table-bordered">
-                    <thead>
-                        <tr class="info">
-                            <th>Nombre</th>
-                            <th>Talla</th>
-                            <th>Cantidad</th>
-                            <th>Precio (Unidad)</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="actividad in shoe">
-                            <td>{{actividad.name}}</td>
-                            <td>{{actividad.size}}</td>
-                            <td>{{actividad.quantity}}</td>
-                            <td>${{actividad.price | number:2}}</td>
-                            <td>
-                                <span class="glyphicon glyphicon glyphicon-remove text-right" ng-click="removeActv(actividad)"></span>
-                                @*<button type="button" class="close" aria-label="Close" ng-click="removeActv(actividad.name)"><span aria-hidden="true">&times;</span></button>*@
-                            </td>
-                        </tr>
-                        <tr class="success">
-                            <td>Total </td>
-                            <td>&nbsp;</td>
-                            <td scope="row">{{getTotalShopping()}}</td>
-                            <td scope="row">${{getTotal() | number:2}}</td>
-                            <td scope="row"></td>
-                        </tr>
-                    </tbody>
-                </table>              
+        </div>
+        <blockquote>
+            <div class="row" ng-repeat="actividad in shoe">
+
+                <div class="col-xs-4 col-sm-1 col-md-1 col-lg-1 app-shoppingCart-img">
+                    <img src="{{actividad.imageShoe}}" width="72" height="72" />
+                </div>
+                <div class="col-xs-7 col-sm-2 col-md-3 col-lg-3 app-shoppingCart app-shoppingCart-first-el">
+                    <strong>
+                        {{actividad.name}}
+                    </strong>
+                </div>
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                    <span>Ctd:</span>
+                    {{actividad.quantity}}
+                </div>
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                    <span>
+                        Talla:
+                    </span>
+                    {{actividad.size}}
+                </div>
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                    ${{actividad.price | number:2}}
+                </div>
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2  text-right app-shoppingCart">
+                    <span class="glyphicon glyphicon glyphicon-remove text-right" ng-click="removeActv(actividad)"></span>
+                </div>
             </div>
+        </blockquote>
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="pull-right right">
                     <h4>
                         TOTAL A PAGAR:
                         <span class="label label-default">${{getTotal() | number:2}}</span>
-                    </h4>                                        
+                    </h4>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -56,8 +52,67 @@
                         </span>
                     </a>
                 </div>
-            </div>           
+            </div>
         </div>
     </div>
+
+
+    @*<div class="container" style="padding-top:5em;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <a class="glyphicon glyphicon glyphicon-arrow-left app-link" style="padding: 1em;" href="#/">
+                        Volver
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr class="info">
+                                <th>Nombre</th>
+                                <th>Talla</th>
+                                <th>Cantidad</th>
+                                <th>Precio (Unidad)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="actividad in shoe">
+                                <td>{{actividad.name}}</td>
+                                <td>{{actividad.size}}</td>
+                                <td>{{actividad.quantity}}</td>
+                                <td>${{actividad.price | number:2}}</td>
+                                <td>
+                                    <span class="glyphicon glyphicon glyphicon-remove text-right" ng-click="removeActv(actividad)"></span>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>Total </td>
+                                <td>&nbsp;</td>
+                                <td scope="row">{{getTotalShopping()}}</td>
+                                <td scope="row">${{getTotal() | number:2}}</td>
+                                <td scope="row"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="pull-right right">
+                        <h4>
+                            TOTAL A PAGAR:
+                            <span class="label label-default">${{getTotal() | number:2}}</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="pull-right right">
+                        <a href="#CheckOut">
+                            <span class="glyphicon glyphicon glyphicon-saved app-glyphicon2 add-to-cart">
+                                VERIFICAR
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
 </div>
 

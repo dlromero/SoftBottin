@@ -237,6 +237,7 @@
     <Content Include="Content\Icomoon\demo-files\demo.css" />
     <Content Include="Content\Icomoon\demo-files\demo.js" />
     <Content Include="Content\Icomoon\demo.html" />
+    <Content Include="Content\Icomoon\Icon\bottini.ico" />
     <Content Include="Content\Icomoon\Read Me.txt" />
     <Content Include="Content\Icomoon\style.css" />
     <Content Include="Content\Images\Accesorios\Accesorio1.jpg" />
