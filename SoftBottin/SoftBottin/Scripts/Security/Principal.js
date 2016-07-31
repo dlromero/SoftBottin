@@ -75,6 +75,7 @@ $(document).ready(function () {
 
 
     $("#btnLogIn").on("click", function () {
+        $("#loading").show();
         if ($("#formLogIn")[0].checkValidity()) {
             LogIn($("#tbEmailLogIn").val(), $("#tbPasswordLogIn").val());
             return false;
@@ -91,6 +92,7 @@ $(document).ready(function () {
                     ChangeGlyphiconColor("spGlyphiconPasswordLogIn", "remove");
                     ChangeDivMessageShow("dvMessagePasswordLogIn", "¡Tu contraseña, es requerida!");
                 }
+            $("#loading").hide();
             return false;
         }
     });
@@ -461,17 +463,18 @@ function LogIn(piUserName, piPassword) {
         success: function (data) {
             if (data) {
                 window.location = window.rootUrl + "Security/Principal";
+                $("#loading").hide();
             } else {
                 //spGlyphiconErrorSigIn
                 ChangeFormControlColor("formErorMessageLogIn", "error");
                 ChangeGlyphiconColor("spGlyphiconErrorSigIn", "remove");
                 ChangeDivMessageShow("dvMessageErrorLogIn", "¡Tu usuario o contraseña son incorrectos!");
                 $("#altErrorLogIn").show();
-
+                $("#loading").hide();
             }
-
         },
         error: function (dataError) {
+            $("#loading").hide();
             alert(dataError);
         }
     });

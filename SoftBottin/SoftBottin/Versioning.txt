@@ -508,6 +508,32 @@ Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\ProductDetail.csht
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.24
+		       Autor: Daniel Romero
+			   Fecha: 31 de Julio de 2016
+  		 Descripcion:			
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+Actualización Script		:	SoftBottin\SoftBottin\Scripts\Angular\app.js
+								SoftBottin\SoftBottin\Scripts\Security\Principal.js
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\CheckOut.cshtml
+								SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Content\Images\HTTPS_icon.png
+								SoftBottin\SoftBottin\Content\Images\payu@2x.png
+								SoftBottin\SoftBottin\Scripts\Security\ChechkOut.js
+
+
+
+
+
 
 
 

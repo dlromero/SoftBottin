@@ -14,11 +14,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+
+    @*<script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>*@
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Security/Principal.js")"></script>
+    <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
+    <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script type="text/javascript">
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+        function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+        e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-34048295-4', 'auto'); ga('send', 'pageview');
+
+
+
+    $('#btnSigIn').on('click', function () {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function () {
+            $this.button('reset');
+        }, 8000);
+    });
+    </script>
+
+    <script type="text/javascript">
+
+
+
+    //Inicio API Facebook
+
+
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_CO/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+
+
+
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallbackLogIn(response) {
+        //console.log('statusChangeCallback');
+        //console.log(response);
+        if (response.status === 'connected') {
+            //testAPI();
+            fbAPILogIn();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Por favor, ' +
+              'inicie sesión en la app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Por favor, ' +
+              'inicie sesión en Facebook.';
+        }
+    }
+
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallbackSignIn(response) {
+        //console.log('statusChangeCallback');
+        //console.log(response);
+        if (response.status === 'connected') {
+            //testAPI();
+            fbAPISignIn();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Por favor, ' +
+              'inicie sesión en la app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Por favor, ' +
+              'inicie sesión en Facebook.';
+        }
+    }
+
+
+    function checkLoginStateLogIn() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallbackLogIn(response);
+        });
+    }
+
+    function checkLoginStateSignIn() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallbackSignIn(response);
+        });
+    }
+
+
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '994758580598409',
+            cookie: true,  // enable cookies to allow the server to access
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.2' // use version 2.2
+        });
+
+    };
+
+
+
+
+
+
+    function fbAPILogIn() {
+
+        FB.api('/me',
+               { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+                   LogIn(response.email, response.id);
+               });
+    }
+
+    function fbAPISignIn() {
+
+        FB.api('/me',
+               { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+                   SignIn(response.first_name, response.last_name, response.email, response.id);
+               });
+    }
+
+
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+
+
+
+
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me',
+               { fields: "name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
+
+                   LogIn(response.email, response.id);
+
+                   console.log(response);
+                   console.log('Successful login for: ' + response.name);
+                   console.log('Successful email for: ' + response.email);
+                   console.log('Successful birthday for: ' + response.birthday);
+                   console.log('Successful currency for: ' + response.currency);
+                   console.log('Successful first_name for: ' + response.first_name);
+                   console.log('Successful last_name for: ' + response.last_name);
+                   console.log('Successful gender for: ' + response.gender);
+                   console.log('Successful languages for: ' + response.languages);
+                   console.log('Successful location for: ' + response.location);
+                   console.log('Successful timezone for: ' + response.timezone);
+                   document.getElementById('status').innerHTML =
+                     'Thanks for logging in, ' + response.name + '!';
+               });
+    }
+
+    //Fin API Facebook
+
+
+
+    //var lastScrollTop = 0;
+    //$(window).scroll(function (event) {
+    //    var st = $(this).scrollTop();
+    //    if (st > lastScrollTop) {
+    //        $("#caja-flotante").fadeOut();
+    //    } else {
+    //        $("#caja-flotante").fadeIn();
+    //    }
+    //    lastScrollTop = st;
+    //});
+
+
+    </script>
+
+    <link href="@Url.Content("~/Content/Boostrap/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />    
     <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
     <link rel="icon" href="@Url.Content("~/Content/Icomoon/Icon/bottini.ico")">
 
@@ -293,187 +477,4 @@
     </footer>
 
 </body>
-<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-
-@*<script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
-    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>*@
-<script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
-<script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
-
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function (b, o, i, l, e, r) {
-        b.GoogleAnalyticsObject = l; b[l] || (b[l] =
-        function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
-        e = o.createElement(i); r = o.getElementsByTagName(i)[0];
-        e.src = '//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e, r)
-    }(window, document, 'script', 'ga'));
-    ga('create', 'UA-34048295-4', 'auto'); ga('send', 'pageview');
-
-
-
-    $('#btnSigIn').on('click', function () {
-        var $this = $(this);
-        $this.button('loading');
-        setTimeout(function () {
-            $this.button('reset');
-        }, 8000);
-    });
-</script>
-
-<script type="text/javascript">
-
-
-
-    //Inicio API Facebook
-
-
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/es_CO/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-
-
-
-
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallbackLogIn(response) {
-        //console.log('statusChangeCallback');
-        //console.log(response);
-        if (response.status === 'connected') {
-            //testAPI();
-            fbAPILogIn();
-        } else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Por favor, ' +
-              'inicie sesión en la app.';
-        } else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Por favor, ' +
-              'inicie sesión en Facebook.';
-        }
-    }
-
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallbackSignIn(response) {
-        //console.log('statusChangeCallback');
-        //console.log(response);
-        if (response.status === 'connected') {
-            //testAPI();
-            fbAPISignIn();
-        } else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Por favor, ' +
-              'inicie sesión en la app.';
-        } else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Por favor, ' +
-              'inicie sesión en Facebook.';
-        }
-    }
-
-
-    function checkLoginStateLogIn() {
-        FB.getLoginStatus(function (response) {
-            statusChangeCallbackLogIn(response);
-        });
-    }
-
-    function checkLoginStateSignIn() {
-        FB.getLoginStatus(function (response) {
-            statusChangeCallbackSignIn(response);
-        });
-    }
-
-
-
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '994758580598409',
-            cookie: true,  // enable cookies to allow the server to access
-            xfbml: true,  // parse social plugins on this page
-            version: 'v2.2' // use version 2.2
-        });
-
-    };
-
-
-
-
-
-
-    function fbAPILogIn() {
-
-        FB.api('/me',
-               { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
-                   LogIn(response.email, response.id);
-               });
-    }
-
-    function fbAPISignIn() {
-
-        FB.api('/me',
-               { fields: "id,name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
-                   SignIn(response.first_name, response.last_name, response.email, response.id);
-               });
-    }
-
-
-
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
-    function testAPI() {
-
-
-
-
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me',
-               { fields: "name, email, birthday ,currency, first_name, last_name, gender, languages, location, timezone " }, function (response) {
-
-                   LogIn(response.email, response.id);
-
-                   console.log(response);
-                   console.log('Successful login for: ' + response.name);
-                   console.log('Successful email for: ' + response.email);
-                   console.log('Successful birthday for: ' + response.birthday);
-                   console.log('Successful currency for: ' + response.currency);
-                   console.log('Successful first_name for: ' + response.first_name);
-                   console.log('Successful last_name for: ' + response.last_name);
-                   console.log('Successful gender for: ' + response.gender);
-                   console.log('Successful languages for: ' + response.languages);
-                   console.log('Successful location for: ' + response.location);
-                   console.log('Successful timezone for: ' + response.timezone);
-                   document.getElementById('status').innerHTML =
-                     'Thanks for logging in, ' + response.name + '!';
-               });
-    }
-
-    //Fin API Facebook
-
-
-
-    //var lastScrollTop = 0;
-    //$(window).scroll(function (event) {
-    //    var st = $(this).scrollTop();
-    //    if (st > lastScrollTop) {
-    //        $("#caja-flotante").fadeOut();
-    //    } else {
-    //        $("#caja-flotante").fadeIn();
-    //    }
-    //    lastScrollTop = st;
-    //});
-
-
-</script>
 </html>

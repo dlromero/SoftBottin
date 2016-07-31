@@ -150,6 +150,7 @@ app.controller('ShoppingCartCtrl', function ($scope, localStorageService) {
             }, function () {
                 $(this).detach();
                 $("#numberShoesPick").html((parseInt($("#numberShoesPick").html()) + parseInt($scope.shoe[$scope.shoe.length - 1].quantity, 10)));
+                $("#panelShoeSuccess").animate({ width: 'toggle' }, 150);
             });
         }
     }

@@ -480,6 +480,22 @@ td, th {
     padding: 1em;
 }
 
+
+.app-panel-success {
+    position: fixed;
+    z-index: 9999;
+    float: right !important;
+    display: none;
+}
+
+
+@media (min-width: 1366px) and (max-width: 1968px) {
+    .app-panel-success {
+        top: 56px;
+        right: 13px;
+    }
+}
+
 @media(max-width: 406px) {
     .navbar-brand {
         height: 76px;
@@ -587,6 +603,10 @@ td, th {
 
     div.pull-right.right > h4 {
         font-size: 15px;
+    }
+
+    .app-panel-success {
+        bottom: 0px;
     }
 }
 
