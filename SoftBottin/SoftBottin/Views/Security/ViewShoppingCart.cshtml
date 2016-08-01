@@ -12,25 +12,25 @@
                 <div class="col-xs-4 col-sm-1 col-md-1 col-lg-1 app-shoppingCart-img">
                     <img src="{{actividad.imageShoe}}" width="72" height="72" />
                 </div>
-                <div class="col-xs-7 col-sm-2 col-md-3 col-lg-3 app-shoppingCart app-shoppingCart-first-el">
+                <div class="col-xs-7 col-sm-2 col-md-3 col-lg-3 app-shoppingCart app-shoppingCart-first-el app-view-shopping-cart">
                     <strong>
                         {{actividad.name}}
                     </strong>
                 </div>
-                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart app-view-shopping-cart">
                     <span>Ctd:</span>
                     {{actividad.quantity}}
                 </div>
-                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart app-view-shopping-cart">
                     <span>
                         Talla:
                     </span>
                     {{actividad.size}}
                 </div>
-                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart">
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2 app-shoppingCart app-view-shopping-cart">
                     ${{actividad.price | number:2}}
                 </div>
-                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2  text-right app-shoppingCart">
+                <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2  text-right app-shoppingCart app-view-shopping-cart">
                     <span class="glyphicon glyphicon glyphicon-remove text-right" ng-click="removeActv(actividad)"></span>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="pull-right right">
                     <a href="#CheckOut">
-                        <span class="glyphicon glyphicon glyphicon-saved app-glyphicon2 add-to-cart">
+                        <span class="glyphicon glyphicon-saved app-glyphicon2 add-to-cart">
                             VERIFICAR
                         </span>
                     </a>
