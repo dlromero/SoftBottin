@@ -16,6 +16,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     @*<script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/Boostrap/Vendor/jquery-1.11.2.js")"><\/script>')</script>
         <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/GoogleApis/.js")"><\/script>')</script>*@
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/modernizr-2.8.3-respond-1.4.2.min.js")"></script>
@@ -23,6 +27,18 @@
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
+
+
+
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script src="http://code.angularjs.org/1.3.0/angular.js"></script>
+    <script src="http://code.angularjs.org/1.2.0-rc.3/angular-route.js"></script>
+
+    <script src="@Url.Content("~/Scripts/Angular/LocalStorage/angular-local-storage.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Angular/Messages/messages.js")"></script>
+    <script src="@Url.Content("~/Scripts/Angular/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/Security/ProductDetail.js")"></script>
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -200,11 +216,20 @@
 
     </script>
 
+
     <link href="@Url.Content("~/Content/Boostrap/bootstrap.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />    
+    @*<link href="@Url.Content("~/Content/Boostrap/bootstrap-theme.min.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("~/Content/Boostrap/main.css")" rel="stylesheet" />
     <link rel="stylesheet" href="@Url.Content("~/Content/Icomoon/style.css")">
     <link rel="icon" href="@Url.Content("~/Content/Icomoon/Icon/bottini.ico")">
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Boostrap/bootstrap-material-design.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Boostrap/ripples.min.css")" />
+
+
+    <script src="@Url.Content("~/Scripts/Material/material.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Material/ripples.min.js")"></script>
+
 
     <script type="text/javascript">
         window.rootUrl = '@Url.Content("~/")';
@@ -213,7 +238,7 @@
 </head>
 <body>
     <header class="app-header" id="caja-flotante">
-        <nav class="navbar app-navbar navbar-fixed-top">
+        <nav class="navbar navbar-inverse app-navbar navbar-fixed-top">
             <div class="container">
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="navbar-header" style="font-family:Juice ITC">
@@ -290,9 +315,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-controller="ShoppingCartCtrl">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-controller="ShoppingCartCtrl" ng-cloak>
                     <a href="#/ViewShoppingCart">
-                        <span class="glyphicon glyphicon-shopping-cart app-glyphicon4 text-right app-shopping shopping-cart" id="numberShoesPick">{{ getTotalShopping() }}</span>
+                        <span class="glyphicon material-icons glyphicon-shopping-cart app-glyphicon4 text-right app-shopping shopping-cart" id="numberShoesPick">{{ getTotalShopping() }}</span>
                     </a>
                 </div>
 
@@ -436,7 +461,7 @@
 
 
 
-    <section id="main">
+    <section id="main" ng-cloak>
         @if (TempData["userName"] != null)
         {
             <div class="row">
@@ -475,6 +500,10 @@
         <span class="icon-twitter app-icon1"></span>
         <span class="icon-google-plus app-icon1"></span>
     </footer>
+
+    <script>
+        $.material.init();
+    </script>
 
 </body>
 </html>

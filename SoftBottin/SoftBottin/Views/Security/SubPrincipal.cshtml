@@ -29,78 +29,77 @@
                     foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
                     {
                         <text>
-                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 app-margen-inferior-catalogo">
+                            <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4" style="padding-bottom:1em;">
+                                <div class="card">
+                                    <div class="card-height-indicator"></div>
+                                    <div class="card-content">
+                                        <a href="#ProductDetail/@itShoe.iId">
+                                            <div class="card-image">
+                                                <img src="@itShoe.simgSrc" alt="Loading image...">
+                                                <h3 class="card-image-headline"></h3>
+                                            </div>
+                                        </a>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
 
-                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                    @*<h2 class="app-titulo2">
-                                            @if (itShoe.iTotalQuantityExisting <= 0)
-                                            {
-                                                <strike>
-                                                    @itShoe.sName
-                                                </strike>
-                                            }
-                                            else
-                                            {
-                                                @itShoe.sName
-                                            }
-                                        </h2>*@
-                                    @*<p class="app-separador"></p>*@
-                                    <a href="#ProductDetail/@itShoe.iId" class="thumbnail">
-                                        <img src="@itShoe.simgSrc" alt="" class="img-responsive" style="width: 340px;height: 255px;" />
-                                    </a>
-
-                                    @*<div class="app-detalle" onclick='location.href="@Url.Content("~/Security/ProductDetail?sProductReference=Tk5230")"'>
-                                            Ver Detalle
-                                        </div>*@
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                    <ul class="list-group list-group-flush">
-
-                                        @if (itShoe.iTotalQuantityExisting <= 0)
-                                        {
-                                            <li class="list-group-item" style="text-align:center">
-                                                ¡No disponible!
-                                            </li>
-                                            @*<li class="list-group-item" style="text-align:center">
-                                                    &#128534; Pero no te preocupes
-                                                </li>*@
-                                            <li class="list-group-item" style="text-align:center;padding: 1.4em;">
-                                                ¡Muy pronto estara disponible! &#128527;
-                                            </li>
-
-                                        }
-                                        else
-                                        {
-                                            @*<li class="list-group-item">
-                                                    Disponibles: @itShoe.iTotalQuantityExisting
-                                                </li>*@
-                                            <li class="list-group-item app-centrar">
                                                 @if (itShoe.iTotalQuantityExisting <= 0)
                                                 {
-                                                    <strike class="app-tittle">
-                                                        @itShoe.sName
-                                                    </strike>
+                                                    <li class="list-group-item" style="text-align:center">
+                                                        ¡No disponible!
+                                                    </li>
+                                                    @*<li class="list-group-item" style="text-align:center">
+                                                            &#128534; Pero no te preocupes
+                                                        </li>*@
+                                                    <li class="list-group-item" style="text-align:center;padding: 1.4em;">
+                                                        ¡Muy pronto estara disponible! &#128527;
+                                                    </li>
+
                                                 }
                                                 else
                                                 {
-                                                    <span class="app-tittle">
-                                                        @itShoe.sName
-                                                    </span>
+                                                    @*<li class="list-group-item">
+                                                            Disponibles: @itShoe.iTotalQuantityExisting
+                                                        </li>*@
+                                                    <li class="list-group-item app-centrar">
+                                                        @if (itShoe.iTotalQuantityExisting <= 0)
+                                                        {
+                                                            <strike class="app-tittle">
+                                                                @itShoe.sName
+                                                            </strike>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="app-tittle">
+                                                                @itShoe.sName
+                                                            </span>
+                                                        }
+                                                    </li>
+                                                    <li class="list-group-item app-centrar app-price">
+                                                        $@itShoe.fSalePrice.ToString("N")
+                                                    </li>
                                                 }
-                                            </li>
-                                            <li class="list-group-item app-centrar app-price">
-                                                $@itShoe.fSalePrice.ToString("N")
-                                            </li>
-                                        }
-                                    </ul>
+                                            </ul>
+                                        </div>
+                                        <footer class="card-footer">
+                                            <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
+                                                <a class="btn btn-flat">Compartir</a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                                                <a class="btn btn-flat btn-warning" href="#ProductDetail/@itShoe.iId">Ver Mas</a>
+                                            </div>
+                                        </footer>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </text>
                     }
 
                 }
             }
         </div>
+
     </div>
 </section>
 

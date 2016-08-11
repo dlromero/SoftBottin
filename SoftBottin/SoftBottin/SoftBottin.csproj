@@ -186,11 +186,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Boostrap\bootstrap-material-design.min.css" />
     <Content Include="Content\Boostrap\bootstrap-theme.css" />
     <Content Include="Content\Boostrap\bootstrap-theme.min.css" />
     <Content Include="Content\Boostrap\bootstrap.css" />
     <Content Include="Content\Boostrap\bootstrap.min.css" />
     <Content Include="Content\Boostrap\main.css" />
+    <Content Include="Content\Boostrap\ripples.min.css" />
     <Content Include="Content\FileInput\css\fileinput.css" />
     <Content Include="Content\FileInput\css\fileinput.min.css" />
     <Content Include="Content\FileInput\img\loading-sm.gif" />
@@ -274,6 +276,8 @@
     <Content Include="Scripts\Zoom\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\Zoom\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Versioning.txt" />
+    <Content Include="Scripts\Material\material.min.js" />
+    <Content Include="Scripts\Material\ripples.min.js" />
     <Content Include="Views\NotFund\404.html" />
     <None Include="Properties\PublishProfiles\FTP II.pubxml" />
     <None Include="Properties\PublishProfiles\FTP.pubxml" />
@@ -299,7 +303,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\wsSoftBottin\SoftBottin.disco" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

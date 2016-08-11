@@ -22,6 +22,7 @@
     });
 </script>
 
+
 <div class="app-panel-success" id="panelShoeSuccess">
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -86,23 +87,25 @@
                     </div>
                     <div class="list-group-item">
                         <h4 class="list-group-item-heading"></h4>
-                        <p class="list-group-item-text">$@Model.fPrice.ToString("N")</p>
+                        <h4 class="list-group-item-heading">$@Model.fPrice.ToString("N")</h4>
                     </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">Talla</h4>
+                    <div class="form-group">
+                        @*<h4 class="list-group-item-heading">Talla</h4>*@
+                        <label class="control-label" for="slSizes">Talla</label>
                         <p class="list-group-item-text">
                             @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes,
-                                                    new { @class = "form-control", ng_model = "newActv.size", ng_required = "true", required = "required", autofocus = "autofocus" })
+                                                    new { @class = "form-control", ng_model = "newActv.size", ng_required = "true", required = "required" })
                         </p>
                         <div ng-messages="addShoppingCart.sSizeSelect.$error" style="color:maroon" role="alert">
                             <div ng-message="required">Selecione una talla</div>
                         </div>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">Cantidad</h4>
+                    </div>                    
+                    <div class="form-group label-floating">
+                        @*<h4 class="list-group-item-heading">Cantidad</h4>*@
+                        <label class="control-label" for="slQuantity">Cantidad</label>
                         <p class="list-group-item-text">
                             @Html.DropDownListFor(x => x.sQuantitySelect, Model.slQuantity,
-                                                   new { @class = "form-control", ng_model = "newActv.quantity", ng_required = "true", required = "required", autofocus = "autofocus" })
+                                                   new { @class = "form-control", ng_model = "newActv.quantity", ng_required = "true", required = "required" })
                         </p>
                         @*<span ng-show="addShoppingCart.sSizeSelect.$invalid">Selecione una cantidad</span>*@
                         <div ng-messages="addShoppingCart.sQuantitySelect.$error" style="color:maroon" role="alert">

@@ -1,82 +1,4 @@
-﻿<style type="text/css">
-    .onoffswitch {
-        position: relative;
-        width: 90px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
-
-    .onoffswitch-checkbox {
-        display: none;
-    }
-
-    .onoffswitch-label {
-        display: block;
-        overflow: hidden;
-        cursor: pointer;
-        border: 2px solid #999999;
-        border-radius: 20px;
-    }
-
-    .onoffswitch-inner {
-        display: block;
-        width: 200%;
-        margin-left: -100%;
-        transition: margin 0.3s ease-in 0s;
-    }
-
-        .onoffswitch-inner:before, .onoffswitch-inner:after {
-            display: block;
-            float: left;
-            width: 50%;
-            height: 30px;
-            padding: 0;
-            line-height: 30px;
-            font-size: 14px;
-            color: white;
-            font-family: Trebuchet, Arial, sans-serif;
-            font-weight: bold;
-            box-sizing: border-box;
-        }
-
-        .onoffswitch-inner:before {
-            content: "SI";
-            padding-left: 10px;
-            background-color: #34A7C1;
-            color: #FFFFFF;
-        }
-
-        .onoffswitch-inner:after {
-            content: "NO";
-            padding-right: 10px;
-            background-color: #EEEEEE;
-            color: #999999;
-            text-align: right;
-        }
-
-    .onoffswitch-switch {
-        display: block;
-        width: 18px;
-        margin: 6px;
-        background: #FFFFFF;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 56px;
-        border: 2px solid #999999;
-        border-radius: 20px;
-        transition: all 0.3s ease-in 0s;
-    }
-
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
-    }
-
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-        right: 0px;
-    }
-</style>
+﻿
 <div class="container" style="padding-top:4em" ng-controller="ShoppingCartCtrl">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -134,8 +56,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>       
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -146,53 +67,46 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         <li class="list-group-item">
-
                             <div class="row">
-                                <div class="col-sm-6 col-md-6">
-                                    Tarjeta de credito
-                                </div>
-                                <div class="col-sm-6 col-md-6">
-                                    <span class="pull-right onoffswitch">
-                                        <input type="radio" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-1" checked>
-                                        <label class="onoffswitch-label" for="myonoffswitch-1">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </span>
-                                </div>
-                            </div>  
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6">
-                                    PSE
-                                </div>
-                                <div class="col-sm-6 col-md-6">
-                                    <span class="pull-right onoffswitch">
-                                        <input type="radio" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-2">
-                                        <label class="onoffswitch-label" for="myonoffswitch-2">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </span>
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                                Consignación (Baloto, Banco, Efecty)
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col-sm-6 col-md-6">
-                                    Consignación (Baloto, Banco)
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                                Tarjeta de credito
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 col-md-6">
-                                    <span class="pull-right onoffswitch">
-                                        <input type="radio" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-3">
-                                        <label class="onoffswitch-label" for="myonoffswitch-3">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                                PSE
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>                                                                                 
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -245,3 +159,8 @@
         </div>
     </div>
 </div>
+<script>
+    $.material.init();
+</script>
+
+

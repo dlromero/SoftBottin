@@ -218,8 +218,8 @@
 }
 
 .app-glyphicon4 {
-    color: black;
-    font-size: 23px;
+    color: white;
+    font-size: 27px;
     padding-left: .2em;
     padding-top: .5em;
     padding-right: 1em;
@@ -549,7 +549,7 @@ td, th {
 
     .navbar-toggle {
         position: absolute;
-        background-color: rgb(216, 149, 149);
+        /*background-color: rgb(216, 149, 149);*/
     }
 
     .navbar-brand {
@@ -560,7 +560,7 @@ td, th {
     }
 
     .app-glyphicon4 {
-        font-size: 20px;
+        font-size: 21px;
     }
 
     .app-posicion-carrito {
@@ -636,7 +636,7 @@ td, th {
 
 
     .app-glyphicon4 {
-        font-size: 20px;
+        font-size: 27px;
         padding: 0.6em;
     }
 
