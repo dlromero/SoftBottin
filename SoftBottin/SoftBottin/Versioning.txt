@@ -548,6 +548,29 @@ Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\ProductDetail.csht
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.26
+		       Autor: Daniel Romero
+			   Fecha: 8 de Agosto de 2016
+  		 Descripcion:			
+
+
+Actualización Estilo		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\CheckOut.cshtml
+								SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Security\SubPrincipal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Content\Boostrap\bootstrap-material-design.min.css
+								SoftBottin\SoftBottin\Content\Boostrap\ripples.min.css
+								SoftBottin\SoftBottin\Scripts\Material\material.min.js
+								SoftBottin\SoftBottin\Scripts\Material\ripples.min.js
 
 
 
