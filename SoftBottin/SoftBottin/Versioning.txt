@@ -574,6 +574,32 @@ Nuevos archivos				:	SoftBottin\SoftBottin\Content\Boostrap\bootstrap-material-d
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.27
+		       Autor: Daniel Romero
+			   Fecha: 15 de Agosto de 2016
+  		 Descripcion:			
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\SecurityController.cs
+
+
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\CheckOut.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Scripts\Encryption\md5.js
+								SoftBottin\SoftBottin\Scripts\Encryption\md5.min.js
+								SoftBottin\SoftBottin\Scripts\Encryption\md5.min.js.map
+								SoftBottin\SoftBottin\Views\Security\Confirmation.cshtml
+								SoftBottin\SoftBottin\Views\Security\Response.cshtml
+
+
+
 
 
 
