@@ -244,6 +244,10 @@
     <Content Include="Content\Icomoon\style.css" />
     <Content Include="Content\Images\HTTPS_icon.png" />
     <Content Include="Content\Images\payu%402x.png" />
+    <Content Include="Content\Payment\Banks.png" />
+    <Content Include="Content\Payment\CreditCard.png" />
+    <Content Include="Content\Payment\Efecty.png" />
+    <Content Include="Content\Payment\PSE.png" />
     <Content Include="Content\Videos\video.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -269,6 +273,8 @@
     <Content Include="Scripts\Boostrap\Vendor\jquery-1.11.2.min.js" />
     <Content Include="Scripts\Boostrap\Vendor\modernizr-2.8.3-respond-1.4.2.min.js" />
     <Content Include="Scripts\Boostrap\Vendor\npm.js" />
+    <Content Include="Scripts\Encryption\md5.js" />
+    <Content Include="Scripts\Encryption\md5.min.js" />
     <Content Include="Scripts\Security\ChechkOut.js" />
     <Content Include="Scripts\Security\Principal.js" />
     <Content Include="Scripts\Security\ProductDetail.js" />
@@ -298,6 +304,9 @@
     <Content Include="Views\Security\SubPrincipal.cshtml" />
     <Content Include="Views\Security\ViewShoppingCart.cshtml" />
     <Content Include="Views\Security\CheckOut.cshtml" />
+    <Content Include="Scripts\Encryption\md5.min.js.map" />
+    <Content Include="Views\Security\Response.cshtml" />
+    <Content Include="Views\Security\Confirmation.cshtml" />
     <None Include="Web References\wsSoftBottin\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
