@@ -240,6 +240,11 @@
     <Content Include="Content\Icomoon\demo-files\demo.js" />
     <Content Include="Content\Icomoon\demo.html" />
     <Content Include="Content\Icomoon\Icon\bottini.ico" />
+    <Content Include="Content\Icomoon\Icon\mipmap-hdpi\ic_launcher.png" />
+    <Content Include="Content\Icomoon\Icon\mipmap-mdpi\ic_launcher.png" />
+    <Content Include="Content\Icomoon\Icon\mipmap-xhdpi\ic_launcher.png" />
+    <Content Include="Content\Icomoon\Icon\mipmap-xxhdpi\ic_launcher.png" />
+    <Content Include="Content\Icomoon\Icon\mipmap-xxxhdpi\ic_launcher.png" />
     <Content Include="Content\Icomoon\Read Me.txt" />
     <Content Include="Content\Icomoon\style.css" />
     <Content Include="Content\Images\HTTPS_icon.png" />
@@ -289,6 +294,7 @@
     <Content Include="Scripts\Material\material.min.js" />
     <Content Include="Scripts\Material\ripples.min.js" />
     <Content Include="Views\NotFund\404.html" />
+    <Content Include="manifest.json" />
     <None Include="Properties\PublishProfiles\FTP II.pubxml" />
     <None Include="Properties\PublishProfiles\FTP.pubxml" />
     <None Include="Properties\Settings.settings">
