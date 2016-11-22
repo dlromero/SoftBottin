@@ -244,6 +244,7 @@
     <Content Include="Content\Icomoon\style.css" />
     <Content Include="Content\Images\HTTPS_icon.png" />
     <Content Include="Content\Images\payu%402x.png" />
+    <Content Include="Content\Images\ring.gif" />
     <Content Include="Content\Payment\Banks.png" />
     <Content Include="Content\Payment\CreditCard.png" />
     <Content Include="Content\Payment\Efecty.png" />
@@ -275,6 +276,9 @@
     <Content Include="Scripts\Boostrap\Vendor\npm.js" />
     <Content Include="Scripts\Encryption\md5.js" />
     <Content Include="Scripts\Encryption\md5.min.js" />
+    <Content Include="Scripts\LazyLoad\angular-lazy-loader.min.js" />
+    <Content Include="Scripts\LazyLoad\jquery.lazy.js" />
+    <Content Include="Scripts\LazyLoad\jquery.lazy.min.js" />
     <Content Include="Scripts\Security\ChechkOut.js" />
     <Content Include="Scripts\Security\Principal.js" />
     <Content Include="Scripts\Security\ProductDetail.js" />

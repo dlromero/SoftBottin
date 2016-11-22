@@ -1,0 +1,25 @@
+﻿{
+    "name": "Bottini Calzado",
+    "short_name": "Bottini",
+    "icons": [
+        {
+            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "sizes": "64x64",
+            "type": "image/webp"
+        },
+        {
+            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "sizes": "128x128",
+            "density": 2
+        }
+    ],
+    "scope": "/bottini/",
+    "start_url": "/bottini/",
+    "display": "fullscreen",
+    "orientation": "landscape"
+   
+}

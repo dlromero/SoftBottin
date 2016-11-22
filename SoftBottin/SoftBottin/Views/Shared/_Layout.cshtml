@@ -13,9 +13,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="@Url.Content("~/manifest.json")">
 
     <!-- Google fonts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 
     <!-- Material Design fonts -->
@@ -29,12 +30,13 @@
     <script src="@Url.Content("~/Scripts/Boostrap/Vendor/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/plugins.js")"></script>
     <script src="@Url.Content("~/Scripts/Boostrap/main.js")"></script>
+    
 
 
 
-    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-    <script src="http://code.angularjs.org/1.3.0/angular.js"></script>
-    <script src="http://code.angularjs.org/1.2.0-rc.3/angular-route.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script src="https://code.angularjs.org/1.3.0/angular.js"></script>
+    <script src="https://code.angularjs.org/1.2.0-rc.3/angular-route.js"></script>
 
     <script src="@Url.Content("~/Scripts/Angular/LocalStorage/angular-local-storage.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Angular/Messages/messages.js")"></script>
@@ -236,11 +238,18 @@
     <script src="@Url.Content("~/Scripts/Encryption/md5.min.js")"></script>
 
 
+    <!-- Tratamiento de imagenes LazyLoad -->
+    @*<script src="@Url.Content("~/Scripts/LazyLoad/jquery.lazy.min.js")"></script>*@
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.3/jquery.lazy.min.js"></script>
+    <script src="@Url.Content("~/Scripts/LazyLoad/angular-lazy-loader.min.js")"></script>
 
     <script type="text/javascript">
         window.rootUrl = '@Url.Content("~/")';
         var rootURL = '@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))';
+
+
     </script>
+
 </head>
 <body>
     <header class="app-header" id="caja-flotante">
@@ -508,7 +517,7 @@
     </footer>
 
     <script>
-        $.material.init();
+        $.material.init();       
     </script>
 
 </body>

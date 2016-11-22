@@ -1,4 +1,4 @@
-﻿var app = angular.module('SoftBottin', ['ngRoute', 'ngMessages', 'LocalStorageModule'])
+﻿var app = angular.module('SoftBottin', ['ngRoute', 'ngMessages', 'LocalStorageModule', 'angular-lazy-loader'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider //add resolve function is pending.
@@ -59,20 +59,21 @@ app.run(function ($rootScope, $location, $route, $timeout) {
 });
 
 
-app.controller('ZapatosCtrl', function ($scope) {
+app.controller('ZapatosCtrl', function ($scope) {   
     $scope.message = "Inicio.";
 });
 
-app.controller('PrincipalCtrl', function ($scope) {
+app.controller('PrincipalCtrl', function ($scope) {    
     $scope.message = "Perfil.";
 });
 
-app.controller('carritoController', function ($scope) {
+app.controller('carritoController', function ($scope) {    
     $scope.message = "Perfil.";
     //Route1Controller
 });
 
-app.controller('CheckOutCtrl', function ($scope) {
+app.controller('CheckOutCtrl', function ($scope) {   
+    $scope.date = new Date();
     $scope.message = "Perfil.";
     //Route1Controller
 });

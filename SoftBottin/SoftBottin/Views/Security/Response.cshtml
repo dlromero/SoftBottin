@@ -3,51 +3,62 @@
     ViewBag.Title = "Response";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
-<br />
-<br />
-<br />
-<br />
+<div class="container"> 
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Transaccion finalizada!</strong> Ahora tus zapatos estan en camino
+        <a href="javascript:void(0)" class="alert-link">Gracias por tu confianza</a>.
+    </div>   
+    <div class="row">
+        <div class="jumbotron">
+            <h1 class="center-block text-center">Respuesta</h1>
 
-<h2>Response</h2>
+            <p>
+                @Request.Params["merchantId"]
+                <br />
+                @Request.Params["merchant_name"]
+                <br />
+                @Request.Params["merchant_address"]
+                <br />
+                @Request.Params["telephone"]
+                <br />
+                @Request.Params["merchant_url"]
+                <br />
+                @Request.Params["transactionState"]
+                <br />
+                @Request.Params["lapTransactionState"]
+                <br />
+                @Request.Params["message"]
+                <br />
+                @Request.Params["referenceCode"]
+                <br />
+                @Request.Params["transactionId"]
+                <br />
+                @Request.Params["description"]
+                <br />
+                @Request.Params["polTransactionState"]
+                <br />
+                @Request.Params["signature"]
+                <br />
+                @Request.Params["polResponseCode"]
+                <br />
+                @Request.Params["polPaymentMethod"]
+                <br />
+                @Request.Params["lapPaymentMethod"]
+                <br />
+                @Request.Params["polPaymentMethodType"]
+                <br />
+                @Request.Params["lapPaymentMethodType"]
+                <br />
+                @Request.Params["processingDate"]
+                <br />
+            </p>
 
-@Request.Params["merchantId"]
-<br />
-@Request.Params["merchant_name"]
-<br />
-@Request.Params["merchant_address"]
-<br />
-@Request.Params["telephone"]
-<br />
-@Request.Params["merchant_url"]
-<br />
-@Request.Params["transactionState"]
-<br />
-@Request.Params["lapTransactionState"]
-<br />
-@Request.Params["message"]
-<br />
-@Request.Params["referenceCode"]
-<br />
-@Request.Params["transactionId"]
-<br />
-@Request.Params["description"]
-<br />
-@Request.Params["polTransactionState"]
-<br />
-@Request.Params["signature"]
-<br />
-@Request.Params["polResponseCode"]
-<br />
-@Request.Params["polPaymentMethod"]
-<br />
-@Request.Params["lapPaymentMethod"]
-<br />
-@Request.Params["polPaymentMethodType"]
-<br />
-@Request.Params["lapPaymentMethodType"]
-<br />
-@Request.Params["processingDate"]
-<br />
+            <p><a class="btn btn-primary btn-lg">Aceptar</a></p>
+        </div>
+    </div>
+</div>
+
+
 
 

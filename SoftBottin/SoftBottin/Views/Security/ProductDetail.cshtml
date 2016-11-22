@@ -22,107 +22,115 @@
     });
 </script>
 
-
-<div class="app-panel-success" id="panelShoeSuccess">
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <button type="button" id="addShoeSuccess" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            AGREGADO CON ÉXITO
-        </div>
-        <div class="panel-body">
-            <a href="#/ViewShoppingCart">
-                <span class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
-
-                    VER CARRITO
-                </span>
-            </a>
-            <a href="#/CheckOut">
-                <span class="glyphicon glyphicon-saved app-glyphicon2 add-to-cart">
-
-                    VERIFICAR
-
-                </span>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="container" style="padding-top:3.7em;" ng-controller="ShoppingCartCtrl" ng-init="newActv.name='@Model.sProductName'; newActv.price='@Model.fPrice.ToString()'; newActv.description = '@Model.sDescription'; newActv.imageShoe='@Model.sPathImageLarge1' ">
+<div class="container" style="margin-top: 5em;">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a class="glyphicon glyphicon glyphicon-arrow-left app-link" style="padding: 1em;" href="#/">
-                Volver
-            </a>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <img id="zoom_03" class="img-responsive img-thumbnail" src='@Model.sPathImageSmall1' data-zoom-image='@Model.sPathImageLarge1' />
-            </div>
-            <div id="gallery_01">
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <a href="" data-image='@Model.sPathImageSmall1' data-zoom-image='@Model.sPathImageLarge1'>
-                        <img class="img-responsive img-thumbnail" id="img_01" src="@Model.sPathImageSmall1" />
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <a href="" data-image='@Model.sPathImageSmall2' data-zoom-image='@Model.sPathImageLarge2'>
-                        <img class="img-responsive img-thumbnail" id="img_01" src='@Model.sPathImageSmall2' />
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <a href="" data-image="@Model.sPathImageSmall3" data-zoom-image="@Model.sPathImageSmall3">
-                        <img class="img-responsive img-thumbnail" id="img_01" src="@Model.sPathImageSmall3" />
-                    </a>
+        <div class="jumbotron">
+            <div class="app-panel-success" id="panelShoeSuccess">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <button type="button" id="addShoeSuccess" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        AGREGADO CON ÉXITO
+                    </div>
+                    <div class="panel-body">
+                        <a href="#/ViewShoppingCart">
+                            <span class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
+
+                                VER CARRITO
+                            </span>
+                        </a>
+                        <a href="#/CheckOut">
+                            <span class="glyphicon glyphicon-saved app-glyphicon2 add-to-cart">
+
+                                VERIFICAR
+
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
-            <form name="addShoppingCart">
-                <div class="list-group">
-                    <div class="list-group-item text-center">
-                        <h4 class="list-group-item-heading app-h1">@Model.sProductName</h4>
-                        <p class="list-group-item-text">
-
-                        </p>
+            <div class="container" ng-controller="ShoppingCartCtrl" ng-init="newActv.name='@Model.sProductName'; newActv.price='@Model.fPrice.ToString()'; newActv.description = '@Model.sDescription'; newActv.imageShoe='@Model.sPathImageLarge1' ">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <a class="glyphicon glyphicon glyphicon-arrow-left app-link" style="padding: 1em;" href="#/">
+                            Volver
+                        </a>
                     </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading"></h4>
-                        <h4 class="list-group-item-heading">$@Model.fPrice.ToString("N")</h4>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div angular-lazy-load threshold="800">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <img id="zoom_03" class="img-responsive img-thumbnail" data-src='@Model.sPathImageSmall1' data-zoom-image='@Model.sPathImageLarge1' />
+                            </div>
+                            <div id="gallery_01">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <a href="" data-image='@Model.sPathImageSmall1' data-zoom-image='@Model.sPathImageLarge1'>
+                                        <img class="img-responsive img-thumbnail" id="img_01" data-src="@Model.sPathImageSmall1" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <a href="" data-image='@Model.sPathImageSmall2' data-zoom-image='@Model.sPathImageLarge2'>
+                                        <img class="img-responsive img-thumbnail" id="img_01" data-src='@Model.sPathImageSmall2' />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <a href="" data-image="@Model.sPathImageSmall3" data-zoom-image="@Model.sPathImageSmall3">
+                                        <img class="img-responsive img-thumbnail" id="img_01" data-src="@Model.sPathImageSmall3" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        @*<h4 class="list-group-item-heading">Talla</h4>*@
-                        <label class="control-label" for="slSizes">Talla</label>
-                        <p class="list-group-item-text">
-                            @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes,
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+                        <form name="addShoppingCart">
+                            <div class="list-group">
+                                <div class="list-group-item text-center">
+                                    <h4 class="list-group-item-heading app-h1">@Model.sProductName</h4>
+                                    <p class="list-group-item-text">
+
+                                    </p>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading"></h4>
+                                    <h4 class="list-group-item-heading">$@Model.fPrice.ToString("N")</h4>
+                                </div>
+                                <div class="form-group">
+                                    @*<h4 class="list-group-item-heading">Talla</h4>*@
+                                    <label class="control-label" for="slSizes">Talla</label>
+                                    <p class="list-group-item-text">
+                                        @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes,
                                                     new { @class = "form-control", ng_model = "newActv.size", ng_required = "true", required = "required" })
-                        </p>
-                        <div ng-messages="addShoppingCart.sSizeSelect.$error" style="color:maroon" role="alert">
-                            <div ng-message="required">Selecione una talla</div>
-                        </div>
-                    </div>                    
-                    <div class="form-group label-floating">
-                        @*<h4 class="list-group-item-heading">Cantidad</h4>*@
-                        <label class="control-label" for="slQuantity">Cantidad</label>
-                        <p class="list-group-item-text">
-                            @Html.DropDownListFor(x => x.sQuantitySelect, Model.slQuantity,
+                                    </p>
+                                    <div ng-messages="addShoppingCart.sSizeSelect.$error" style="color:maroon" role="alert">
+                                        <div ng-message="required">Selecione una talla</div>
+                                    </div>
+                                </div>
+                                <div class="form-group label-floating">
+                                    @*<h4 class="list-group-item-heading">Cantidad</h4>*@
+                                    <label class="control-label" for="slQuantity">Cantidad</label>
+                                    <p class="list-group-item-text">
+                                        @Html.DropDownListFor(x => x.sQuantitySelect, Model.slQuantity,
                                                    new { @class = "form-control", ng_model = "newActv.quantity", ng_required = "true", required = "required" })
-                        </p>
-                        @*<span ng-show="addShoppingCart.sSizeSelect.$invalid">Selecione una cantidad</span>*@
-                        <div ng-messages="addShoppingCart.sQuantitySelect.$error" style="color:maroon" role="alert">
-                            <div ng-message="required">Selecione una cantidad</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">Descripción</h4>
-                        <p class="list-group-item-text">@Model.sDescription</p>
+                                    </p>
+                                    @*<span ng-show="addShoppingCart.sSizeSelect.$invalid">Selecione una cantidad</span>*@
+                                    <div ng-messages="addShoppingCart.sQuantitySelect.$error" style="color:maroon" role="alert">
+                                        <div ng-message="required">Selecione una cantidad</div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Descripción</h4>
+                                    <p class="list-group-item-text">@Model.sDescription</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-block text-center">
+                                <span data-toggle="modal" data-target="#myModal" ng-click="addShoppingCart.$valid && addActv()" class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
+                                    AGREGAR AL CARRITO
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-block text-center">
-                    <span data-toggle="modal" data-target="#myModal" ng-click="addShoppingCart.$valid && addActv()" class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
-                        AGREGAR AL CARRITO
-                    </span>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
