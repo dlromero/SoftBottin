@@ -240,6 +240,7 @@
     <Content Include="Content\Icomoon\demo-files\demo.js" />
     <Content Include="Content\Icomoon\demo.html" />
     <Content Include="Content\Icomoon\Icon\bottini.ico" />
+    <Content Include="Content\Icomoon\Icon\icon.png" />
     <Content Include="Content\Icomoon\Icon\mipmap-hdpi\ic_launcher.png" />
     <Content Include="Content\Icomoon\Icon\mipmap-mdpi\ic_launcher.png" />
     <Content Include="Content\Icomoon\Icon\mipmap-xhdpi\ic_launcher.png" />
@@ -250,6 +251,7 @@
     <Content Include="Content\Images\HTTPS_icon.png" />
     <Content Include="Content\Images\payu%402x.png" />
     <Content Include="Content\Images\ring.gif" />
+    <Content Include="Content\Loading\pace-theme-barber-shop.css" />
     <Content Include="Content\Payment\Banks.png" />
     <Content Include="Content\Payment\CreditCard.png" />
     <Content Include="Content\Payment\Efecty.png" />
@@ -284,6 +286,7 @@
     <Content Include="Scripts\LazyLoad\angular-lazy-loader.min.js" />
     <Content Include="Scripts\LazyLoad\jquery.lazy.js" />
     <Content Include="Scripts\LazyLoad\jquery.lazy.min.js" />
+    <Content Include="Scripts\Loading\pace.min.js" />
     <Content Include="Scripts\Security\ChechkOut.js" />
     <Content Include="Scripts\Security\Principal.js" />
     <Content Include="Scripts\Security\ProductDetail.js" />

@@ -3,16 +3,16 @@
     "short_name": "Bottini",
     "icons": [
         {
-            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "src": "Content/Icomoon/Icon/icon.png",
             "sizes": "64x64",
             "type": "image/webp"
         },
         {
-            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "src": "Content/Icomoon/Icon/icon.png",
             "sizes": "64x64"
         },
         {
-            "src": "Content/Icomoon/Icon/mipmap-mdpi/ic_launcher.png",
+            "src": "Content/Icomoon/Icon/icon.png",
             "sizes": "128x128",
             "density": 2
         }
@@ -20,6 +20,7 @@
     "scope": "/bottini/",
     "start_url": "/bottini/",
     "display": "fullscreen",
-    "orientation": "landscape"
+    "theme_color": "#3f51b5"
+    //"orientation": "landscape"
    
 }

@@ -290,7 +290,7 @@ namespace SoftBottin.Controllers
                 return Json("");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json("There is error try again later");
             }
