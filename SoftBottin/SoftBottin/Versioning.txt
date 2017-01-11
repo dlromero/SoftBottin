@@ -602,6 +602,25 @@ Nuevos archivos				:	SoftBottin\SoftBottin\Scripts\Encryption\md5.js
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.28
+		       Autor: Daniel Romero
+			   Fecha: 11 de Enero de 2017
+  		 Descripcion:			
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\ShoesController.cs
+
+
+
+
+Actualización Vista			:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Content\Icomoon\Icon\icon.png
+								SoftBottin\SoftBottin\Content\Loading\pace-theme-barber-shop.css
+								SoftBottin\SoftBottin\Scripts\Loading\pace.min.js
 
 
 
