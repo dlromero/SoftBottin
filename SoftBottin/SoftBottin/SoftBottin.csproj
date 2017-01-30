@@ -234,6 +234,7 @@
     <Content Include="Content\FileInput\js\plugins\purify.min.js" />
     <Content Include="Content\FileInput\js\plugins\sortable.js" />
     <Content Include="Content\FileInput\js\plugins\sortable.min.js" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Fonts\icomoon.svg" />
     <Content Include="Content\Icomoon\demo-files\demo.css" />
@@ -256,6 +257,8 @@
     <Content Include="Content\Payment\CreditCard.png" />
     <Content Include="Content\Payment\Efecty.png" />
     <Content Include="Content\Payment\PSE.png" />
+    <Content Include="Content\Shared\font-awesome.css" />
+    <Content Include="Content\Shared\font-awesome.min.css" />
     <Content Include="Content\Videos\video.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -290,14 +293,17 @@
     <Content Include="Scripts\Security\ChechkOut.js" />
     <Content Include="Scripts\Security\Principal.js" />
     <Content Include="Scripts\Security\ProductDetail.js" />
-    <Content Include="Scripts\Zoom\bootstrap-image-gallery.min.css" />
-    <Content Include="Scripts\Zoom\bootstrap-image-gallery.min.js" />
-    <Content Include="Scripts\Zoom\jquery.elevateZoom-3.0.8.min.js" />
+    <Content Include="Scripts\Zoom\easyzoom.js" />
     <Content Include="Versioning.txt" />
     <Content Include="Scripts\Material\material.min.js" />
     <Content Include="Scripts\Material\ripples.min.js" />
     <Content Include="Views\NotFund\404.html" />
     <Content Include="manifest.json" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\FTP II.pubxml" />
     <None Include="Properties\PublishProfiles\FTP.pubxml" />
     <None Include="Properties\Settings.settings">

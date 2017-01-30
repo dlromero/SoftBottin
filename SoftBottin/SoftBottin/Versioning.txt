@@ -626,6 +626,42 @@ Nuevos archivos				:	SoftBottin\SoftBottin\Content\Icomoon\Icon\icon.png
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.0.29
+		       Autor: Daniel Romero
+			   Fecha: 29 de Enero de 2017
+  		 Descripcion:			
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\ShoesController.cs
+
+
+
+
+Actualización Estilos		:	SoftBottin\SoftBottin\Content\Boostrap\bootstrap-material-design.min.css
+								SoftBottin\SoftBottin\Content\Loading\pace-theme-barber-shop.css
+
+Actualización Vistas		:	SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Security\SubPrincipal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Content\Fonts\FontAwesome.otf
+								SoftBottin\SoftBottin\Content\Fonts\fontawesome-webfont.eot
+								SoftBottin\SoftBottin\Content\Fonts\fontawesome-webfont.svg
+								SoftBottin\SoftBottin\Content\Fonts\fontawesome-webfont.ttf
+								SoftBottin\SoftBottin\Content\Fonts\fontawesome-webfont.woff
+								SoftBottin\SoftBottin\Content\Fonts\fontawesome-webfont.woff2
+								SoftBottin\SoftBottin\Content\Shared\font-awesome.css
+								SoftBottin\SoftBottin\Content\Shared\font-awesome.min.css
+								SoftBottin\SoftBottin\Scripts\Zoom\easyzoom.js
+
+
+Archivos eliminados			:	SoftBottin\SoftBottin\Scripts\Zoom\bootstrap-image-gallery.min.css
+								SoftBottin\SoftBottin\Scripts\Zoom\bootstrap-image-gallery.min.js
+								SoftBottin\SoftBottin\Scripts\Zoom\jquery.elevateZoom-3.0.8.min.js
+
+
 
 
 

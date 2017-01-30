@@ -36,7 +36,7 @@
                                             <a href="#ProductDetail/@itShoe.iId">
                                                 <div class="card-image">
                                                     @*<img src="@itShoe.simgSrc" alt="Loading image...">*@
-                                                    <img data-src="@itShoe.simgSrc" alt="Loading image..." class="lazy">
+                                                    <img data-src="@itShoe.simgSrc" alt="Loading image..." class="lazy img-responsive img-thumbnail">
                                                     <h3 class="card-image-headline"></h3>
                                                 </div>
                                             </a>
@@ -65,13 +65,13 @@
                                                             @if (itShoe.iTotalQuantityExisting <= 0)
                                                             {
                                                                 <strike class="app-tittle">
-                                                                    @itShoe.sName
+                                                                    @itShoe.sName.ToUpper()
                                                                 </strike>
                                                             }
                                                             else
                                                             {
                                                                 <span class="app-tittle">
-                                                                    @itShoe.sName
+                                                                    @itShoe.sName.ToUpper()
                                                                 </span>
                                                             }
                                                         </li>
@@ -82,14 +82,27 @@
                                                 </ul>
                                             </div>
                                             <footer class="card-footer">
-                                                <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
-                                                    <a class="btn btn-flat">Compartir</a>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                                                    <a class="btn btn-flat btn-warning" href="#ProductDetail/@itShoe.iId">Ver Mas</a>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >                                                        
+                                                        <a class="btn btn-flat btn-warning" href="#ProductDetail/@itShoe.iId">Detalles</a>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" id="@itShoe.iId">
+                                                        <a class="btn btn-flat">Compartir</a>
+                                                    </div>
                                                 </div>
                                             </footer>
                                         </div>
+                                        <script>
+                                            $("#@itShoe.iId").jsSocials({
+                                                showLabel: false,
+                                                showCount: false,
+                                                url: "https://www.mcodigo.com/bottini#/ProductDetail/" + "@itShoe.iId",
+                                                text: "@itShoe.sName.ToUpper()",
+                                                shares: ["facebook", "whatsapp"]
+                                            });
+
+                                        </script>
+
                                     </div>
                                 </div>
 
