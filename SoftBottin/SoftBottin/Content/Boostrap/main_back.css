@@ -6,18 +6,6 @@
 
 
 
-/*.app-header {
-    background-image: url(../Images/brooke-cagle-min.jpg);
-    width: 100%;
-    height: 440px;
-    position: relative;
-    display: block;
-    overflow: hidden;
-    float: left;
-    background-position: 8px 486px;
-    background-size: cover;
-}*/
-
 .app-header {
     /*background: url("../Images/zapato3.jpg") repeat-x center top fixed;*/
     /*font-family: 'Juice ITC';*/
@@ -26,7 +14,6 @@
     text-transform: uppercase;
     /*padding-bottom: 80px;*/
 }
-
 
 .app-navbar {
     background: white;

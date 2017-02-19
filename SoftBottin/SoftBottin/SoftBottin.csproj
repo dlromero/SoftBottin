@@ -249,6 +249,7 @@
     <Content Include="Content\Icomoon\Icon\mipmap-xxxhdpi\ic_launcher.png" />
     <Content Include="Content\Icomoon\Read Me.txt" />
     <Content Include="Content\Icomoon\style.css" />
+    <Content Include="Content\Images\brooke-cagle.jpg" />
     <Content Include="Content\Images\HTTPS_icon.png" />
     <Content Include="Content\Images\payu%402x.png" />
     <Content Include="Content\Images\ring.gif" />

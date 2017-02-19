@@ -4,125 +4,17 @@
     dsResult = dsResult != null && dsResult.Tables.Count > 0 ? dsResult : new System.Data.DataSet();
 
 }
-<section class="app-seccion5" id="lastCollection">
-    <div class="container" style="padding-top:3em;">
-        <div class="row">
-            @if (dsResult.Tables.Count > 0)
-            {
-                foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
-                {
 
-                    List<SoftBottin.Models.Shoes.cShoesByType>
-                                query = (from rsl in poShoesByType.ToList()
-                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
-                                         select rsl).ToList();
-
-                    if (query.ToList().Count > 0)
-                    {
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                            <h1 class="app-titulo"><span class="app-h1">@item["Name"].ToString().ToUpper() &#128525;</span></h1>
-                        </div>
-                    }
-
-                    <div angular-lazy-load threshold="800">
-                        @foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
-                        {
-                            <text>
-                                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4" style="padding-bottom:1em;">
-                                    <div class="card">
-                                        <div class="card-height-indicator"></div>
-                                        <div class="card-content">
-                                            <a href="#ProductDetail/@itShoe.iId">
-                                                <div class="card-image">
-                                                    @*<img src="@itShoe.simgSrc" alt="Loading image...">*@
-                                                    <img data-src="@itShoe.simgSrc" alt="Loading image..." class="lazy img-responsive img-thumbnail">
-                                                    <h3 class="card-image-headline"></h3>
-                                                </div>
-                                            </a>
-                                            <div class="card-body">
-                                                <ul class="list-group list-group-flush">
-
-                                                    @if (itShoe.iTotalQuantityExisting <= 0)
-                                                    {
-                                                        <li class="list-group-item" style="text-align:center">
-                                                            ¡No disponible!
-                                                        </li>
-                                                        @*<li class="list-group-item" style="text-align:center">
-                                                                &#128534; Pero no te preocupes
-                                                            </li>*@
-                                                        <li class="list-group-item" style="text-align:center;padding: 1.4em;">
-                                                            ¡Muy pronto estara disponible! &#128527;
-                                                        </li>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        @*<li class="list-group-item">
-                                                                Disponibles: @itShoe.iTotalQuantityExisting
-                                                            </li>*@
-                                                        <li class="list-group-item app-centrar">
-                                                            @if (itShoe.iTotalQuantityExisting <= 0)
-                                                            {
-                                                                <strike class="app-tittle">
-                                                                    @itShoe.sName.ToUpper()
-                                                                </strike>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span class="app-tittle">
-                                                                    @itShoe.sName.ToUpper()
-                                                                </span>
-                                                            }
-                                                        </li>
-                                                        <li class="list-group-item app-centrar app-price">
-                                                            $@itShoe.fSalePrice.ToString("N")
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            </div>
-                                            <footer class="card-footer">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >                                                        
-                                                        <a class="btn btn-flat btn-warning" href="#ProductDetail/@itShoe.iId">Detalles</a>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" id="@itShoe.iId">
-                                                        <a class="btn btn-flat">Compartir</a>
-                                                    </div>
-                                                </div>
-                                            </footer>
-                                        </div>
-                                        <script>
-                                            $("#@itShoe.iId").jsSocials({
-                                                showLabel: false,
-                                                showCount: false,
-                                                url: "https://www.mcodigo.com/bottini#/ProductDetail/" + "@itShoe.iId",
-                                                text: "@itShoe.sName.ToUpper()",
-                                                shares: ["facebook", "whatsapp"]
-                                            });
-
-                                        </script>
-
-                                    </div>
-                                </div>
-
-
-                            </text>
-                        }
-
-                    </div>
-
-                }
-            }
-        </div>
-
-    </div>
-</section>
 
 
 <section class="app-seccion2">
     <div class="container">
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img src="//www.google.com/logos/doodles/2017/new-years-day-2017-5644902961512448-hp2x.gif" id="hplogo-img" alt="Día de Año Nuevo 2017" class="img-responsive">
+            </div>
+        </div>
+        @*<div class="row">
             <h1 class="app-titulo">Compra en 3  <span class="app-resaltar">fáciles</span> pasos</h1>
             <div class="col-xs-12 col-sm-12 col-md-3 img-circle app-borde-pasos">
                 <h2 class="app-titulo2">
@@ -191,7 +83,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </section>
 
@@ -321,6 +213,123 @@
     </div>
 </section>
 
+
+<section class="app-seccion5" id="lastCollection">
+    <div class="container" style="padding-top:3em;">
+        <div class="row">
+            @if (dsResult.Tables.Count > 0)
+            {
+                foreach (System.Data.DataRow item in dsResult.Tables[0].Rows)
+                {
+
+                    List<SoftBottin.Models.Shoes.cShoesByType>
+                                query = (from rsl in poShoesByType.ToList()
+                                         where rsl.iType.Equals(Convert.ToInt32(item["Id"].ToString()))
+                                         select rsl).ToList();
+
+                    if (query.ToList().Count > 0)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <h1 class="app-titulo"><span class="app-h1">@item["Name"].ToString().ToUpper() &#128525;</span></h1>
+                        </div>
+                    }
+
+                    <div angular-lazy-load threshold="800">
+                        @foreach (SoftBottin.Models.Shoes.cShoesByType itShoe in query)
+                        {
+                            <text>
+                                <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4" style="padding-bottom:1em;">
+                                    <div class="card">
+                                        <div class="card-height-indicator"></div>
+                                        <div class="card-content">
+                                            <a href="#ProductDetail/@itShoe.iId">
+                                                <div class="card-image">
+                                                    @*<img src="@itShoe.simgSrc" alt="Loading image...">*@
+                                                    <img data-src="@itShoe.simgSrc" alt="Loading image..." class="lazy img-responsive img-thumbnail">
+                                                    <h3 class="card-image-headline"></h3>
+                                                </div>
+                                            </a>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+
+                                                    @if (itShoe.iTotalQuantityExisting <= 0)
+                                                    {
+                                                        <li class="list-group-item" style="text-align:center">
+                                                            ¡No disponible!
+                                                        </li>
+                                                        @*<li class="list-group-item" style="text-align:center">
+                                                                &#128534; Pero no te preocupes
+                                                            </li>*@
+                                                        <li class="list-group-item" style="text-align:center;padding: 1.4em;">
+                                                            ¡Muy pronto estara disponible! &#128527;
+                                                        </li>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<li class="list-group-item">
+                                                                Disponibles: @itShoe.iTotalQuantityExisting
+                                                            </li>*@
+                                                        <li class="list-group-item app-centrar">
+                                                            @if (itShoe.iTotalQuantityExisting <= 0)
+                                                            {
+                                                                <strike class="app-tittle">
+                                                                    @itShoe.sName.ToUpper()
+                                                                </strike>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="app-tittle">
+                                                                    @itShoe.sName.ToUpper()
+                                                                </span>
+                                                            }
+                                                        </li>
+                                                        <li class="list-group-item app-centrar app-price">
+                                                            $@itShoe.fSalePrice.ToString("N")
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <footer class="card-footer">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                                                        <a class="btn btn-flat btn-warning" href="#ProductDetail/@itShoe.iId">Detalles</a>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" id="@itShoe.iId">
+                                                        <a class="btn btn-flat">Compartir</a>
+                                                    </div>
+                                                </div>
+                                            </footer>
+                                        </div>
+                                        <script>
+                                            $("#@itShoe.iId").jsSocials({
+                                                showLabel: false,
+                                                showCount: false,
+                                                url: "https://www.mcodigo.com/bottini#/ProductDetail/" + "@itShoe.iId",
+                                                text: "@itShoe.sName.ToUpper()",
+                                                shares: ["facebook", "whatsapp"]
+                                            });
+
+                                        </script>
+
+                                    </div>
+                                </div>
+
+
+                            </text>
+                        }
+
+                    </div>
+
+                }
+            }
+        </div>
+
+    </div>
+</section>
+
+
 <section class="app-seccion2">
     <div class="container">
         <div class="row">
@@ -365,7 +374,6 @@
         </div>
     </div>
 </section>
-
 
 @Html.Hidden("RedirectTo", Url.Action("PurchaseSummary", "Purchasing"))
 
