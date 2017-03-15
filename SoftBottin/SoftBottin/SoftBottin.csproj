@@ -249,10 +249,15 @@
     <Content Include="Content\Icomoon\Icon\mipmap-xxxhdpi\ic_launcher.png" />
     <Content Include="Content\Icomoon\Read Me.txt" />
     <Content Include="Content\Icomoon\style.css" />
+    <Content Include="Content\Images\bottini.jpg" />
     <Content Include="Content\Images\brooke-cagle.jpg" />
+    <Content Include="Content\Images\fondo.gif" />
     <Content Include="Content\Images\HTTPS_icon.png" />
+    <Content Include="Content\Images\model2.jpg" />
+    <Content Include="Content\Images\models1.jpg" />
     <Content Include="Content\Images\payu%402x.png" />
     <Content Include="Content\Images\ring.gif" />
+    <Content Include="Content\Images\shoesgirl.jpg" />
     <Content Include="Content\Loading\pace-theme-barber-shop.css" />
     <Content Include="Content\Payment\Banks.png" />
     <Content Include="Content\Payment\CreditCard.png" />

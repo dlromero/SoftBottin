@@ -221,6 +221,7 @@
                                     </a>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
@@ -240,38 +241,44 @@
                                     <h4 class="list-group-item-heading"></h4>
                                     <h4 class="list-group-item-heading">$@Model.fPrice.ToString("N")</h4>
                                 </div>
-                                <div class="form-group">
-                                    @*<h4 class="list-group-item-heading">Talla</h4>*@
-                                    <label class="control-label" for="slSizes">Talla</label>
-                                    <p class="list-group-item-text">
-                                        @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes,
-                                                    new { @class = "form-control", ng_model = "newActv.size", ng_required = "true", required = "required" })
-                                    </p>
-                                    <div ng-messages="addShoppingCart.sSizeSelect.$error" style="color:maroon" role="alert">
-                                        <div ng-message="required">Selecione una talla</div>
+                                @*<div class="form-group">
+                                        <label class="control-label" for="slSizes">Talla</label>
+                                        <p class="list-group-item-text">
+                                            @Html.DropDownListFor(x => x.sSizeSelect, Model.slSizes,
+                                                        new { @class = "form-control", ng_model = "newActv.size", ng_required = "true", required = "required" })
+                                        </p>
+                                        <div ng-messages="addShoppingCart.sSizeSelect.$error" style="color:maroon" role="alert">
+                                            <div ng-message="required">Selecione una talla</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group label-floating">
-                                    @*<h4 class="list-group-item-heading">Cantidad</h4>*@
-                                    <label class="control-label" for="slQuantity">Cantidad</label>
-                                    <p class="list-group-item-text">
-                                        @Html.DropDownListFor(x => x.sQuantitySelect, Model.slQuantity,
-                                                   new { @class = "form-control", ng_model = "newActv.quantity", ng_required = "true", required = "required" })
-                                    </p>
-                                    @*<span ng-show="addShoppingCart.sSizeSelect.$invalid">Selecione una cantidad</span>*@
-                                    <div ng-messages="addShoppingCart.sQuantitySelect.$error" style="color:maroon" role="alert">
-                                        <div ng-message="required">Selecione una cantidad</div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="slQuantity">Cantidad</label>
+                                        <p class="list-group-item-text">
+                                            @Html.DropDownListFor(x => x.sQuantitySelect, Model.slQuantity,
+                                                       new { @class = "form-control", ng_model = "newActv.quantity", ng_required = "true", required = "required" })
+                                        </p>
+                                        <div ng-messages="addShoppingCart.sQuantitySelect.$error" style="color:maroon" role="alert">
+                                            <div ng-message="required">Selecione una cantidad</div>
+                                        </div>
                                     </div>
-                                </div>
+                                *@
                                 <div class="list-group-item">
                                     <h4 class="list-group-item-heading">Descripción</h4>
                                     <p class="list-group-item-text">@Model.sDescription</p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-block text-center">
-                                <span data-toggle="modal" data-target="#myModal" ng-click="addShoppingCart.$valid && addActv()" class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
-                                    AGREGAR AL CARRITO
-                                </span>
+                                @*<span data-toggle="modal" data-target="#myModal" ng-click="addShoppingCart.$valid && addActv()" class="glyphicon glyphicon-shopping-cart app-glyphicon2 add-to-cart">
+                                        AGREGAR AL CARRITO
+                                    </span>*@
+                                <h4 class="list-group-item-heading app-h1">Código para ir a la tienda</h4>
+                                <p class="list-group-item-text">
+                                </p>
+                                <img src='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http%3A//www.misbottini.com/%23/ProductDetail/@Model.sProductId&chld=H|0' class="img-responsive img-thumbnail">
+
+                                <a href="http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http%3A//www.misbottini.com/%23/ProductDetail/@Model.sProductId&chld=H|0" download class="btn btn-primary btn-block" id="QR" name="QR">
+                                    DESCARGAR CÓDIGO QR
+                                </a>
                             </div>
                         </form>
                     </div>

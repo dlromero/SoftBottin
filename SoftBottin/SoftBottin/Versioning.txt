@@ -665,6 +665,44 @@ Archivos eliminados			:	SoftBottin\SoftBottin\Scripts\Zoom\bootstrap-image-galle
 
 
 
+******************************************************************************************************************************
+		     Version: 1.0.1.0
+		       Autor: Daniel Romero
+			   Fecha: 15 de Marzo de 2017
+  		 Descripcion:			
+
+
+Actualización Controlador	:	SoftBottin\SoftBottin\Controllers\ShoesController.cs
+
+
+Actualización Modelo		:   SoftBottin\SoftBottin\Models\cmProductDetail.cs
+
+
+Actualización javascript	:	SoftBottin\SoftBottin\Scripts\Angular\app.js
+
+
+
+Actualización Estilos		:	SoftBottin\SoftBottin\Content\Boostrap\main.css
+
+
+Actualización Vistas		:	SoftBottin\SoftBottin\Views\Security\Principal.cshtml
+								SoftBottin\SoftBottin\Views\Security\ProductDetail.cshtml
+								SoftBottin\SoftBottin\Views\Security\SubPrincipal.cshtml
+								SoftBottin\SoftBottin\Views\Shared\_Layout.cshtml
+
+
+
+Nuevos archivos				:	SoftBottin\SoftBottin\Content\Images\bottini.jpg
+								SoftBottin\SoftBottin\Content\Images\fondo.gif
+								SoftBottin\SoftBottin\Content\Images\model2.jpg
+								SoftBottin\SoftBottin\Content\Images\models1.jpg
+								SoftBottin\SoftBottin\Content\Images\shoesgirl.jpg
+
+
+
+
+
+
 	
 
 

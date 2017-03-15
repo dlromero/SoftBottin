@@ -44,7 +44,7 @@ app.run(function ($rootScope, $location, $route, $timeout) {
     });
     $rootScope.$on('$routeChangeSuccess', function () {
         //console.log('$routeChangeSuccess');
-        //hide loading gif
+        //hide loading gif       
         $timeout(function () {
             $rootScope.layout.loading = false;
         }, 200);
@@ -64,7 +64,7 @@ app.controller('ZapatosCtrl', function ($scope) {
 });
 
 app.controller('PrincipalCtrl', function ($scope) {    
-    $scope.message = "Perfil.";
+    $scope.message = "Perfil.";    
 });
 
 app.controller('carritoController', function ($scope) {    

@@ -27,6 +27,11 @@ namespace SoftBottin.Models
         /// <summary>
         /// 
         /// </summary>
+        public string sProductId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string sProductName { get; set; }
         /// <summary>
         /// 
@@ -157,6 +162,7 @@ namespace SoftBottin.Models
                     for (int iShoe = 0; iShoe < dsShoe.Tables[0].Rows.Count; iShoe++)
                     {
                         niProductDetailt.sProductName = dsShoe.Tables[0].Rows[iShoe]["pdName"].ToString();
+                        niProductDetailt.sProductId = dsShoe.Tables[0].Rows[iShoe]["ptIdProduct"].ToString();
                         niProductDetailt.fPrice = string.IsNullOrEmpty(dsShoe.Tables[0].Rows[iShoe]["pdSalePrice"].ToString())
                                                    ? 0 : Convert.ToSingle(dsShoe.Tables[0].Rows[iShoe]["pdSalePrice"].ToString());
                         niProductDetailt.sDescription = dsShoe.Tables[0].Rows[iShoe]["pdDescription"].ToString();

@@ -635,6 +635,10 @@ td, th {
     .app-tipos-zapatos {
         margin-top: 130px;
     }
+
+    #map-container {
+        height: 30%;
+    }
 }
 
 
@@ -668,4 +672,47 @@ td, th {
     .app-tipos-zapatos-botones {
         margin-top: 5px;
     }
+}
+
+
+.input-group[class*="col-"] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#map-container {
+    height: 100%;
+    width: 100%;
+}
+
+
+#map-outer {
+    height: 478px;
+    padding: 20px;
+    border: 2px solid #CCC;
+    margin-bottom: 20px;
+    background-color: #FFF;
+}
+
+#map-container {
+    height: 400px;
+}
+
+@media all and (max-width: 991px) {
+    #map-outer {
+        height: 650px;
+    }
+}
+
+.row-centered {
+    text-align: center;
+}
+
+.col-centered {
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
 }
