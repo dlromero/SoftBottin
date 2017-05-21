@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ZapaTake" Class="SoftBottinDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DANIEL-PC;Initial Catalog=ZapaTake;User ID=dlromeroa" SettingsObjectName="SoftBottinBD.Properties.Settings" SettingsPropertyName="ZapaTakeConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DANIEL-PC;Initial Catalog=ZapaTake;Persist Security Info=True;User ID=dlromeroa" SettingsObjectName="SoftBottinBD.Properties.Settings" SettingsPropertyName="ZapaTakeConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Color" Member="Colors">
     <Type Name="Color">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

@@ -26,7 +26,7 @@ namespace SoftBottin.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/SoftBottinWS/SoftBottin.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx")]
         public string SoftBottin_wsSoftBottin_SoftBottin {
             get {
                 return ((string)(this["SoftBottin_wsSoftBottin_SoftBottin"]));

@@ -375,10 +375,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/SoftBottinWS/SoftBottin.asmx">
+    <WebReferenceUrl Include="http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\wsSoftBottin\</RelPath>
-      <UpdateFromURL>http://localhost/SoftBottinWS/SoftBottin.asmx</UpdateFromURL>
+      <UpdateFromURL>http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

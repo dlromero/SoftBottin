@@ -1189,10 +1189,10 @@
   </wsdl:binding>
   <wsdl:service name="SoftBottin">
     <wsdl:port name="SoftBottinSoap" binding="tns:SoftBottinSoap">
-      <soap:address location="http://localhost/SoftBottinWS/SoftBottin.asmx" />
+      <soap:address location="http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx" />
     </wsdl:port>
     <wsdl:port name="SoftBottinSoap12" binding="tns:SoftBottinSoap12">
-      <soap12:address location="http://localhost/SoftBottinWS/SoftBottin.asmx" />
+      <soap12:address location="http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

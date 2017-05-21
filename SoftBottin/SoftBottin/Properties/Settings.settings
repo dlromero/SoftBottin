@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SoftBottin_wsSoftBottin_SoftBottin" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost/SoftBottinWS/SoftBottin.asmx</Value>
+      <Value Profile="(Default)">http://www.misbottini.somee.com/SoftBottinWS/SoftBottin.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
